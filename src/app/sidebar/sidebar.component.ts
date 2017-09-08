@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+
 import {Tipoequipo} from '../tipoequipo/tipoequipo';
 import {Marca} from '../marca/marca';
 import {Modelo} from '../modelo/modelo';
@@ -12,11 +13,17 @@ import {Modelo} from '../modelo/modelo';
 
 export class SidebarComponent{
 	
+	public selectedModel:Modelo;
+	public selectedMark:Marca;
+	public selectedType:Tipoequipo;
 	public Listtipo:Array<Tipoequipo>;
 	public Listmarca:Array<Marca>;
 	public Listmodelo:Array<Modelo>;
 
 	constructor(){
+		
+		//this.selectedModel = this.modelo[1];
+
 		this.Listtipo = [
 			new Tipoequipo(1,'Monitor multiparámetros'),
 			new Tipoequipo(2,'Ecógrafo'),
@@ -40,4 +47,19 @@ export class SidebarComponent{
 	ngOnInit(){
 		console.log(this.Listmodelo);
 	}
+
+  SeleccionarModelo(event:string): void{
+    this.selectedModel = JSON.parse(event);
+    console.log(this.selectedModel);
+  }
+
+  SeleccionarMarca(event:string): void{
+    this.selectedMark = JSON.parse(event);
+    console.log(this.selectedMark);
+  }
+
+  SeleccionarTipo(event:string): void{
+    this.selectedType = JSON.parse(event);
+    console.log(this.selectedType);
+  }
 }

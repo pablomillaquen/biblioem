@@ -1,23 +1,18 @@
 <h4>Buscar por Tipo de Equipo</h4>
-            <select class="form-control" name="listmarca" id="listmarca">
-              <option value="1">Monitor signos vitales</option>
-              <option value="2">Ecógrafo</option>
-              <option value="3">Máquina anestesia</option>
-              <option value="4">Otro</option>
-            </select>
-            <br />
-            <h4>Buscar por Marca</h4>
-            <select class="form-control" name="listmarca" id="listmarca">
-              <option value="1">Siemens</option>
-              <option value="2">GE</option>
-              <option value="3">Drager</option>
-              <option value="4">Otro</option>
-            </select>
-            <br />
-            <h4>Buscar por Modelo</h4>
-            <select class="form-control" name="listmarca" id="listmarca">
-              <option value="1">Modelo1</option>
-              <option value="2">Modelo2</option>
-              <option value="3">Modelo3</option>
-              <option value="4">Modelo4</option>
-            </select>
+	<select class="form-control" [ngModel]="selectedType | json" (ngModelChange)="SeleccionarTipo($event)">
+   	<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
+</select>
+<br />
+<h4>Buscar por Marca</h4>
+<select class="form-control" [ngModel]="selectedMark | json" (ngModelChange)="SeleccionarMarca($event)">
+    <option *ngFor="let mar of Listmarca" [value]="mar.id | json" >{{mar.nombre}}</option>
+</select>
+<br />
+
+<h4>Buscar por Modelo</h4>
+	<select class="form-control" [ngModel]="selectedModel | json" (ngModelChange)="SeleccionarModelo($event)">
+    <option *ngFor="let mod of Listmodelo" [value]="mod.id | json" >{{mod.nombre}}</option>
+</select>
+
+		
+			
