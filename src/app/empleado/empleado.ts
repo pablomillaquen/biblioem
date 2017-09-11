@@ -6,7 +6,8 @@ export class Empleado{
 		public apellido:string,
 		public email:string,
 		public acceso:number,
-		public user:string
+		public user:string,
+		public pass:string
 		){		
 	}
 }
