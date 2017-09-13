@@ -9,5 +9,6 @@ import {Component} from '@angular/core';
 export class NavbarComponent{
 	
 	public item1 ="Manuales";
-	public item2 ="Apuntes";
+	public item2 ="Protocolos";
+	public item3 ="Apuntes";
 }

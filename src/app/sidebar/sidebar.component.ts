@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-
 import {Tipoequipo} from '../tipoequipo/tipoequipo';
 import {Marca} from '../marca/marca';
 import {Modelo} from '../modelo/modelo';

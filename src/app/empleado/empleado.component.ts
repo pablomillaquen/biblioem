@@ -11,9 +11,10 @@ import {Tipoequipo} from '../tipoequipo/tipoequipo';
 export class EmpleadoComponent{
 	public empleado:Empleado;
 	public selectedType:Tipoequipo;
+	public Listtipo:Array<Tipoequipo>;
 
 	constructor() {
-		this.empleado = new Empleado(0,"","","",0,"");
+		this.empleado = new Empleado(0,"","","",0,"","");
 		this.Listtipo = [
 			new Tipoequipo(1,'Monitor multiparámetros'),
 			new Tipoequipo(2,'Ecógrafo'),
