@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-xs-12 col-md-8">
 				<input type="text" class="form-control" name="txtApellido" #txtApellido="ngModel" [(ngModel)]="empleado.apellido" required>
-				<span *ngIf="txtApellido.touched && !txtApellido.valid">Ingrese el nombre</span>
+				<span *ngIf="txtApellido.touched && !txtApellido.valid">Ingrese el apellido</span>
 			</div>
 		</div>
 		<div class="row">
@@ -25,8 +25,9 @@
 				<label for="txtEmail">Email:</label>
 			</div>
 			<div class="col-xs-12 col-md-8">
-				<input type="email" class="form-control" name="txtEmail" #txtEmail="ngModel" [(ngModel)]="empleado.email" required>
-				<span *ngIf="txtEmail.touched && !txtEmail.valid">Ingrese el nombre</span>
+				<input type="email" class="form-control" name="txtEmail" #txtEmail="ngModel" [(ngModel)]="empleado.correo" email>
+				<!-- <input type="text" class="form-control" #userEmail="ngModel" name="userEmail" [(ngModel)]="empleado.correo" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [ngClass]="{invalid : userEmail.touched && !userEmail?.valid}" required email> -->
+				<!-- <span *ngIf="txtEmail.touched && !txtEmail.valid">Ingrese el email del empleado</span> -->
 			</div>
 		</div>
 		<div class="row">
@@ -36,9 +37,9 @@
 			<div class="col-xs-12 col-md-8">
 	<!-- 			<input type="text" class="form-control" name="ListTipoAcceso" #ListTipoAcceso="ngModel" [(ngModel)]="empleado.acceso" required>
 	 -->			<select class="form-control" [ngModel]="selectedType  | json">
-	   				<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
+	   					<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
 				</select>
-				<span *ngIf="ListTipoAcceso.touched && !ListTipoAcceso.valid">Ingrese el nombre</span>
+				<!-- <span *ngIf="ListTipoAcceso.touched && !ListTipoAcceso.valid">Seleccione el tipo de usuario</span> -->
 			</div>
 		</div>
 		<div class="row">

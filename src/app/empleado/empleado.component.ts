@@ -13,13 +13,13 @@ export class EmpleadoComponent{
 	public selectedType:Tipoequipo;
 	public Listtipo:Array<Tipoequipo>;
 
+
 	constructor() {
 		this.empleado = new Empleado(0,"","","",0,"","");
 		this.Listtipo = [
-			new Tipoequipo(1,'Monitor multiparámetros'),
-			new Tipoequipo(2,'Ecógrafo'),
-			new Tipoequipo(3,'Máquina anestesia'),
-			new Tipoequipo(4,'Otro')
+			new Tipoequipo(1,'Administrador'),
+			new Tipoequipo(2,'Técnico'),
+			new Tipoequipo(3,'Otro')
 			];
 	}
 	onSubmit(){

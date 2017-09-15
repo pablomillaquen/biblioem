@@ -4,7 +4,7 @@ export class Empleado{
 		public id:number,
 		public nombre:string,
 		public apellido:string,
-		public email:string,
+		public correo:string,
 		public acceso:number,
 		public user:string,
 		public pass:string
