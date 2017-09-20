@@ -9,6 +9,8 @@ import { NavbarComponent} from './navbar/navbar.component';
 import { SidebarComponent} from './sidebar/sidebar.component';
 import { BodyappComponent} from './bodyapp/bodyapp.component';
 import { EmpleadoComponent} from './empleado/empleado.component';
+import { MarcaComponent} from './marca/marca.component';
+import { ModeloComponent} from './modelo/modelo.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { EmpleadoComponent} from './empleado/empleado.component';
     NavbarComponent,
     SidebarComponent,
     BodyappComponent,
-    EmpleadoComponent
+    EmpleadoComponent,
+    MarcaComponent,
+    ModeloComponent
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,57 @@
+<h3>Formulario de Manuales</h3>
+<div class="row">
+	<form #formManual="ngForm" (ngSubmit)="onSubmit()">
+		<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="manual.id" />
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				<label for="txtNombre">Nombre:</label>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="manual.nombre" required />
+				<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				<label for="txtApellido">¿Existe Manual físico?:</label>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<select name="SelFisico" #SelFisico="mgModel" [(ngModel)]="manual.fisico">
+				  <option value="1">Si</option>
+				  <option value="0">No</option>
+				</select>
+			</div>
+		</div>
+		<div class="row" *ngIf="SelFisico=='1'">
+			<div class="col-xs-12 col-md-4">
+				<label for="txtEmail">Ubicación Física:</label>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<input type="text" class="form-control" name="txtUbicacion" #txtUbicacion="ngModel" [(ngModel)]="manual.ubicacion"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				<label for="txtUrl">URL:</label>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<input type="input" class="form-control" name="txtUrl" #txtUrl="ngModel" [(ngModel)]="manual.url"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				<label for="ListTipoAcceso">Modelo:</label>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<select class="form-control" [ngModel]="selectedModel | json" (ngModelChange)="SeleccionarModelo($event)">
+    				<option *ngFor="let mod of Listmodelo" [value]="mod.id | json" >{{manual.modid}}</option>
+    			</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-primary">Guardar</button>
+			</div>
+		</div>
+	</form>
+</div>

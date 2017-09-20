@@ -1,68 +1,71 @@
-<h3>Formulario de Empleados</h3>
-<div class="row">
-	<form #formEmpleado="ngForm" (ngSubmit)="onSubmit()">
-		<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="empleado.id" required>
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<label for="txtNombre">Nombre:</label>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="empleado.nombre" required>
-				<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<label for="txtApellido">Apellido:</label>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<input type="text" class="form-control" name="txtApellido" #txtApellido="ngModel" [(ngModel)]="empleado.apellido" required>
-				<span *ngIf="txtApellido.touched && !txtApellido.valid">Ingrese el apellido</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<label for="txtEmail">Email:</label>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<input type="email" class="form-control" name="txtEmail" #txtEmail="ngModel" [(ngModel)]="empleado.correo" email>
-				<!-- <input type="text" class="form-control" #userEmail="ngModel" name="userEmail" [(ngModel)]="empleado.correo" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [ngClass]="{invalid : userEmail.touched && !userEmail?.valid}" required email> -->
-				<!-- <span *ngIf="txtEmail.touched && !txtEmail.valid">Ingrese el email del empleado</span> -->
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<label for="ListTipoAcceso">Tipo Acceso:</label>
-			</div>
-			<div class="col-xs-12 col-md-8">
-	<!-- 			<input type="text" class="form-control" name="ListTipoAcceso" #ListTipoAcceso="ngModel" [(ngModel)]="empleado.acceso" required>
-	 -->			<select class="form-control" [ngModel]="selectedType  | json">
-	   					<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
-				</select>
-				<!-- <span *ngIf="ListTipoAcceso.touched && !ListTipoAcceso.valid">Seleccione el tipo de usuario</span> -->
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<label for="txtUser">Nombre Usuario:</label>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<input type="text" class="form-control" name="txtUser" #txtUser="ngModel" [(ngModel)]="empleado.user" required>
-				<span *ngIf="txtUser.touched && !txtUser.valid">Ingrese el nombre</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<label for="txtPass">Contraseña:</label>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<input type="text" class="form-control" name="txtPass" #txtPass="ngModel" [(ngModel)]="empleado.pass">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<button class="btn btn-primary">Guardar</button>
-			</div>
-		</div>
-	</form>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalEmpleado">
+  Nuevo Empleado
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalEmpleado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+			<form #formEmpleado="ngForm" (ngSubmit)="onSubmit()">
+      		<div class="modal-header">
+        		<h5 class="modal-title" id="exampleModalLabel">Formulario de Empleado</h5>
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          			<span aria-hidden="true">&times;</span>
+        		</button>
+      		</div>
+      		<div class="modal-body">
+				<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="empleado.id" />
+		
+				<div class="col-xs-12">
+					<label for="txtNombre">Nombre:</label>
+				</div>
+				<div class="col-xs-12">
+					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="empleado.nombre" required />
+					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
+				</div>
+				<div class="col-xs-12">
+					<label for="txtApellido">Apellido:</label>
+				</div>
+				<div class="col-xs-12">
+					<input type="text" class="form-control" name="txtApellido" #txtApellido="ngModel" [(ngModel)]="empleado.apellido" required />
+					<span *ngIf="txtApellido.touched && !txtApellido.valid">Ingrese el apellido</span>
+				</div>
+				<div class="col-xs-12">
+					<label for="txtEmail">Email:</label>
+				</div>
+				<div class="col-xs-12">
+					<input type="email" class="form-control" name="txtEmail" #txtEmail="ngModel" [(ngModel)]="empleado.correo" email />
+				</div>
+				<div class="col-xs-12">
+					<label for="ListTipoAcceso">Tipo Acceso:</label>
+				</div>
+				<div class="col-xs-12">
+					<select class="form-control" [ngModel]="selectedType  | json" [ngModelOptions]="{standalone: true}">
+		   				<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
+					</select>
+				</div>
+				<div class="col-xs-12">
+					<label for="txtUser">Nombre Usuario:</label>
+				</div>
+				<div class="col-xs-12">
+					<input type="text" class="form-control" name="txtUser" #txtUser="ngModel" [(ngModel)]="empleado.user" required />
+					<span *ngIf="txtUser.touched && !txtUser.valid">Ingrese el nombre</span>
+				</div>
+				<div class="col-xs-12">
+					<label for="txtPass">Contraseña:</label>
+				</div>
+				<div class="col-xs-12">
+					<input type="text" class="form-control" name="txtPass" #txtPass="ngModel" [(ngModel)]="empleado.pass" />
+				</div>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        		<button type="button" class="btn btn-primary">Guardar</button>
+      		</div>
+			</form>
+    	</div>
+  	</div>
 </div>
+
+

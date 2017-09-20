@@ -1,0 +1,54 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModeloModal">
+  Nuevo Modelo
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ModeloModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	    	<form #formModelo="ngForm" (ngSubmit)="onSubmit()">
+	      	<div class="modal-header">
+	        	<h5 class="modal-title" id="exampleModalLabel">Formulario de Modelo</h5>
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          		<span aria-hidden="true">&times;</span>
+	        	</button>
+	      	</div>
+	      	<div class="modal-body">
+	        	<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="modelo.id" />
+				
+				<div class="col-xs-12 col-md-4">
+					<label for="txtNombre">Nombre:</label>
+				</div>
+				<div class="col-xs-12 col-md-8">
+					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="modelo.nombre" required />
+					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
+				</div>
+			
+				<div class="col-xs-12 col-md-4">
+					<label for="txtNombre">Tipo Equipo:</label>
+				</div>
+				<div class="col-xs-12 col-md-8">
+					<select class="form-control" [ngModel]="selectedType | json" (ngModelChange)="SeleccionarTipo($event)">
+	   					<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
+					</select>
+				</div>
+			
+				<div class="col-xs-12 col-md-4">
+					<label for="txtNombre">Marca:</label>
+				</div>
+				<div class="col-xs-12 col-md-8">
+					<select class="form-control" [ngModel]="selectedMark | json" (ngModelChange)="SeleccionarMarca($event)">
+	    				<option *ngFor="let mar of Listmarca" [value]="mar.id | json" >{{mar.nombre}}</option>
+					</select>
+				</div>
+				
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	        	<button type="button" class="btn btn-primary">Guardar</button>
+	      	</div>
+	      	</form>
+	    </div>
+  	</div>
+</div>
