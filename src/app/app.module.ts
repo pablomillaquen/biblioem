@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent} from './navbar/navbar.component';
 import { SidebarComponent} from './sidebar/sidebar.component';
 import { BodyappComponent} from './bodyapp/bodyapp.component';
+import { ManualuserComponent} from './manual/manualuser.component';
+
 import { EmpleadoComponent} from './empleado/empleado.component';
 import { MarcaComponent} from './marca/marca.component';
 import { ModeloComponent} from './modelo/modelo.component';
@@ -20,6 +22,7 @@ import { ManualComponent} from './manual/manual.component';
     NavbarComponent,
     SidebarComponent,
     BodyappComponent,
+    ManualuserComponent,
     EmpleadoComponent,
     MarcaComponent,
     ModeloComponent,
