@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Tipoequipo} from '../tipoequipo/tipoequipo';
 import {Marca} from '../marca/marca';
 import {Modelo} from '../modelo/modelo';
+import {Manual} from './manual';
 
  
 @Component({
@@ -11,7 +12,7 @@ import {Modelo} from '../modelo/modelo';
 })
 
 export class ManualComponent{
-	
+	public manual:Manual;
 	public selectedModel:Modelo;
 	public selectedMark:Marca;
 	public selectedType:Tipoequipo;
@@ -21,7 +22,7 @@ export class ManualComponent{
 
 	constructor(){
 		
-		//this.selectedModel = this.modelo[1];
+		this.manual = new Manual(0,"",0,"","",0);
 
 		this.Listtipo = [
 			new Tipoequipo(1,'Monitor multiparámetros'),

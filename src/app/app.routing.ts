@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { EmpleadoComponent} from './empleado/empleado.component';
 import { MarcaComponent} from './marca/marca.component';
 import { ModeloComponent} from './modelo/modelo.component';
+import { ManualComponent} from './manual/manual.component';
 import { BodyappComponent} from './bodyapp/bodyapp.component';
 
 const appRoutes: Routes = [
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
 	{path:'empleado', component:EmpleadoComponent},
 	{path:'marca', component:MarcaComponent},
 	{path:'modelo', component:ModeloComponent},
+	{path:'manual', component:ManualComponent},
 	{path:'**', component:BodyappComponent}
 ];
 

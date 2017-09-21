@@ -17,28 +17,28 @@
 	      	<div class="modal-body">
 	        	<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="modelo.id" />
 				
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 ">
 					<label for="txtNombre">Nombre:</label>
 				</div>
-				<div class="col-xs-12 col-md-8">
+				<div class="col-xs-12 ">
 					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="modelo.nombre" required />
 					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 				</div>
 			
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 ">
 					<label for="txtNombre">Tipo Equipo:</label>
 				</div>
-				<div class="col-xs-12 col-md-8">
-					<select class="form-control" [ngModel]="selectedType | json" (ngModelChange)="SeleccionarTipo($event)">
+				<div class="col-xs-12 ">
+					<select class="form-control" [ngModel]="selectedType | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarTipo($event)">
 	   					<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
 					</select>
 				</div>
 			
-				<div class="col-xs-12 col-md-4">
+				<div class="col-xs-12 ">
 					<label for="txtNombre">Marca:</label>
 				</div>
-				<div class="col-xs-12 col-md-8">
-					<select class="form-control" [ngModel]="selectedMark | json" (ngModelChange)="SeleccionarMarca($event)">
+				<div class="col-xs-12 ">
+					<select class="form-control" [ngModel]="selectedMark | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarMarca($event)">
 	    				<option *ngFor="let mar of Listmarca" [value]="mar.id | json" >{{mar.nombre}}</option>
 					</select>
 				</div>

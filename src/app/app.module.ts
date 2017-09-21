@@ -11,6 +11,7 @@ import { BodyappComponent} from './bodyapp/bodyapp.component';
 import { EmpleadoComponent} from './empleado/empleado.component';
 import { MarcaComponent} from './marca/marca.component';
 import { ModeloComponent} from './modelo/modelo.component';
+import { ManualComponent} from './manual/manual.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ModeloComponent} from './modelo/modelo.component';
     BodyappComponent,
     EmpleadoComponent,
     MarcaComponent,
-    ModeloComponent
+    ModeloComponent,
+    ManualComponent
   ],
   imports: [
     FormsModule,
