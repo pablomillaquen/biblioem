@@ -9,6 +9,7 @@ import { ModeloComponent} from './modelo/modelo.component';
 import { ManualComponent} from './manual/manual.component';
 import { BodyappComponent} from './bodyapp/bodyapp.component';
 import { ListmanualComponent } from './listmanual/listmanual.component';
+import { IndexadminComponent } from './indexadmin/indexadmin.component';
 
 const appRoutes: Routes = [
 	{path:'', component:ListmanualComponent},
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
 	{path:'marca', component:MarcaComponent},
 	{path:'modelo', component:ModeloComponent},
 	{path:'manual', component:ManualComponent},
+	{path:'indexadmin', component:IndexadminComponent},
 	{path:'**', component:ListmanualComponent}
 ];
 

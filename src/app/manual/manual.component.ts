@@ -19,6 +19,7 @@ export class ManualComponent{
 	public Listtipo:Array<Tipoequipo>;
 	public Listmarca:Array<Marca>;
 	public Listmodelo:Array<Modelo>;
+	public SelFisico:Boolean;
 
 	constructor(){
 		
@@ -42,6 +43,7 @@ export class ManualComponent{
 			new Modelo(3,'Modelo3', '3.jpg', 3, 2),
 			new Modelo(4,'Otro', '9.jpg', 6, 3)
 			];
+		this.SelFisico = true;
 	}
 
 	ngOnInit(){
@@ -60,6 +62,11 @@ export class ManualComponent{
 
   SeleccionarTipo(event:string): void{
     this.selectedType = JSON.parse(event);
+    console.log(this.selectedType);
+  }
+
+  CambiarFisico(event:string): void{
+    this.SelFisico = JSON.parse(event);
     console.log(this.selectedType);
   }
 }
