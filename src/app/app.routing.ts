@@ -8,16 +8,17 @@ import { MarcaComponent} from './marca/marca.component';
 import { ModeloComponent} from './modelo/modelo.component';
 import { ManualComponent} from './manual/manual.component';
 import { BodyappComponent} from './bodyapp/bodyapp.component';
+import { ListmanualComponent } from './listmanual/listmanual.component';
 
 const appRoutes: Routes = [
-	{path:'', component:BodyappComponent},
+	{path:'', component:ListmanualComponent},
 	{path:'bodyapp', component:BodyappComponent},
-	{path:'manualuser', component:ManualuserComponent},
+	{path:'manualuser', component:ListmanualComponent},
 	{path:'empleado', component:EmpleadoComponent},
 	{path:'marca', component:MarcaComponent},
 	{path:'modelo', component:ModeloComponent},
 	{path:'manual', component:ManualComponent},
-	{path:'**', component:BodyappComponent}
+	{path:'**', component:ListmanualComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

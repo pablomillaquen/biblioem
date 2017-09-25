@@ -17,6 +17,7 @@ import { ModeloComponent} from './modelo/modelo.component';
 import { ManualComponent} from './manual/manual.component';
 import { ListmanualComponent } from './listmanual/listmanual.component';
 import { DataFilterPipe } from './pipes/data-filter.pipe';
+import { MydetallemodeloComponent } from './mydetallemodelo/mydetallemodelo.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
     ModeloComponent,
     ManualComponent,
     ListmanualComponent,
-    DataFilterPipe
+    DataFilterPipe,
+    MydetallemodeloComponent
   ],
   imports: [
     FormsModule,
