@@ -1,7 +1,14 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ManualModal">
-  Nuevo manual
-</button>
+<div class="row">
+	<div class="col-6">
+		<a [routerLink]="['../indexadmin']">Volver</a>
+	</div>
+	<!-- Button trigger modal -->
+	<div class="col-6 text-right">
+		<button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#ManualModal">
+		  Nuevo manual
+		</button>
+	</div>
+</div>
 
 <div *ngIf="manuales">
 	<table 
@@ -81,12 +88,20 @@
 			        	<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="manual.nombre" required />
 			        	<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 			      		</div>
-	
+					<div class="col-xs-12">
+			        	<label for="ListTipoAcceso">Modelo:</label>
+			      	</div>
+			      	<div class="col-xs-12">
+				        <select class="form-control" [ngModel]="selectedModel | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelo($event)">
+				          	<option *ngFor="let mod of Listmodelo" [value]="mod.id | json">{{mod.nombre}}</option>
+				        </select>
+				    </div>
+
 			      	<div class="col-xs-12">
 			        	<label for="txtApellido">¿Existe Manual físico?:</label>
 			      	</div>
 			      	<div class="col-xs-12">
-			        	<select class="form-control" name="SelFisico" #SelFisico="ngModel" [ngModel]="manual.fisico | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="CambiarFisico($event)">
+			        	<select class="form-control" name="SelFisico" #SelFisico="ngModel" [ngModel]="existe | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="CambiarFisico($event)">
 				          	<option value="true">Si</option>
 				          	<option value="false" selected>No</option>
 			        	</select>
@@ -99,24 +114,17 @@
 			        	<label for="txtEmail">Ubicación Física:</label>
 			      	</div>
 			      	<div class="col-xs-12" >
-			        	<input type="text" class="form-control" name="txtUbicacion" #txtUbicacion="ngModel" [(ngModel)]="manual.ubicacion" [disabled]="SelFisico" />
+			        	<input type="text" class="form-control" name="txtUbicacion" #txtUbicacion="ngModel" [(ngModel)]="manual.ubicacion" [disabled]="!existe" />
 			      	</div>
 			   
 			      	<div class="col-xs-12">
-			        	<label for="txtUrl">URL:</label>
+			        	<label for="txtUrl">Archivo:</label>
 			      	</div>
 			      	<div class="col-xs-12">
-			        	<input type="input" class="form-control" name="txtUrl" #txtUrl="ngModel" [(ngModel)]="manual.url" />
+			        	<input type="file" class="form-control" name="txtUrl" #txtUrl="ngModel" [(ngModel)]="manual.url" />
 			      	</div>
 			   
-			      	<div class="col-xs-12">
-			        	<label for="ListTipoAcceso">Modelo:</label>
-			      	</div>
-			      	<div class="col-xs-12">
-			        <select class="form-control" [ngModel]="selectedModel | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelo($event)">
-			          	<option *ngFor="let mod of Listmodelo" [value]="mod.id | json">{{manual.modid}}</option>
-			        </select>
-			    </div>
+			      	
 			</div>
    
 
