@@ -23,13 +23,10 @@
   <thead>
   <tr>
     <th style="width: 30%">
-      <mfDefaultSorter by="name">Tipo Equipo</mfDefaultSorter>
+      <mfDefaultSorter by="name">Id</mfDefaultSorter>
     </th>
     <th style="width: 30%">
-      <mfDefaultSorter by="email">Marca</mfDefaultSorter>
-    </th>
-    <th style="width: 20%">
-      <mfDefaultSorter by="age">Modelo</mfDefaultSorter>
+      <mfDefaultSorter by="email">Nombre</mfDefaultSorter>
     </th>
     <th style="width: 20%">
       <mfDefaultSorter by="city">Opciones</mfDefaultSorter>
@@ -46,8 +43,18 @@
   <tr *ngFor="let item of mf.data">
     <td>{{item.MAR_id}}</td>
     <td>{{item.MAR_nombre}}</td>
-    <td class="text-right">{{item.age}}</td>
-    <td>{{item.city | uppercase}}<a href="#">Ver</a></td>
+    <td>
+      <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Opciones
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <a class="dropdown-item" href="#">Eliminar</a>
+          <a class="dropdown-item" href="#">Editar</a>
+        </div>
+      </div>
+ 
+    </td>
   </tr>
   </tbody>
   <tfoot>

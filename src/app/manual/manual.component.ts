@@ -47,7 +47,7 @@ export class ManualComponent{
 	}
 
 	ngOnInit(){
-		console.log(this.Listmodelo);
+		//console.log(this.Listmodelo);
 	}
 
   SeleccionarModelo(event:string): void{
