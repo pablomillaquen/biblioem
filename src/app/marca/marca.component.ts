@@ -25,7 +25,15 @@ export class MarcaComponent{
 		this.marca = new Marca(0,"");
 	}
 	onSubmit(){
-		
+		console.log(this.marca);
+		this._marcaService.addMarca(this.marca).subscribe(
+			response=>{
+				
+			},
+			error=>{
+				console.log(<any>error);
+			}
+			);
 	}
 	ngOnInit(){
 		//alert(this._marcaService.getMarca());

@@ -16,5 +16,12 @@ export class MarcaService{
 	getMarca(){
 		return this._http.get(this.url+'admin/mark/getAll/').map(res=>res.json());
 	}
+	addMarca(marca:Marca){
+		let json = JSON.stringify(marca);
+		let params = 'json='+json;
+		let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+		return this._http.post(this.url+'admin/mark/save',params, {headers:headers}).map(res=>res.json());
+	}
 	
 }

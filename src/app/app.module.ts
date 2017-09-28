@@ -19,6 +19,8 @@ import { ListmanualComponent } from './listmanual/listmanual.component';
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component';
 import { IndexadminComponent } from './indexadmin/indexadmin.component';
+import { MarcaFilterPipe } from './pipes/marca-filter.pipe';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { IndexadminComponent } from './indexadmin/indexadmin.component';
     ListmanualComponent,
     DataFilterPipe,
     DetallemodeloComponent,
-    IndexadminComponent
+    IndexadminComponent,
+    MarcaFilterPipe
   ],
   imports: [
     FormsModule,
