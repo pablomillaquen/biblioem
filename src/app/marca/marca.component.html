@@ -1,3 +1,5 @@
+<h3><strong>LISTADO DE MARCAS:</strong></h3>
+<hr/>
 <div class="row">
   <div class="col-6">
     <a [routerLink]="['../indexadmin']">Volver</a>
@@ -23,6 +25,12 @@
   >
   <thead>
   <tr>
+    <th>
+      Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />
+    </th>
+    <th></th><th></th>
+  </tr>
+  <tr>
     <th style="width: 30%">
       <mfDefaultSorter by="name">Id</mfDefaultSorter>
     </th>
@@ -33,20 +41,16 @@
       <mfDefaultSorter by="city">Opciones</mfDefaultSorter>
     </th>
   </tr>
-  <tr>
-    <th colspan="4">
-      <input class="form-control" [(ngModel)]="filterQuery" />
-    </th>
-  </tr>
   </thead>
   <tbody>
   <tr *ngFor="let item of mf.data">
     <td>{{item.MAR_id}}</td>
     <td>{{item.MAR_nombre}}</td>
     <td >
-      <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-      <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
- 
+      <div class="btn-group">
+        <button class="btn btn-info" data-toggle="modal" data-target="#MarcaModal" (click)="modalActualizar(item.MAR_id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
     </td>
   </tr>
   </tbody>
