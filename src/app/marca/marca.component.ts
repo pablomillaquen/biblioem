@@ -68,6 +68,7 @@ export class MarcaComponent{
 		this._marcaService.getMarca().subscribe(
 			result=>{	
 				this.marcas= result.result;
+				
 				},
 			error=>{
 				console.log(<any>error);
@@ -76,9 +77,32 @@ export class MarcaComponent{
 	}
 
 	modalActualizar(id){
-		console.log(id);
-		this.marca = _.findWhere(this.marcas, {MAR_id: id});
-		console.log(this.marca);
+		this.marca = _.findWhere(this.marcas, {id: id});
+	}
+
+	deleteMarca(id){
+		let listanueva:Marca[];
+		this._marcaService.deleteMarca(id).subscribe(
+			response=>{
+				if(response.response == true){
+					
+					this.marcas = _.without(this.marcas, _.findWhere(this.marcas, {
+					  id: id
+					}));
+					console.log(this.marcas);
+					this.toastr.success('Marca eliminada exitosamente!', 'Exito!');
+					
+				}else{
+					console.log(response);
+					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
+				}
+
+			},
+			error=>{
+				console.log(<any>error);
+				this.toastr.error('No se pudo realizar la tarea!', 'Error!');
+				}
+			);
 	}
 }
 

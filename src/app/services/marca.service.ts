@@ -25,4 +25,12 @@ export class MarcaService{
 		//return this._http.post(this.url+'admin/mark/save',params, {headers:headers}).map(res=>res.json());
 	}
 	
+	deleteMarca(id){
+		// let json = JSON.stringify(marca);
+		// let params = 'json='+json;
+		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+		return this._http.post(this.url+'admin/mark/delete/'+id,'').map(res=>res.json());
+		//return this._http.post(this.url+'admin/mark/save',params, {headers:headers}).map(res=>res.json());
+	}
 }
