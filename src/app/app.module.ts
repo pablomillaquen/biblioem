@@ -20,9 +20,9 @@ import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component';
 import { IndexadminComponent } from './indexadmin/indexadmin.component';
 import { MarcaFilterPipe } from './pipes/marca-filter.pipe';
+import { ModeloFilterPipe } from './pipes/modelo-filter.pipe';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ModeloFilterPipe } from './pipes/modelo-filter.pipe';
 
 
 @NgModule({

@@ -17,7 +17,7 @@
   <br>
   <table 
   class="table table-striped table-hover" 
-  [mfData]="modelos |marcaFilter : filterQuery" 
+  [mfData]="modelos |modeloFilter : filterQuery" 
   #mf="mfDataTable" 
   [mfRowsOnPage]="rowsOnPage"
   [(mfSortBy)]="sortBy"
@@ -25,17 +25,23 @@
   >
   <thead>
   <tr>
-    <th>
+    <th colspan="2">
       Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />
     </th>
-    <th></th><th></th>
+    <th></th><th></th><th></th>
   </tr>
   <tr>
-    <th style="width: 30%">
-      <mfDefaultSorter by="name">Id</mfDefaultSorter>
+    <th style="width: 10%">
+      <mfDefaultSorter by="name">Foto</mfDefaultSorter>
     </th>
-    <th style="width: 30%">
+    <th style="width: 0%">
       <mfDefaultSorter by="email">Nombre</mfDefaultSorter>
+    </th>
+    <th style="width: 40%">
+      <mfDefaultSorter by="email">Tipo</mfDefaultSorter>
+    </th>
+    <th style="width: 20%">
+      <mfDefaultSorter by="email">Marca</mfDefaultSorter>
     </th>
     <th style="width: 20%">
       <mfDefaultSorter by="city">Opciones</mfDefaultSorter>
@@ -44,19 +50,21 @@
   </thead>
   <tbody>
   <tr *ngFor="let item of mf.data">
-    <td>{{item.id}}</td>
+    <td>{{item.foto}}</td>
     <td>{{item.nombre}}</td>
+    <td>{{item.idTipo}}</td>
+    <td>{{item.marca}}</td>
     <td >
       <div class="btn-group">
-        <button class="btn btn-info" data-toggle="modal" data-target="#MarcaModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        <button class="btn btn-danger"  (click)="deleteMarca(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <button class="btn btn-info" data-toggle="modal" data-target="#ModeloModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button class="btn btn-danger"  (click)="deleteModelo(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
       </div>
     </td>
   </tr>
   </tbody>
   <tfoot>
   <tr>
-    <td colspan="4">
+    <td colspan="5">
       <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
     </td>
   </tr>
@@ -101,7 +109,7 @@
 				</div>
 				<div class="col-xs-12 ">
 					<select class="form-control" [ngModel]="selectedType | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarTipo($event)">
-	   					<option *ngFor="let tip of Listtipo" [value]="tip.id | json" >{{tip.nombre}}</option>
+	   					<option *ngFor="let tip of Listtipo" [selected]="tip.id == modelo.idTipo" [value]="tip.id | json" >{{tip.nombre}}</option>
 					</select>
 				</div>
 			
@@ -109,11 +117,17 @@
 					<label for="txtNombre">Marca:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<select class="form-control" [ngModel]="selectedMark | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarMarca($event)">
-	    				<option *ngFor="let mar of Listmarca" [value]="mar.id | json" >{{mar.nombre}}</option>
+					<select class="form-control" [ngModel]="selectedMark | json" [ngModelOptions]="{standalone: true}" >
+	    				<option *ngFor="let mar of Listmarcas" [selected]="mar.id == modelo.idMarca" [value]="mar.id | json">{{mar.nombre}}</option>
 					</select>
 				</div>
 				
+				<div class="col-xs-12 ">
+					<label for="txtFoto">Foto:</label>
+				</div>
+				<div class="col-xs-12 ">
+					<input type="file" class="form-control" name="txtFoto" #txtFoto="ngModel" [(ngModel)]="modelo.foto" (change)="fileChangeEvent($event)" />
+				</div>
 	      	</div>
 	      	<div class="modal-footer">
 	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

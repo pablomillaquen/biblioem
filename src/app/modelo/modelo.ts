@@ -4,8 +4,8 @@ export class Modelo{
 		public id:number,
 		public nombre:string,
 		public foto:string,
-		public mar_id:number,
-		public tip_id:number
+		public idTipo:number,
+		public idMarca:number
 		){		
 	}
 }
