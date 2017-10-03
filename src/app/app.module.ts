@@ -22,6 +22,7 @@ import { IndexadminComponent } from './indexadmin/indexadmin.component';
 import { MarcaFilterPipe } from './pipes/marca-filter.pipe';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ModeloFilterPipe } from './pipes/modelo-filter.pipe';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DataFilterPipe,
     DetallemodeloComponent,
     IndexadminComponent,
-    MarcaFilterPipe
+    MarcaFilterPipe,
+    ModeloFilterPipe
   ],
   imports: [
     FormsModule,
