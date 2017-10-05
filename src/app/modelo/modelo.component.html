@@ -126,7 +126,7 @@
 					<label for="txtFoto">Foto:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<input type="file" class="form-control" name="txtFoto" #txtFoto="ngModel" [(ngModel)]="modelo.foto" (change)="fileChangeEvent($event)" />
+					<input type="file" class="form-control" name="txtFoto" (change)="fileChangeEvent($event)" />
 				</div>
 	      	</div>
 	      	<div class="modal-footer">

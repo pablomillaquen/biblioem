@@ -77,13 +77,15 @@ export class ModeloComponent{
 		}
 		jQuery("#ModeloModal").modal("hide");
 
-		if(this.filesToUpload.lenght>=1){
-			this._modeloService.makeFileRequest(GLOBAL.url+'upload-file',[],this.filesToUpload)
+		if(this.filesToUpload && this.filesToUpload.length>=1){
+			console.log(this.filesToUpload);
+			this._modeloService.makeFileRequest(GLOBAL.url+'admin/modelo/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
 				console.log(result);
 				this.resultUpload = result;
 				this.modelo.foto = this.resultUpload.filename;
+				console.log(this.modelo);
 				this.saveModelo();
 			},
 			(error)=>{
@@ -140,7 +142,7 @@ export class ModeloComponent{
 		this._marcaService.getMarca().subscribe(
 			result=>{	
 				this.Listmarcas= result.result;
-				console.log(this.Listmarcas);
+				//console.log(this.Listmarcas);
 				},
 			error=>{
 				console.log(<any>error);
@@ -152,7 +154,7 @@ export class ModeloComponent{
 		this._modeloService.getModelo().subscribe(
 			result=>{	
 				this.modelos= result.result;
-				console.log(this.modelos);
+				//console.log(this.modelos);
 				},
 			error=>{
 				console.log(<any>error);
@@ -164,7 +166,7 @@ export class ModeloComponent{
 		console.log(this.modelo);
 	}
 
-	deleteMarca(id){
+	deleteModelo(id){
 		let listanueva:Modelo[];
 		this._modeloService.deleteModelo(id).subscribe(
 			response=>{
@@ -192,6 +194,6 @@ export class ModeloComponent{
 	
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
-		console.log(this.filesToUpload);
+		//console.log(this.filesToUpload);
 	}
 }
