@@ -117,8 +117,8 @@
 					<label for="txtNombre">Marca:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<select class="form-control" [ngModel]="selectedMark | json" [ngModelOptions]="{standalone: true}" >
-	    				<option *ngFor="let mar of Listmarcas" [selected]="mar.id == modelo.idMarca" [value]="mar.id | json">{{mar.nombre}}</option>
+					<select class="form-control" [ngModel]="selectedMark | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarMarca($event)">
+	    				<option *ngFor="let mar of Listmarcas" [selected]="mar.id == modelo.idMarca" [value]="mar.id | json" >{{mar.nombre}}</option>
 					</select>
 				</div>
 				
@@ -131,7 +131,7 @@
 	      	</div>
 	      	<div class="modal-footer">
 	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-	        	<button type="button" class="btn btn-primary">Guardar</button>
+	        	<button type="submit" class="btn btn-primary">Guardar</button>
 	      	</div>
 	      	</form>
 	    </div>

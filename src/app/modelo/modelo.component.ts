@@ -122,18 +122,18 @@ export class ModeloComponent{
 			);
 	}
   SeleccionarModelo(event:string): void{
-    this.selectedModel = JSON.parse(event);
-    console.log(this.selectedModel);
+    this.modelo.idTipo = JSON.parse(event);
+    console.log(this.modelo);
   }
 
   SeleccionarMarca(event:string): void{
-    this.selectedMark = JSON.parse(event);
-    console.log(this.selectedMark);
+    this.modelo.idMarca = JSON.parse(event);
+    console.log(this.modelo);
   }
 
   SeleccionarTipo(event:string): void{
-    this.selectedType = JSON.parse(event);
-    console.log(this.selectedType);
+    this.modelo.idTipo = JSON.parse(event);
+    console.log(this.modelo);
   }
 
     obtenerMarcas(){
