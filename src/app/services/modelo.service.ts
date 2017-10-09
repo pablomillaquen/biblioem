@@ -40,14 +40,14 @@ export class ModeloService{
 			var xhr = new XMLHttpRequest();
 
 			for(var i =0;i<files.length;i++){
-				formData.append('uploads[]',files[i], files[i].name);
+				formData.append('uploads',files[i], files[i].name);
 			}
 
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState == 4){
 					if(xhr.status == 200){
-						//resolve(JSON.parse(xhr.response));
-						resolve(xhr.response);
+						resolve(JSON.parse(xhr.response));
+						//resolve(xhr.response);
 					}else{
 						reject(xhr.response);
 					}

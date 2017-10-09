@@ -1,3 +1,4 @@
 export var GLOBAL={
-	url:'http://localhost/apibiblioem/public/v1/'
+	url:'http://localhost/apibiblio2/public/v1/',
+	defaultImage: 'image-1507592634-default.jpg'
 };

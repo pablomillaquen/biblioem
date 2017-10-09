@@ -34,23 +34,23 @@
     <th style="width: 10%">
       <mfDefaultSorter by="name">Foto</mfDefaultSorter>
     </th>
-    <th style="width: 0%">
-      <mfDefaultSorter by="email">Nombre</mfDefaultSorter>
+    <th style="width: 20%">
+      <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
     </th>
-    <th style="width: 40%">
-      <mfDefaultSorter by="email">Tipo</mfDefaultSorter>
+    <th style="width: 30%">
+      <mfDefaultSorter by="name">Tipo</mfDefaultSorter>
     </th>
     <th style="width: 20%">
-      <mfDefaultSorter by="email">Marca</mfDefaultSorter>
+      <mfDefaultSorter by="name">Marca</mfDefaultSorter>
     </th>
     <th style="width: 20%">
-      <mfDefaultSorter by="city">Opciones</mfDefaultSorter>
+      <mfDefaultSorter by="name">Opciones</mfDefaultSorter>
     </th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let item of mf.data">
-    <td>{{item.foto}}</td>
+    <td><div *ngIf="item.foto"><img src="http://localhost/apibiblio2/uploads/fotos/{{item.foto}}"  style="width: 100%" /></div></td>
     <td>{{item.nombre}}</td>
     <td>{{item.idTipo}}</td>
     <td>{{item.marca}}</td>

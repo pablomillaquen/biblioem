@@ -3,9 +3,9 @@ export class Modelo{
 	constructor(
 		public id:number,
 		public nombre:string,
-		public foto:string,
 		public idTipo:number,
-		public idMarca:number
+		public idMarca:number,
+		public foto:string
 		){		
 	}
 }

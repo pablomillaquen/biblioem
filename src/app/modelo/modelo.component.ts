@@ -46,7 +46,7 @@ export class ModeloComponent{
 		vcr: ViewContainerRef
 		){
 		
-		this.modelo = new Modelo(0,'', '', 0, 0);
+		this.modelo = new Modelo(0,'', 0, 0, GLOBAL.defaultImage);
 		this.toastr.setRootViewContainerRef(vcr);
 
 		this.Listtipo = [
@@ -82,9 +82,11 @@ export class ModeloComponent{
 			this._modeloService.makeFileRequest(GLOBAL.url+'admin/modelo/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
-				console.log(result);
-				this.resultUpload = result;
-				this.modelo.foto = this.resultUpload.filename;
+				//console.log(result);
+				this.resultUpload = result['result'];
+				//this.resultUpload = result.result;
+				//console.log(this.resultUpload);
+				this.modelo.foto = this.resultUpload;
 				console.log(this.modelo);
 				this.saveModelo();
 			},
@@ -125,17 +127,17 @@ export class ModeloComponent{
 	}
   SeleccionarModelo(event:string): void{
     this.modelo.idTipo = JSON.parse(event);
-    console.log(this.modelo);
+    //console.log(this.modelo);
   }
 
   SeleccionarMarca(event:string): void{
     this.modelo.idMarca = JSON.parse(event);
-    console.log(this.modelo);
+    //console.log(this.modelo);
   }
 
   SeleccionarTipo(event:string): void{
     this.modelo.idTipo = JSON.parse(event);
-    console.log(this.modelo);
+    //console.log(this.modelo);
   }
 
     obtenerMarcas(){

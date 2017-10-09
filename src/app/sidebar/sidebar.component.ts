@@ -36,10 +36,10 @@ export class SidebarComponent{
 			new Marca(4,'Otro')
 			];
 		this.Listmodelo = [
-			new Modelo(1,'Modelo1', '1.jpg', 3, 3),
-			new Modelo(2,'Modelo2', '2.jpg', 2, 1),
-			new Modelo(3,'Modelo3', '3.jpg', 3, 2),
-			new Modelo(4,'Otro', '9.jpg', 6, 3)
+			new Modelo(1,'Modelo1', 3, 3,'1.jpg'),
+			new Modelo(2,'Modelo2', 2, 1, '2.jpg'),
+			new Modelo(3,'Modelo3', 3, 2, '3.jpg'),
+			new Modelo(4,'Otro', 6, 3, '9.jpg')
 			];
 	}
 
