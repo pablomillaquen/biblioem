@@ -1,44 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { PeticionesService } from '../services/peticiones.service';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
+import {ModeloService} from '../services/modelo.service';
+// import {MarcaService} from '../services/marca.service';
+// import {TipoequipoService} from '../services/tipoequipo.service';
+import {Modelo} from '../modelo/modelo';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { ViewContainerRef } from '@angular/core';
+import * as _ from 'underscore';
+import { GLOBAL } from '../services/global';
+declare var jQuery:any;
 
 @Component({
   selector: 'app-listmanual',
   templateUrl: './listmanual.component.html',
   styleUrls: ['./listmanual.component.css'],
-  providers:[PeticionesService]
+  providers:[ModeloService]
 })
 export class ListmanualComponent implements OnInit {
-  
-  public data: any[];
+  public modelos:Modelo[];
+  //public data: any[];
   public filterQuery = "";
   public rowsOnPage = 5;
-  public sortBy = "name";
+  public sortBy = "nombre";
   public sortOrder = "asc";
-  public articulos;
+  //public articulos;
 
 
-  constructor(private _http: Http, private _peticionesService:PeticionesService) { }
+  constructor(private _modeloService:ModeloService) { }
 
   ngOnInit(){
-  	this._http.get("assets/data.json")
-  		.subscribe((data)=>{
-  			setTimeout(()=>{
-  				this.data = data.json();
-  			}, 2000);
-  		});
-  // console.log(this._peticionesService.getPrueba());
-  // this._peticionesService.getArticulos().subscribe(
-  //   result =>{
-  //     this.articulos = result;
-  //     if(!this.articulos){
-  //       console.log("error en el servidor");
-  //     }
-  //   },
-  //   error=>{
-  //     var err = <any>error;
-  //     console.log(err);
-  //   })
+
+    this.obtenerModelos();
+  }
+
+  obtenerModelos(){
+    this._modeloService.getModelo().subscribe(
+      result=>{  
+        this.modelos= result.result;
+        console.log(result);
+        },
+      error=>{
+        console.log(<any>error);
+        }
+      );
   }
 
 

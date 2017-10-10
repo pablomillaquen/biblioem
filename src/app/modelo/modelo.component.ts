@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {ModeloService} from '../services/modelo.service';
 import {MarcaService} from '../services/marca.service';
+import {TipoequipoService} from '../services/tipoequipo.service';
 import {Modelo} from '../modelo/modelo';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
@@ -16,7 +17,7 @@ import {Marca} from '../marca/marca';
 @Component({
 	selector: 'modelo',
 	templateUrl:'./modelo.component.html',
-	providers: [ModeloService, MarcaService]
+	providers: [ModeloService,MarcaService,TipoequipoService]
 })
 
 export class ModeloComponent{
@@ -24,9 +25,9 @@ export class ModeloComponent{
 	public selectedModel:Modelo;
 	public selectedMark:Marca;
 	public selectedType:Tipoequipo;
-	public Listtipo:Array<Tipoequipo>;
 	//public Listmarca:Array<Marca>;
 	public Listmarcas:Marca[];
+	public Listtipo:Tipoequipo[];
 	//public Listmodelo:Array<Modelo>;
 	public modelos:Modelo[];
 	public modelo:Modelo;
@@ -42,6 +43,7 @@ export class ModeloComponent{
 		private _router:Router,
 		private _modeloService: ModeloService,
 		private _marcaService: MarcaService,
+		private _tipoequipoService: TipoequipoService,
 		public toastr: ToastsManager, 
 		vcr: ViewContainerRef
 		){
@@ -49,12 +51,12 @@ export class ModeloComponent{
 		this.modelo = new Modelo(0,'', 0, 0, GLOBAL.defaultImage);
 		this.toastr.setRootViewContainerRef(vcr);
 
-		this.Listtipo = [
-			new Tipoequipo(1,'Máquina anestesia'),
-			new Tipoequipo(2,'Ecógrafo'),
-			new Tipoequipo(3,'Monitor multiparámetros'),
-			new Tipoequipo(4,'Otro')
-			];
+		// this.Listtipo = [
+		// 	new Tipoequipo(1,'Máquina anestesia'),
+		// 	new Tipoequipo(2,'Ecógrafo'),
+		// 	new Tipoequipo(3,'Monitor multiparámetros'),
+		// 	new Tipoequipo(4,'Otro')
+		// 	];
 		// this.Listmarca = [
 		// 	new Marca(1,'Siemens'),
 		// 	new Marca(2,'GE'),
@@ -103,6 +105,7 @@ export class ModeloComponent{
 		//console.log(this.Listmodelo);
 		this.obtenerModelos();
 		this.obtenerMarcas();
+		this.obtenerTipos();
 	}
 
 	saveModelo(){
@@ -152,11 +155,23 @@ export class ModeloComponent{
 			);
 	}
 
+	obtenerTipos(){
+		this._tipoequipoService.getTipoEquipo().subscribe(
+			result=>{	
+				this.Listtipo= result.result;
+				//console.log(this.Listmarcas);
+				},
+			error=>{
+				console.log(<any>error);
+				}
+			);
+	}
+
     obtenerModelos(){
 		this._modeloService.getModelo().subscribe(
 			result=>{	
 				this.modelos= result.result;
-				//console.log(this.modelos);
+				console.log(result);
 				},
 			error=>{
 				console.log(<any>error);

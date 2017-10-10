@@ -13,6 +13,7 @@ import { ManualuserComponent} from './manual/manualuser.component';
 
 import { EmpleadoComponent} from './empleado/empleado.component';
 import { MarcaComponent} from './marca/marca.component';
+import { TipoequipoComponent} from './tipoequipo/tipoequipo.component';
 import { ModeloComponent} from './modelo/modelo.component';
 import { ManualComponent} from './manual/manual.component';
 import { ListmanualComponent } from './listmanual/listmanual.component';
@@ -23,6 +24,7 @@ import { MarcaFilterPipe } from './pipes/marca-filter.pipe';
 import { ModeloFilterPipe } from './pipes/modelo-filter.pipe';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TipoequipoFilterPipe } from './pipes/tipoequipo-filter.pipe';
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ManualuserComponent,
     EmpleadoComponent,
     MarcaComponent,
+    TipoequipoComponent,
     ModeloComponent,
     ManualComponent,
     ListmanualComponent,
@@ -41,7 +44,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DetallemodeloComponent,
     IndexadminComponent,
     MarcaFilterPipe,
-    ModeloFilterPipe
+    ModeloFilterPipe,
+    TipoequipoFilterPipe
   ],
   imports: [
     FormsModule,

@@ -17,9 +17,9 @@ export class MarcaComponent{
 	public marca:Marca;
 	public marcas:Marca[];
 	public filterQuery = "";
-  public rowsOnPage = 5;
-  public sortBy = "nombre";
-  public sortOrder = "asc";
+    public rowsOnPage = 5;
+    public sortBy = "nombre";
+    public sortOrder = "asc";
   
 
 	constructor(
