@@ -5,7 +5,7 @@ export class Manual{
 		public fisico:number,
 		public ubicacion:string,
 		public url:string,
-		public mod_id:number){
+		public idModelo:number){
 		
 	}
 }

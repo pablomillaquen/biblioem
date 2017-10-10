@@ -2,41 +2,47 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
-import {Modelo} from '../modelo/modelo';
+import {Manual} from '../manual/manual';
 import {GLOBAL} from './global';
 
 @Injectable()
-
-export class ModeloService{
-	public url:string;
+export class ManualService {
+public url:string;
 
 	constructor(public _http:Http){
 		this.url = GLOBAL.url;
 	}
-	getModelo(){
-		return this._http.get(this.url+'admin/modelo/getAll/').map(res=>res.json());
+	getManual(){
+		return this._http.get(this.url+'admin/manual/getAll/').map(res=>res.json());
 	}
 
-	getModelo1(id){
-		return this._http.get(this.url+'admin/modelo/get/'+id).map(res=>res.json());	
+	getManual1(id){
+		return this._http.get(this.url+'admin/manual/get/'+id).map(res=>res.json());	
 	}
 
-	addModelo(modelo:Modelo){
-		// let json = JSON.stringify(modelo);
+	addManual(manual:Manual){
+		// public id:number,
+		// public nombre:string,
+		// public fisico:number,
+		// public ubicacion:string,
+		// public url:string,
+		// public mod_id:number
+		
+		// let json = JSON.stringify(manual);
 		// let params = 'json='+json;
 		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-		return this._http.post(this.url+'admin/modelo/save',modelo).map(res=>res.json());
-		//return this._http.post(this.url+'admin/modelo/save',params, {headers:headers}).map(res=>res.json());
+		return this._http.post(this.url+'admin/manual/save',manual).map(res=>res.json());
+		//return this._http.post(this.url+'admin/manual/save',params, {headers:headers}).map(res=>res.json());
 	}
 	
-	deleteModelo(id){
-		// let json = JSON.stringify(modelo);
+	deleteManual(id){
+		// let json = JSON.stringify(manual);
 		// let params = 'json='+json;
 		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-		return this._http.post(this.url+'admin/modelo/delete/'+id,'').map(res=>res.json());
-		//return this._http.post(this.url+'admin/modelo/save',params, {headers:headers}).map(res=>res.json());
+		return this._http.post(this.url+'admin/manual/delete/'+id,'').map(res=>res.json());
+		//return this._http.post(this.url+'admin/manual/save',params, {headers:headers}).map(res=>res.json());
 	}
 
 	makeFileRequest(url:string, params:Array<string>, files:Array<File>){

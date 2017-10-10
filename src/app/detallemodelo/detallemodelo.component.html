@@ -2,7 +2,11 @@
 	<div class="col-8">
 		<h3>Datos del equipo</h3>
 		<hr>
-			<ul class="nav nav-tabs" role="tablist">
+			<div *ngIf="!modelo">
+				<p>Cargando...</p>
+			</div>
+			<div *ngIf="modelo">
+				<ul class="nav nav-tabs" role="tablist">
 			  	<li class="nav-item">
 			    	<a class="nav-link active" href="#datos" role="tab" data-toggle="tab">Datos</a>
 			  	</li>
@@ -28,118 +32,116 @@
 		  				<table class="table table-bordered">
 							<tr>
 								<td><b>Descripción: </b></td>
-								<td>Máquina anestesia</td>
+								<td>{{modelo.tipoequipo}}</td>
 							</tr>
 							<tr>
 								<td><b>Marca: </b></td>
-								<td>Drager</td>
+								<td>{{modelo.marca}}</td>
 							</tr>
 							<tr>
 								<td><b>Modelo: </b></td>
-								<td>Fabius GS Premium</td>
+								<td>{{modelo.nombre}}</td>
 							</tr>
 						</table>
 					</div>
 	  			</div>
-	  		<div role="tabpanel" class="tab-pane fade" id="manuales">
-				<br>
-				<h5>Listado de manuales:</h5>
-				<br>
-				<div class="table-responsive">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Enlace</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Manual Usuario</td>
-								<td><a href="#">Enlace</a></td>
-							</tr>
-							<tr>
-								<td>Manual Servicio</td>
-								<td><a href="#">Enlace</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-	  		</div>
-	  		<div role="tabpanel" class="tab-pane fade" id="protocolos">
-	  			<br>
-	  			<h5>Listado de protocolos disponibles:</h5>
-	  			<br>
-	  			<div class="table-responsive">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Enlace</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Protocolo MP</td>
-								<td><a href="#">Enlace</a></td>
-							</tr>
-							<tr>
-								<td>Seguridad Eléctrica</td>
-								<td><a href="#">Enlace</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-	  		</div>
-	  		<div role="tabpanel" class="tab-pane fade" id="apuntes">
-	  			<br>
-	  			<h5>Listado de apuntes disponibles:</h5>
-	  			<br>
-	  			<div class="table-responsive">
-	  				<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Titulo</th>
-								<th>Descripción</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Clave servicio</td>
-								<td>La clave es "admin"</td>
-							</tr>		
-						</tbody>
-					</table>
-				</div>
-	  		</div>
-	  		<div role="tabpanel" class="tab-pane fade" id="repuestos">
-	  			<br>
-	  			<h5>Listado de repuestos:</h5>
-	  			<br>
-	  			<div class="table-responsive">
-	  				<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Foto</th>
-								<th>Descripción</th>
-								<th>Detalle</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Foto</td>
-								<td>Sensor de flujo</td>
-								<td>Referencia original: MU62537, referencia alternativa: ENM74837</td>
-							</tr>		
-						</tbody>
-					</table>
-				</div>
-	  		</div>
-		</div>
+		  		<div role="tabpanel" class="tab-pane fade" id="manuales">
+					<br>
+					<h5>Listado de manuales:</h5>
+					<br>
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Enlace</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let man of manuales">
+									<td>{{man.nombre}}</td>
+									<td><a href="http://localhost/apibiblio2/uploads/manuales/{{man.url}}"  target="_blank">Descargar</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		  		</div>
+		  		<div role="tabpanel" class="tab-pane fade" id="protocolos">
+		  			<br>
+		  			<h5>Listado de protocolos disponibles:</h5>
+		  			<br>
+		  			<div class="table-responsive">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Enlace</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Protocolo MP</td>
+									<td><a href="#">Enlace</a></td>
+								</tr>
+								<tr>
+									<td>Seguridad Eléctrica</td>
+									<td><a href="#">Enlace</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		  		</div>
+		  		<div role="tabpanel" class="tab-pane fade" id="apuntes">
+		  			<br>
+		  			<h5>Listado de apuntes disponibles:</h5>
+		  			<br>
+		  			<div class="table-responsive">
+		  				<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Titulo</th>
+									<th>Descripción</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Clave servicio</td>
+									<td>La clave es "admin"</td>
+								</tr>		
+							</tbody>
+						</table>
+					</div>
+		  		</div>
+		  		<div role="tabpanel" class="tab-pane fade" id="repuestos">
+		  			<br>
+		  			<h5>Listado de repuestos:</h5>
+		  			<br>
+		  			<div class="table-responsive">
+		  				<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Foto</th>
+									<th>Descripción</th>
+									<th>Detalle</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Foto</td>
+									<td>Sensor de flujo</td>
+									<td>Referencia original: MU62537, referencia alternativa: ENM74837</td>
+								</tr>		
+							</tbody>
+						</table>
+					</div>
+		  		</div>
+			</div>
+			</div>
 		
-		<button class="btn btn-warning">Volver</button>
+		<a [routerLink]="['../../manualuser']" class="btn btn-warning">Volver</a>
 	</div>
-	<div class="col-4">
-		<img src="https://www.draeger.com/Products/Image/Fabius-GS-Premium.jpg" alt="" >
+
+	<div *ngIf="modelo" class="col-4">
+		<img src="http://localhost/apibiblio2/uploads/fotos/{{modelo.foto}}" alt="" >
 	</div>
 </div>

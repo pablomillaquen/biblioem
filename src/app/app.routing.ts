@@ -11,9 +11,11 @@ import { TipoequipoComponent} from './tipoequipo/tipoequipo.component';
 import { BodyappComponent} from './bodyapp/bodyapp.component';
 import { ListmanualComponent } from './listmanual/listmanual.component';
 import { IndexadminComponent } from './indexadmin/indexadmin.component';
+import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component';
 
 const appRoutes: Routes = [
 	{path:'', component:ListmanualComponent},
+	{path:'detalle/:id', component:DetallemodeloComponent},
 	{path:'bodyapp', component:BodyappComponent},
 	{path:'manualuser', component:ListmanualComponent},
 	{path:'empleado', component:EmpleadoComponent},

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {ModeloService} from '../services/modelo.service';
 // import {MarcaService} from '../services/marca.service';
@@ -16,7 +16,7 @@ declare var jQuery:any;
   styleUrls: ['./listmanual.component.css'],
   providers:[ModeloService]
 })
-export class ListmanualComponent implements OnInit {
+export class ListmanualComponent {
   public modelos:Modelo[];
   //public data: any[];
   public filterQuery = "";
