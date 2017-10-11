@@ -49,17 +49,23 @@
 					<br>
 					<h5>Listado de manuales:</h5>
 					<br>
-					<div class="table-responsive">
+					<div *ngIf="manuales?.length < 1">
+						<p>No hay manuales disponibles aún</p>
+					</div>
+					<div class="table-responsive" *ngIf="manuales!= 0">
 						<table class="table table-bordered">
 							<thead>
 								<tr>
 									<th>Nombre</th>
+									<th>Ubicación</th>
 									<th>Enlace</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr *ngFor="let man of manuales">
 									<td>{{man.nombre}}</td>
+									<td *ngIf="man.ubicacion">{{man.ubicacion}}</td>
+									<td *ngIf="!man.ubicacion">No disponible</td>
 									<td><a href="http://localhost/apibiblio2/uploads/manuales/{{man.url}}"  target="_blank">Descargar</a></td>
 								</tr>
 							</tbody>
@@ -70,7 +76,10 @@
 		  			<br>
 		  			<h5>Listado de protocolos disponibles:</h5>
 		  			<br>
-		  			<div class="table-responsive">
+		  			<div *ngIf="protocolos?.length < 1">
+						<p>No hay protocolos disponibles aún</p>
+					</div>
+					<div class="table-responsive" *ngIf="protocolos!= 0">
 						<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -79,17 +88,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Protocolo MP</td>
-									<td><a href="#">Enlace</a></td>
-								</tr>
-								<tr>
-									<td>Seguridad Eléctrica</td>
-									<td><a href="#">Enlace</a></td>
+								<tr *ngFor="let pro of protocolos">
+									<td>{{pro.nombre}}</td>
+									<td><a href="http://localhost/apibiblio2/uploads/protocolos/{{pro.url}}"  target="_blank">Descargar</a></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
+
 		  		</div>
 		  		<div role="tabpanel" class="tab-pane fade" id="apuntes">
 		  			<br>

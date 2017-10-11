@@ -12,6 +12,7 @@ import { BodyappComponent} from './bodyapp/bodyapp.component';
 import { ListmanualComponent } from './listmanual/listmanual.component';
 import { IndexadminComponent } from './indexadmin/indexadmin.component';
 import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component';
+import { ProtocoloComponent } from './protocolo/protocolo.component';
 
 const appRoutes: Routes = [
 	{path:'', component:ListmanualComponent},
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
 	{path:'tipoequipo', component:TipoequipoComponent},
 	{path:'modelo', component:ModeloComponent},
 	{path:'manual', component:ManualComponent},
+	{path:'protocolo', component:ProtocoloComponent},
 	{path:'indexadmin', component:IndexadminComponent},
 	{path:'**', component:ListmanualComponent}
 ];

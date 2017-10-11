@@ -2,24 +2,26 @@ import { Component } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {ModeloService} from '../services/modelo.service';
 import {ManualService} from '../services/manual.service';
-// import {TipoequipoService} from '../services/tipoequipo.service';
+import {ProtocoloService} from '../services/protocolo.service';
 import {Modelo} from '../modelo/modelo';
 import {Manual} from '../manual/manual';
+import {Protocolo} from '../protocolo/protocolo';
 
 @Component({
   selector: 'detallemodelo',
   templateUrl: './detallemodelo.component.html',
-  styleUrls: ['./detallemodelo.component.css'],
-  providers: [ModeloService, ManualService]
-})
+  providers: [ModeloService, ManualService, ProtocoloService]
+}) 
 
 export class DetallemodeloComponent {
 	public modelo:Modelo;
-	public manuales:Manual;
+	public manuales:Manual[];
+	public protocolos:Protocolo[];
 
   	constructor(
   		private _modeloService:ModeloService,
   		private _manualService:ManualService,
+  		private _protocoloService:ProtocoloService,
   		private _route: ActivatedRoute,
 		private _router:Router
 		) { }
@@ -27,6 +29,7 @@ export class DetallemodeloComponent {
   	ngOnInit() {
 		this.getModelo();
 		this.obtenerManuales();
+		this.obtenerProtocolos();
 	}
 
 	getModelo(){
@@ -54,6 +57,21 @@ export class DetallemodeloComponent {
 			this._manualService.getManualxModelo(id).subscribe(
 				result=>{	
 					this.manuales= result.result;
+					console.log(result);
+					},
+				error=>{
+					console.log(<any>error);
+					}
+				)
+			})
+		}
+
+	obtenerProtocolos(){
+		this._route.params.forEach((params:Params) =>{
+			let id = params['id'];
+			this._protocoloService.getProtocoloxModelo(id).subscribe(
+				result=>{	
+					this.protocolos= result.result;
 					console.log(result);
 					},
 				error=>{

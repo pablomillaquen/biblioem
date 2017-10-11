@@ -16,6 +16,7 @@ import { MarcaComponent} from './marca/marca.component';
 import { TipoequipoComponent} from './tipoequipo/tipoequipo.component';
 import { ModeloComponent} from './modelo/modelo.component';
 import { ManualComponent} from './manual/manual.component';
+import { ProtocoloComponent } from './protocolo/protocolo.component';
 import { ListmanualComponent } from './listmanual/listmanual.component';
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component';
@@ -39,6 +40,7 @@ import { TipoequipoFilterPipe } from './pipes/tipoequipo-filter.pipe';
     TipoequipoComponent,
     ModeloComponent,
     ManualComponent,
+    ProtocoloComponent,
     ListmanualComponent,
     DataFilterPipe,
     DetallemodeloComponent,
