@@ -20,6 +20,10 @@ public url:string;
 		return this._http.get(this.url+'admin/manual/get/'+id).map(res=>res.json());	
 	}
 
+	getManualxModelo(id){
+		return this._http.get(this.url+'admin/manual/getxmod/'+id).map(res=>res.json());	
+	}
+
 	addManual(manual:Manual){
 		// public id:number,
 		// public nombre:string,

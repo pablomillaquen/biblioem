@@ -12,6 +12,7 @@ import {Manual} from '../manual/manual';
   styleUrls: ['./detallemodelo.component.css'],
   providers: [ModeloService, ManualService]
 })
+
 export class DetallemodeloComponent {
 	public modelo:Modelo;
 	public manuales:Manual;
@@ -48,7 +49,9 @@ export class DetallemodeloComponent {
 	}
 
 	obtenerManuales(){
-			this._manualService.getManual().subscribe(
+		this._route.params.forEach((params:Params) =>{
+			let id = params['id'];
+			this._manualService.getManualxModelo(id).subscribe(
 				result=>{	
 					this.manuales= result.result;
 					console.log(result);
@@ -56,6 +59,7 @@ export class DetallemodeloComponent {
 				error=>{
 					console.log(<any>error);
 					}
-				);
+				)
+			})
 		}
-}
+	}
