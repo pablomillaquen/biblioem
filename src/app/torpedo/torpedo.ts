@@ -4,7 +4,7 @@ export class Torpedo{
 		public id:number,
 		public titulo:string,
 		public descripcion:string,
-		public mod_id:number
+		public idModelo:number
 		){		
 	}
 }
