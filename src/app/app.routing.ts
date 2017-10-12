@@ -14,6 +14,7 @@ import { IndexadminComponent } from './indexadmin/indexadmin.component';
 import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component';
 import { ProtocoloComponent } from './protocolo/protocolo.component';
 import { TorpedoComponent } from './torpedo/torpedo.component';
+import { RepuestoComponent } from './repuesto/repuesto.component';
 
 const appRoutes: Routes = [
 	{path:'', component:ListmanualComponent},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
 	{path:'protocolo', component:ProtocoloComponent},
 	{path:'torpedo', component:TorpedoComponent},
 	{path:'indexadmin', component:IndexadminComponent},
+	{path:'repuesto', component:RepuestoComponent},
 	{path:'**', component:ListmanualComponent}
 ];
 

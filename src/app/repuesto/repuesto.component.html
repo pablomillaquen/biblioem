@@ -1,0 +1,125 @@
+<h3><strong>LISTADO DE REPUESTOS:</strong></h3>
+<hr/>
+<div class="row">
+  <div class="col-6">
+    <a [routerLink]="['../indexadmin']">Volver</a>
+  </div>
+  <!-- Button trigger modal -->
+  <div class="col-6 text-right">
+    <!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RepuestoModal">
+	  Nuevo Repuesto
+	</button>
+  </div>
+</div>
+
+<div *ngIf="repuestos" class="table-responsive">
+  <br>
+  <table 
+  class="table table-striped table-hover" 
+  [mfData]="repuestos |dataFilter : filterQuery" 
+  #mf="mfDataTable" 
+  [mfRowsOnPage]="rowsOnPage"
+  [(mfSortBy)]="sortBy"
+  [(mfSortOrder)]="sortOrder"
+  >
+  <thead>
+  <tr>
+    <th colspan="2">
+      Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />
+    </th>
+    <th></th><th></th><th></th>
+  </tr>
+  <tr>
+    <th style="width: 10%">
+      <mfDefaultSorter by="name">Foto</mfDefaultSorter>
+    </th>
+    <th style="width: 30%">
+      <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+    </th>
+    <th style="width: 40%">
+      <mfDefaultSorter by="name">Descripción</mfDefaultSorter>
+    </th>
+    <th style="width: 20%">
+      <mfDefaultSorter by="name">Opciones</mfDefaultSorter>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of mf.data">
+    <td><div *ngIf="item.foto"><img src="http://localhost/apibiblio2/uploads/foto-repuestos/{{item.foto}}"  style="width: 100%" /></div></td>
+    <td>{{item.nombre}}</td>
+    <td>{{item.descripcion}}</td>
+    <td >
+      <div class="btn-group">
+        <button class="btn btn-info" data-toggle="modal" data-target="#RepuestoModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button class="btn btn-danger"  (click)="deleteRepuesto(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="5">
+      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
+  </table>
+</div>
+<div *ngIf="!repuestos">
+  <br>
+  <div class="jumbotron text-center">
+    
+    <h3>No se cuenta con repuestos alojados actualmente en la base de datos</h3>
+    <h5>Agregue repuestos haciendo click en el botón superior.</h5>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="RepuestoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	    	<form #formRepuesto="ngForm" (ngSubmit)="onSubmit()">
+	      	<div class="modal-header">
+	        	<h5 class="modal-title" id="exampleModalLabel">Formulario de Repuestos</h5>
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          		<span aria-hidden="true">&times;</span>
+	        	</button>
+	      	</div>
+	      	<div class="modal-body">
+	        	<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="repuesto.id" />
+				
+				<div class="col-xs-12 ">
+					<label for="txtNombre">Nombre:</label>
+				</div>
+				<div class="col-xs-12 ">
+					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="repuesto.nombre" required />
+					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
+				</div>
+
+				<div class="col-xs-12 ">
+					<label for="txtDescripcion">Descripción:</label>
+				</div>
+				<div class="col-xs-12 ">
+					<textarea placeholder="Describe el repuesto: Modelo, tamaño, para qué sirve, etc." class="form-control" name="txtDescripcion" #txtDescripcion="ngModel" [(ngModel)]="repuesto.descripcion" cols="30" rows="10"></textarea>
+					<span *ngIf="txtDescripcion.touched && !txtDescripcion.valid">Ingrese el nombre</span>
+				</div>
+
+				<div class="col-xs-12 ">
+					<label for="txtFoto">Foto:</label>
+				</div>
+				<div class="col-xs-12 ">
+					<input type="file" class="form-control" name="txtFoto" (change)="fileChangeEvent($event)" />
+				</div>
+	      	</div>
+	      	<div class="modal-footer">
+	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	        	<button type="submit" class="btn btn-primary">Guardar</button>
+	      	</div>
+	      	</form>
+	    </div>
+  	</div>
+</div>

@@ -18,6 +18,7 @@ import { ModeloComponent} from './modelo/modelo.component';
 import { ManualComponent} from './manual/manual.component';
 import { ProtocoloComponent } from './protocolo/protocolo.component';
 import { TorpedoComponent } from './torpedo/torpedo.component';
+import { RepuestoComponent } from './repuesto/repuesto.component';
 import { ListmanualComponent } from './listmanual/listmanual.component';
 import { DataFilterPipe } from './pipes/data-filter.pipe';
 import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component';
@@ -49,7 +50,8 @@ import { TipoequipoFilterPipe } from './pipes/tipoequipo-filter.pipe';
     IndexadminComponent,
     MarcaFilterPipe,
     ModeloFilterPipe,
-    TipoequipoFilterPipe
+    TipoequipoFilterPipe,
+    RepuestoComponent
   ],
   imports: [
     FormsModule,

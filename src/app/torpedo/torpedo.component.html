@@ -43,7 +43,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let item of mf.data">
-    <td>{{item.nombre}}</td>
+    <td>{{item.titulo}}</td>
     <td>{{item.modelo}}</td>
     <td>
     	<div class="btn-group">
@@ -98,7 +98,7 @@
 			        	<label for="txtNombre">Título:</label>
 			     	</div>
 			      	<div class="col-xs-12">
-			        	<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="torpedo.nombre" required />
+			        	<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="torpedo.titulo" required />
 			        	<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 			      		</div>
 

@@ -73,8 +73,8 @@ export class TorpedoComponent{
 	}
 
 	ngOnInit(){
-		//console.log(this.Listmodelo);
 		this.obtenerTorpedos();
+		
 		this.obtenerModelos();
 	}
 
@@ -133,7 +133,7 @@ export class TorpedoComponent{
 			this._torpedoService.getTorpedo().subscribe(
 				result=>{	
 					this.torpedos= result.result;
-					//console.log(result);
+					console.log(result);
 					},
 				error=>{
 					console.log(<any>error);
