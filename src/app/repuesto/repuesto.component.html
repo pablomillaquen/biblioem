@@ -37,6 +37,9 @@
     <th style="width: 30%">
       <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
     </th>
+    <th style="width: 30%">
+      <mfDefaultSorter by="name">Referencia</mfDefaultSorter>
+    </th>
     <th style="width: 40%">
       <mfDefaultSorter by="name">Descripción</mfDefaultSorter>
     </th>
@@ -49,6 +52,7 @@
   <tr *ngFor="let item of mf.data">
     <td><div *ngIf="item.foto"><img src="http://localhost/apibiblio2/uploads/foto-repuestos/{{item.foto}}"  style="width: 100%" /></div></td>
     <td>{{item.nombre}}</td>
+    <td>{{item.referencia}}</td>
     <td>{{item.descripcion}}</td>
     <td >
       <div class="btn-group">
@@ -99,6 +103,14 @@
 					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="repuesto.nombre" required />
 					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 				</div>
+        
+        <div class="col-xs-12 ">
+          <label for="txtReferencia">Referencia:</label>
+        </div>
+        <div class="col-xs-12 ">
+          <input type="text" class="form-control" name="txtReferencia" #txtReferencia="ngModel" [(ngModel)]="repuesto.referencia" />
+          
+        </div>
 
 				<div class="col-xs-12 ">
 					<label for="txtDescripcion">Descripción:</label>

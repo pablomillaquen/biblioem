@@ -104,7 +104,7 @@
 		  			<div *ngIf="torpedos?.length < 1">
 						<p>No hay apuntes disponibles aún</p>
 					</div>
-		  			<div class="table-responsive"  *ngIf="protocolos!= 0">
+		  			<div class="table-responsive"  *ngIf="torpedos!= 0">
 		  				<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -176,7 +176,8 @@
 		    		<strong>Detalle:</strong>
 		    	</div>
 		    	<div class="col-sm-12">
-		    		{{torpedo.descripcion}}
+		    		<p>{{torpedo.descripcion}}</p>
+		    		<p *ngIf="torpedo.url"><a href="http://localhost/apibiblio2/uploads/apuntes/{{torpedo.url}}"  target="_blank">Ver archivo disponible</a></p>
 		    	</div>
 			    
 			</div>

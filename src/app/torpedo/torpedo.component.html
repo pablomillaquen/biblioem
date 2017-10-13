@@ -31,6 +31,9 @@
 		    <th style="width: 30%">
 		      <mfDefaultSorter by="age">Modelo</mfDefaultSorter>
 		    </th>
+		    <th style="width: 30%">
+		      <mfDefaultSorter by="age">Archivo</mfDefaultSorter>
+		    </th>
 		    <th style="width: 20%">
 		      <mfDefaultSorter by="city">Opciones</mfDefaultSorter>
 		    </th>
@@ -46,6 +49,7 @@
 		  <tr *ngFor="let item of mf.data">
 		    <td>{{item.titulo}}</td>
 		    <td>{{item.modelo}}</td>
+		    <td><div *ngIf="item.url"><a href="http://localhost/apibiblio2/uploads/apuntes/{{item.url}}"  target="_blank">Descargar</a></div></td>
 		    <td>
 		    	<div class="btn-group">
 		        <button class="btn btn-info" data-toggle="modal" data-target="#TorpedoModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

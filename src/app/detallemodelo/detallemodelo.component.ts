@@ -41,7 +41,7 @@ export class DetallemodeloComponent {
   		private _route: ActivatedRoute,
 		private _router:Router
 		) { 
-  			this.torpedo = new Torpedo(0,"","",0);
+  			this.torpedo = new Torpedo(0,"","","",0);
   		}
 
   	ngOnInit() {
@@ -49,7 +49,7 @@ export class DetallemodeloComponent {
 		this.obtenerManuales();
 		this.obtenerProtocolos();
 		this.obtenerTorpedos();
-		this.obtenerRepuestos();
+		//this.obtenerRepuestos();
 	}
 
 	getModelo(){

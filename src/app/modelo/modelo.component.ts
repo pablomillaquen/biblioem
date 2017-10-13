@@ -3,6 +3,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {ModeloService} from '../services/modelo.service';
 import {MarcaService} from '../services/marca.service';
 import {TipoequipoService} from '../services/tipoequipo.service';
+import {RepuestoService} from '../services/repuesto.service';
 import {Modelo} from '../modelo/modelo';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
@@ -12,12 +13,13 @@ declare var jQuery:any;
 
 import {Tipoequipo} from '../tipoequipo/tipoequipo';
 import {Marca} from '../marca/marca';
+import {Repuesto} from '../repuesto/repuesto';
 
  
 @Component({
 	selector: 'modelo',
 	templateUrl:'./modelo.component.html',
-	providers: [ModeloService,MarcaService,TipoequipoService]
+	providers: [ModeloService,MarcaService,TipoequipoService,RepuestoService]
 })
 
 export class ModeloComponent{
@@ -28,7 +30,9 @@ export class ModeloComponent{
 	//public Listmarca:Array<Marca>;
 	public Listmarcas:Marca[];
 	public Listtipo:Tipoequipo[];
-	//public Listmodelo:Array<Modelo>;
+	public repuestos:Repuesto[];
+	public repuestosxmod:Array<any>;
+	public repuesto:Repuesto;
 	public modelos:Modelo[];
 	public modelo:Modelo;
 	public filterQuery = "";
@@ -44,13 +48,15 @@ export class ModeloComponent{
 		private _modeloService: ModeloService,
 		private _marcaService: MarcaService,
 		private _tipoequipoService: TipoequipoService,
+		private _repuestoService: RepuestoService,
 		public toastr: ToastsManager, 
 		vcr: ViewContainerRef
 		){
 		
 		this.modelo = new Modelo(0,'', 0, 0, GLOBAL.defaultImage);
+		this.repuesto = new Repuesto(0,'','','', GLOBAL.defaultImage);
 		this.toastr.setRootViewContainerRef(vcr);
-
+		this.repuestosxmod = [];
 		// this.Listtipo = [
 		// 	new Tipoequipo(1,'Máquina anestesia'),
 		// 	new Tipoequipo(2,'Ecógrafo'),
@@ -106,6 +112,7 @@ export class ModeloComponent{
 		this.obtenerModelos();
 		this.obtenerMarcas();
 		this.obtenerTipos();
+		this.obtenerRepuestos();
 	}
 
 	saveModelo(){
@@ -140,6 +147,11 @@ export class ModeloComponent{
 
   SeleccionarTipo(event:string): void{
     this.modelo.idTipo = JSON.parse(event);
+    //console.log(this.modelo);
+  }
+
+  SeleccionarRepuesto(event:string): void{
+    this.repuesto.id = JSON.parse(event);
     //console.log(this.modelo);
   }
 
@@ -178,8 +190,42 @@ export class ModeloComponent{
 				}
 			);
 	}
+
+	obtenerRepuestos(){
+		this._repuestoService.getRepuesto().subscribe(
+			result=>{	
+				this.repuestos= result.result;
+				console.log(result);
+				},
+			error=>{
+				console.log(<any>error);
+				}
+			);
+	}
+
+	obtenerRepuestosxmod(id){
+		// this._route.params.forEach((params:Params) =>{
+		// 	let id = params['id'];
+			this._repuestoService.getRepuestoxModelo(id).subscribe(
+				result=>{	
+					this.repuestosxmod= result.result;
+					console.log(result);
+					},
+				error=>{
+					console.log(<any>error);
+					}
+				)
+			//})
+		}
+
 	modalActualizar(id){
 		this.modelo = _.findWhere(this.modelos, {id: id});
+		console.log(this.modelo);
+	}
+
+	modalRepuesto(id){
+		this.modelo = _.findWhere(this.modelos, {id: id});
+		this.obtenerRepuestosxmod(this.modelo.id);
 		console.log(this.modelo);
 	}
 

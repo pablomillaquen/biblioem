@@ -45,7 +45,7 @@ export class RepuestoComponent{
 		vcr: ViewContainerRef
 		){
 		
-		this.repuesto = new Repuesto(0,'','', GLOBAL.defaultImage);
+		this.repuesto = new Repuesto(0,'','','', GLOBAL.defaultImage);
 		this.toastr.setRootViewContainerRef(vcr);
 
 		// this.Listtipo = [
