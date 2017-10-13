@@ -49,7 +49,7 @@ export class TorpedoComponent{
 		vcr: ViewContainerRef
 		){
 		this.toastr.setRootViewContainerRef(vcr);
-		this.torpedo = new Torpedo(0,"","",0);
+		this.torpedo = new Torpedo(0,"","","",0);
 
 		// this.Listtipo = [
 		// 	new Tipoequipo(1,'Monitor multiparámetros'),
@@ -107,25 +107,25 @@ export class TorpedoComponent{
 		}
 		jQuery("#TorpedoModal").modal("hide");
 
-		// if(this.filesToUpload && this.filesToUpload.length>=1){
-		// 	console.log(this.filesToUpload);
-		// 	this._modeloService.makeFileRequest(GLOBAL.url+'admin/torpedo/upload-file',[],this.filesToUpload)
-		// .then(
-		// 	(result)=>{
-		// 		//console.log(result);
-		// 		this.resultUpload = result['result'];
-		// 		//this.resultUpload = result.result;
-		// 		//console.log(this.resultUpload);
-		// 		this.torpedo.url = this.resultUpload;
-		// 		console.log(this.torpedo);
-		// 		this.saveTorpedo();
-		// 	},
-		// 	(error)=>{
-		// 		console.log(<any>error);
-		// 	});
-		// }else{
+		if(this.filesToUpload && this.filesToUpload.length>=1){
+			console.log(this.filesToUpload);
+			this._modeloService.makeFileRequest(GLOBAL.url+'admin/torpedo/upload-file',[],this.filesToUpload)
+		.then(
+			(result)=>{
+				//console.log(result);
+				this.resultUpload = result['result'];
+				//this.resultUpload = result.result;
+				//console.log(this.resultUpload);
+				this.torpedo.url = this.resultUpload;
+				console.log(this.torpedo);
+				this.saveTorpedo();
+			},
+			(error)=>{
+				console.log(<any>error);
+			});
+		}else{
 			this.saveTorpedo();
-		//}
+		}
 		
 	}
 
@@ -158,8 +158,8 @@ export class TorpedoComponent{
 				response=>{
 					if(response.response == true){
 						
-						this.toastr.success('Manual guardado exitosamente!', 'Exito!');
-						this.torpedo = new Torpedo(0,"","",0);
+						this.toastr.success('Apunte guardado exitosamente!', 'Exito!');
+						this.torpedo = new Torpedo(0,"","","",0);
 						this.obtenerTorpedos();
 					}else{
 						console.log(response);
