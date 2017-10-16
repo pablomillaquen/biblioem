@@ -24,6 +24,13 @@ export class EmpleadoService {
 		return this._http.post(this.url+'admin/employee/save',empleado).map(res=>res.json());
 		//return this._http.post(this.url+'admin/employee/save',params, {headers:headers}).map(res=>res.json());
 	}
+
+	loginUser(user_to_login, gettoken=null){
+		if(gettoken != null){
+			user_to_login.gettokken = gettoken;
+		}
+		return this._http.post(this.url+'admin/auth/autenticar',user_to_login).map(res=>res.json());
+	}
 	
 	deleteEmpleado(id){
 		// let json = JSON.stringify(Empleado);

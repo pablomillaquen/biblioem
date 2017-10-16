@@ -50,7 +50,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let item of mf.data">
-    <td><div *ngIf="item.foto"><img src="http://localhost/apibiblio2/uploads/fotos/{{item.foto}}"  style="width: 100%" /></div></td>
+    <td><div *ngIf="item.foto"><img class="rounded" src="http://localhost/apibiblio2/uploads/fotos/{{item.foto}}"  style="width: 100%" /></div></td>
     <td>{{item.nombre}}</td>
     <td>{{item.tipoequipo}}</td>
     <td>{{item.marca}}</td>
@@ -205,7 +205,7 @@
               </thead>
               <tbody>
               <tr *ngFor="let item of mf.data">
-                <td><div *ngIf="item.foto"><img src="http://localhost/apibiblio2/uploads/foto-repuestos/{{item.foto}}"  style="width: 100%" /></div></td>
+                <td><div *ngIf="item.foto"><img class="rounded" src="http://localhost/apibiblio2/uploads/foto-repuestos/{{item.foto}}" style="width: 100%" /></div></td>
                 <td>{{item.nombre}}</td>
                 <td>{{item.referencia}}</td>
                 <td >
