@@ -49,7 +49,7 @@ export class DetallemodeloComponent {
 		this.obtenerManuales();
 		this.obtenerProtocolos();
 		this.obtenerTorpedos();
-		//this.obtenerRepuestos();
+		this.obtenerRepuestos();
 	}
 
 	getModelo(){

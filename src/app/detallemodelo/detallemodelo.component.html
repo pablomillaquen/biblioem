@@ -134,14 +134,14 @@
 		  				<table class="table table-bordered">
 							<thead>
 								<tr>
-									<th>Foto</th>
-									<th>Descripción</th>
-									<th>Detalle</th>
+									<th style="width: 10%">Foto</th>
+									<th style="width: 30%">Descripción</th>
+									<th style="width: 60%">Detalle</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr *ngFor="let rep of repuestos">
-									<td><div *ngIf="rep.foto"><img src="http://localhost/apibiblio2/uploads/foto-repuestos/{{rep.foto}}"  style="width: 100%" /></div></td>
+									<td><div *ngIf="rep.foto"><img src="http://localhost/apibiblio2/uploads/foto-repuestos/{{rep.foto}}" class="img-fluid"/></div></td>
 									<td>{{rep.nombre}}</td>
 									<td>{{rep.descripcion}}</td>
 								</tr>		

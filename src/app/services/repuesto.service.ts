@@ -3,6 +3,7 @@ import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Repuesto} from '../repuesto/repuesto';
+import {RepuestoModelo} from '../repuesto/repuestomodelo';
 import {GLOBAL} from './global';
 
 @Injectable()
@@ -33,12 +34,25 @@ export class RepuestoService {
 		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 	
+	addRepuestoxmod(repuestoxmod:RepuestoModelo){
+		return this._http.post(this.url+'admin/repuesto/savexmod',repuestoxmod).map(res=>res.json());
+	}
+
 	deleteRepuesto(id){
 		// let json = JSON.stringify(repuesto);
 		// let params = 'json='+json;
 		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
 		return this._http.post(this.url+'admin/repuesto/delete/'+id,'').map(res=>res.json());
+		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
+	}
+
+	deleteRepuestoxMod(id, idRepuesto){
+		// let json = JSON.stringify(repuesto);
+		// let params = 'json='+json;
+		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
+
+		return this._http.post(this.url+'admin/repuesto/deletexmod/'+id+'/'+idRepuesto,'').map(res=>res.json());
 		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 

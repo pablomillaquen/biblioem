@@ -5,6 +5,7 @@ import {MarcaService} from '../services/marca.service';
 import {TipoequipoService} from '../services/tipoequipo.service';
 import {RepuestoService} from '../services/repuesto.service';
 import {Modelo} from '../modelo/modelo';
+import {RepuestoModelo} from '../repuesto/repuestomodelo';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
 import * as _ from 'underscore';
@@ -25,14 +26,16 @@ import {Repuesto} from '../repuesto/repuesto';
 export class ModeloComponent{
 	
 	public selectedModel:Modelo;
-	public selectedMark:Marca;
+	public selectedRepuesto:Repuesto;
+	public selectedRepMod:RepuestoModelo;
 	public selectedType:Tipoequipo;
 	//public Listmarca:Array<Marca>;
 	public Listmarcas:Marca[];
 	public Listtipo:Tipoequipo[];
 	public repuestos:Repuesto[];
-	public repuestosxmod:Array<any>;
 	public repuesto:Repuesto;
+	public repuestosxmod:RepuestoModelo[];
+	public repuestoxmod: RepuestoModelo;
 	public modelos:Modelo[];
 	public modelo:Modelo;
 	public filterQuery = "";
@@ -55,8 +58,10 @@ export class ModeloComponent{
 		
 		this.modelo = new Modelo(0,'', 0, 0, GLOBAL.defaultImage);
 		this.repuesto = new Repuesto(0,'','','', GLOBAL.defaultImage);
+		this.repuestoxmod =new RepuestoModelo(0,0,'','',GLOBAL.defaultImage, '');
 		this.toastr.setRootViewContainerRef(vcr);
-		this.repuestosxmod = [];
+		//this.repuestosxmod = [new RepuestoModelo(0,0,'','',GLOBAL.defaultImage,'')];
+		//this.repuesto = new Repuesto(0,0,'','',GLOBAL.defaultImage,'');
 		// this.Listtipo = [
 		// 	new Tipoequipo(1,'Máquina anestesia'),
 		// 	new Tipoequipo(2,'Ecógrafo'),
@@ -107,6 +112,8 @@ export class ModeloComponent{
 		
 	}
 
+	
+
 	ngOnInit(){
 		//console.log(this.Listmodelo);
 		this.obtenerModelos();
@@ -136,8 +143,8 @@ export class ModeloComponent{
 			);
 	}
   SeleccionarModelo(event:string): void{
-    this.modelo.idTipo = JSON.parse(event);
-    //console.log(this.modelo);
+    this.repuestoxmod.id = JSON.parse(event);
+    console.log(this.repuestoxmod);
   }
 
   SeleccionarMarca(event:string): void{
@@ -151,8 +158,8 @@ export class ModeloComponent{
   }
 
   SeleccionarRepuesto(event:string): void{
-    this.repuesto.id = JSON.parse(event);
-    //console.log(this.modelo);
+    this.repuestoxmod.idRepuesto = JSON.parse(event);
+    console.log(this.repuestoxmod);
   }
 
     obtenerMarcas(){
@@ -183,7 +190,7 @@ export class ModeloComponent{
 		this._modeloService.getModelo().subscribe(
 			result=>{	
 				this.modelos= result.result;
-				console.log(result);
+				//console.log(result);
 				},
 			error=>{
 				console.log(<any>error);
@@ -195,7 +202,7 @@ export class ModeloComponent{
 		this._repuestoService.getRepuesto().subscribe(
 			result=>{	
 				this.repuestos= result.result;
-				console.log(result);
+				//console.log(result);
 				},
 			error=>{
 				console.log(<any>error);
@@ -218,15 +225,44 @@ export class ModeloComponent{
 			//})
 		}
 
+	onSubmitRepuesto(){
+		//console.log(this.marca);
+		// if(this.marca.id === 0){
+		// 	this.marca = _.omit(this.marca, 'id');
+		// 	console.log(this.marca);
+		// }
+		jQuery("#RepuestoModal").modal("hide");
+		this._repuestoService.addRepuestoxmod(this.repuestoxmod).subscribe(
+			response=>{
+				if(response.response == true){
+					
+					this.toastr.success('Repuesto guardado exitosamente!', 'Exito!');
+					//this.repuesto = new Repuesto(0,0,'','',GLOBAL.defaultImage,'');
+					this.obtenerMarcas();
+				}else{
+					console.log(response);
+					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
+				}
+
+			},
+			error=>{
+				console.log(<any>error);
+				this.toastr.error('No se pudo realizar la tarea!', 'Error!');
+				}
+			);
+	}
+
 	modalActualizar(id){
 		this.modelo = _.findWhere(this.modelos, {id: id});
+		//this.repuestoxmod.id =id;
 		console.log(this.modelo);
 	}
 
 	modalRepuesto(id){
 		this.modelo = _.findWhere(this.modelos, {id: id});
+		this.repuestoxmod.id =id;
+		console.log(this.repuestoxmod);
 		this.obtenerRepuestosxmod(this.modelo.id);
-		console.log(this.modelo);
 	}
 
 	deleteModelo(id){
@@ -254,6 +290,29 @@ export class ModeloComponent{
 			);
 	}
 
+	deleteRepuestoModelo(id, idRepuesto){
+		//let listanueva:Modelo[];
+		this._repuestoService.deleteRepuestoxMod(id, idRepuesto).subscribe(
+			response=>{
+				if(response.response == true){
+					jQuery("#RepuestoModal").modal("hide");
+					this.toastr.success('Repuesto eliminado exitosamente!', 'Exito!');
+					
+				}else{
+					console.log(response);
+					jQuery("#RepuestoModal").modal("hide");
+					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
+				}
+
+			},
+			error=>{
+				console.log(<any>error);
+				jQuery("#RepuestoModal").modal("hide");
+				this.toastr.error('No se pudo realizar la tarea!', 'Error!');
+				}
+			);
+
+	}
 	
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
