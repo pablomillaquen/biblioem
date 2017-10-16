@@ -15,6 +15,7 @@ import { DetallemodeloComponent } from './detallemodelo/detallemodelo.component'
 import { ProtocoloComponent } from './protocolo/protocolo.component';
 import { TorpedoComponent } from './torpedo/torpedo.component';
 import { RepuestoComponent } from './repuesto/repuesto.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
 	{path:'', component:ListmanualComponent},
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
 	{path:'torpedo', component:TorpedoComponent},
 	{path:'indexadmin', component:IndexadminComponent},
 	{path:'repuesto', component:RepuestoComponent},
+	{path:'login', component:LoginComponent},
 	{path:'**', component:ListmanualComponent}
 ];
 

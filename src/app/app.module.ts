@@ -28,6 +28,7 @@ import { ModeloFilterPipe } from './pipes/modelo-filter.pipe';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TipoequipoFilterPipe } from './pipes/tipoequipo-filter.pipe';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { TipoequipoFilterPipe } from './pipes/tipoequipo-filter.pipe';
     MarcaFilterPipe,
     ModeloFilterPipe,
     TipoequipoFilterPipe,
-    RepuestoComponent
+    RepuestoComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,

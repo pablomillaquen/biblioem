@@ -1,0 +1,20 @@
+<div class="col-lg-6">
+	<h1>{{title}}</h1>
+	<form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-7">
+		<p>	
+			<label for="email">Correo Electrónico</label>
+			<input class="form-control" type="email" #email="ngModel" [(ngModel)]="empleado.email" name="email" required />
+			<span *ngIf="!email.valid && email.touched">
+				El email es obligatorio
+			</span>
+		</p>
+		<p>	
+			<label for="email">Contraseña</label>
+			<input class="form-control" #password="ngModel" [(ngModel)]="empleado.pass" type="password" name="password" required />
+			<span *ngIf="!password.valid && password.touched">
+				El password es obligatorio
+			</span>
+		</p>
+		<button [disabled]="!loginForm.valid" type="submit" class="btn btn-success">Entrar</button>
+	</form>
+</div>
