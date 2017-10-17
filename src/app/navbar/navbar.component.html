@@ -28,7 +28,8 @@
     </form> -->
     <ul class="navbar-nav my-2 my-lg-0">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['indexadmin']"><i class="fa fa-wrench" aria-hidden="true"></i></a>
+        <a class="nav-link" [routerLink]="['login']" *ngIf="!logged()"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</a>
+        <a class="nav-link" [routerLink]="['manualuser']" *ngIf="logged()" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a>
       </li>
     </ul>
   </div>

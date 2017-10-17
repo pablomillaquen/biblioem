@@ -1,5 +1,6 @@
 import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import { AuthGuard } from './services/auth-guard.service';
 
 import { ManualuserComponent} from './manual/manualuser.component';
 
@@ -22,15 +23,15 @@ const appRoutes: Routes = [
 	{path:'detalle/:id', component:DetallemodeloComponent},
 	{path:'bodyapp', component:BodyappComponent},
 	{path:'manualuser', component:ListmanualComponent},
-	{path:'empleado', component:EmpleadoComponent},
-	{path:'marca', component:MarcaComponent},
-	{path:'tipoequipo', component:TipoequipoComponent},
-	{path:'modelo', component:ModeloComponent},
-	{path:'manual', component:ManualComponent},
-	{path:'protocolo', component:ProtocoloComponent},
-	{path:'torpedo', component:TorpedoComponent},
+	{path:'empleado', component:EmpleadoComponent, canActivate: [AuthGuard]},
+	{path:'marca', component:MarcaComponent, canActivate: [AuthGuard]},
+	{path:'tipoequipo', component:TipoequipoComponent, canActivate: [AuthGuard]},
+	{path:'modelo', component:ModeloComponent, canActivate: [AuthGuard]},
+	{path:'manual', component:ManualComponent, canActivate: [AuthGuard]},
+	{path:'protocolo', component:ProtocoloComponent, canActivate: [AuthGuard]},
+	{path:'torpedo', component:TorpedoComponent, canActivate: [AuthGuard]},
+	{path:'repuesto', component:RepuestoComponent, canActivate: [AuthGuard]},
 	{path:'indexadmin', component:IndexadminComponent},
-	{path:'repuesto', component:RepuestoComponent},
 	{path:'login', component:LoginComponent},
 	{path:'**', component:ListmanualComponent}
 ];

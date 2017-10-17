@@ -7,6 +7,7 @@ import { EmpleadoService } from '../services/empleado.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
 import * as _ from 'underscore';
+import * as moment from 'moment';
 import { GLOBAL } from '../services/global';
 declare var jQuery:any;
 
@@ -32,13 +33,13 @@ export class LoginComponent implements OnInit {
 		private _empleadoService: EmpleadoService
 		) { 
 			this.toastr.setRootViewContainerRef(vcr);
-			this.title="Identifíquese";
+			this.title="Sección de administración";
 			this.empleado = new Empleado(0,'','','',0,'','');
 
 	}
 
 	ngOnInit() {
-	 
+		this.checkLogin();
 	}
 
 	onSubmit(){
@@ -55,19 +56,22 @@ export class LoginComponent implements OnInit {
 					this.dataToken = this.jwtHelper.decodeToken(this.token);
 					localStorage.setItem('user', JSON.stringify(this.dataToken.data));
 					localStorage.setItem('exp', JSON.stringify(this.dataToken.exp));
-					// console.log(
-					//     this.jwtHelper.decodeToken(this.token),
-					//     this.jwtHelper.getTokenExpirationDate(this.token),
-					//     this.jwtHelper.isTokenExpired(this.token)
-					//   );
+					this._router.navigate(['indexadmin']);
 				}
-				//var token = localStorage.getItem('id_token');
+				
 			},
 			error=>{
 				console.log(<any>error);
 			}
 
 			);
+	}
+
+	checkLogin(){
+		let currentDate = moment().format("X");
+		if(localStorage.getItem('user') != '' && localStorage.getItem('exp') != '' && currentDate <= localStorage.getItem('exp') ){
+			this._router.navigate(['indexadmin']);
+		}
 	}
 
 }
