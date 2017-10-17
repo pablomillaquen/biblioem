@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import { JwtHelper } from 'angular2-jwt';
 import { Empleado } from '../empleado/empleado';
 import { EmpleadoService } from '../services/empleado.service';
 
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
 	public empleado:Empleado;
 	public identity;
 	public token;
+	public dataToken;
+	jwtHelper: JwtHelper = new JwtHelper();
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -28,7 +31,8 @@ export class LoginComponent implements OnInit {
 		vcr: ViewContainerRef,
 		private _empleadoService: EmpleadoService
 		) { 
-			this.title="Indetifíquese";
+			this.toastr.setRootViewContainerRef(vcr);
+			this.title="Identifíquese";
 			this.empleado = new Empleado(0,'','','',0,'','');
 
 	}
@@ -41,23 +45,23 @@ export class LoginComponent implements OnInit {
 		console.log(this.empleado);
 		this._empleadoService.loginUser(this.empleado).subscribe(
 			response=>{
-				this.identity =response.user;
-				if(!this.identity || this.identity._id){
-					alert ("El usuario no se ha logueado correctamente");
+				this.token= response.result;
+				if(this.token == null){
+					this.toastr.error('Error en los datos ingresados', 'Error!');
+					this.empleado.id = 0;
+					this.empleado.correo = '';
 				}else{
-					this._empleadoService.loginUser(this.empleado,'true').subscribe(
-						response=>{
-							this.token= response.token;
-							if(this.token.length <= 0){
-								alert('El token no se ha generado');
-							}else{
-								console.log(this.token);
-							}
-						},
-						error=>{
-							console.log(<any>error);
-						});
+					localStorage.setItem('token', this.token);
+					this.dataToken = this.jwtHelper.decodeToken(this.token);
+					localStorage.setItem('user', JSON.stringify(this.dataToken.data));
+					localStorage.setItem('exp', JSON.stringify(this.dataToken.exp));
+					// console.log(
+					//     this.jwtHelper.decodeToken(this.token),
+					//     this.jwtHelper.getTokenExpirationDate(this.token),
+					//     this.jwtHelper.isTokenExpired(this.token)
+					//   );
 				}
+				//var token = localStorage.getItem('id_token');
 			},
 			error=>{
 				console.log(<any>error);

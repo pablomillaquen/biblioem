@@ -24,6 +24,7 @@
     "@types/underscore": "^1.8.3",
     "angular-4-data-table": "^0.2.3",
     "angular2-datatable": "^0.6.0",
+    "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
     "ng2-toastr": "^4.1.2",
     "rxjs": "^5.4.2",
