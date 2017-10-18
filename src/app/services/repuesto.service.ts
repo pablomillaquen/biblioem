@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Repuesto} from '../repuesto/repuesto';
@@ -10,19 +11,32 @@ import {GLOBAL} from './global';
 export class RepuestoService {
 	public url:string;
 
-	constructor(public _http:Http){
+	constructor(public _http:Http, public _authHttp: AuthHttp){
 		this.url = GLOBAL.url;
 	}
+
+
+	/**********************************************************************
+	RUTAS DE USUARIO
+	**********************************************************************/
+	userGetRepuestoxModelo(id){
+		return this._http.get(this.url+'user/repuesto/getxmod/'+id).map(res=>res.json());	
+	}
+
+	/**********************************************************************
+	RUTAS DE ADMIN
+	**********************************************************************/
+	
 	getRepuesto(){
-		return this._http.get(this.url+'admin/repuesto/getAll/').map(res=>res.json());
+		return this._authHttp.get(this.url+'admin/repuesto/getAll/').map(res=>res.json());
 	}
 
 	getRepuesto1(id){
-		return this._http.get(this.url+'admin/repuesto/get/'+id).map(res=>res.json());	
+		return this._authHttp.get(this.url+'admin/repuesto/get/'+id).map(res=>res.json());	
 	}
 
 	getRepuestoxModelo(id){
-		return this._http.get(this.url+'admin/repuesto/getxmod/'+id).map(res=>res.json());	
+		return this._authHttp.get(this.url+'admin/repuesto/getxmod/'+id).map(res=>res.json());	
 	}
 
 	addRepuesto(repuesto:Repuesto){
@@ -30,12 +44,12 @@ export class RepuestoService {
 		// let params = 'json='+json;
 		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-		return this._http.post(this.url+'admin/repuesto/save',repuesto).map(res=>res.json());
+		return this._authHttp.post(this.url+'admin/repuesto/save',repuesto).map(res=>res.json());
 		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 	
 	addRepuestoxmod(repuestoxmod:RepuestoModelo){
-		return this._http.post(this.url+'admin/repuesto/savexmod',repuestoxmod).map(res=>res.json());
+		return this._authHttp.post(this.url+'admin/repuesto/savexmod',repuestoxmod).map(res=>res.json());
 	}
 
 	deleteRepuesto(id){
@@ -43,7 +57,7 @@ export class RepuestoService {
 		// let params = 'json='+json;
 		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-		return this._http.post(this.url+'admin/repuesto/delete/'+id,'').map(res=>res.json());
+		return this._authHttp.post(this.url+'admin/repuesto/delete/'+id,'').map(res=>res.json());
 		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 
@@ -52,7 +66,7 @@ export class RepuestoService {
 		// let params = 'json='+json;
 		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
-		return this._http.post(this.url+'admin/repuesto/deletexmod/'+id+'/'+idRepuesto,'').map(res=>res.json());
+		return this._authHttp.post(this.url+'admin/repuesto/deletexmod/'+id+'/'+idRepuesto,'').map(res=>res.json());
 		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 

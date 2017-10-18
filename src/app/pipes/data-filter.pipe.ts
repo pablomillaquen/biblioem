@@ -1,6 +1,9 @@
 import * as _ from "lodash";
 import { Pipe, PipeTransform } from '@angular/core';
 
+	/**
+	* Permite utilizar el buscador superior en las tablas de datos
+	*/
 @Pipe({
   name: 'dataFilter'
 })

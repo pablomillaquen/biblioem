@@ -78,7 +78,7 @@ export class RepuestoComponent{
 
 		if(this.filesToUpload && this.filesToUpload.length>=1){
 			console.log(this.filesToUpload);
-			this._repuestoService.makeFileRequest(GLOBAL.url+'admin/repuesto/upload-file',[],this.filesToUpload)
+			this._repuestoService.makeFileRequest(GLOBAL.url+'user/repuesto/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
 				//console.log(result);

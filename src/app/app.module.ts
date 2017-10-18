@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders } from './app.routing';
-
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
 import {DataTableModule} from 'angular2-datatable';
 import { NavbarComponent} from './navbar/navbar.component';
 import { SidebarComponent} from './sidebar/sidebar.component';
-import { BodyappComponent} from './bodyapp/bodyapp.component';
-import { ManualuserComponent} from './manual/manualuser.component';
 
 import { EmpleadoComponent} from './empleado/empleado.component';
 import { MarcaComponent} from './marca/marca.component';
@@ -37,8 +37,6 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    BodyappComponent,
-    ManualuserComponent,
     EmpleadoComponent,
     MarcaComponent,
     TipoequipoComponent,
@@ -63,9 +61,10 @@ import { LoginComponent } from './login/login.component';
     routing,
     DataTableModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    AuthModule 
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders,AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

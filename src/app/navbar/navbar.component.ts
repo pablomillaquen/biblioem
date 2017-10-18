@@ -3,6 +3,9 @@ import { tokenNotExpired } from 'angular2-jwt';
 import * as moment from 'moment';
 import { AuthModule } from '../auth/auth.module';
 
+/**
+	* Componente para controlar la información de la barra superior de la pantalla.
+	*/
 @Component({
 	selector: 'navbar',
 	templateUrl:'./navbar.component.html'
@@ -16,12 +19,17 @@ export class NavbarComponent{
 	public item3 ="Apuntes";
 	public logueado:boolean;
 
+	/**
+	* Ejecuta las funciones necesarias al inicio del componente
+	*/
 	ngOnInit(){
 		this.logged();
 	}
 
+	/**
+	* Función para obtener true o false, dependiendo si se está logueado o no
+	*/
 	logged(){
-		//console.log(this.auth.loggedIn());
 		let currentDate = moment().format("X");
 		
 		//Si no hay datos de login
@@ -32,6 +40,9 @@ export class NavbarComponent{
 		}
 	}
 
+	/**
+	* Limpia los datos del localStorage para permitir cerrar sesión
+	*/
 	logout(){
 		localStorage.setItem('token','');
 		localStorage.setItem('exp','');

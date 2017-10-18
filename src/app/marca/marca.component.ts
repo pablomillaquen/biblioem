@@ -7,6 +7,9 @@ import { ViewContainerRef } from '@angular/core';
 import * as _ from 'underscore';
 declare var jQuery:any;
 
+/**
+* Componente que administra la información de la tabla Marca
+*/
 @Component({
 	selector: 'marca',
 	templateUrl: './marca.component.html',
@@ -33,6 +36,9 @@ export class MarcaComponent{
 		this.toastr.setRootViewContainerRef(vcr);
 	}
 	
+	/**
+	* Guarda los datos de la marca
+	*/
 	onSubmit(){
 		console.log(this.marca);
 		if(this.marca.id === 0){
@@ -59,11 +65,16 @@ export class MarcaComponent{
 				}
 			);
 	}
+	/**
+	* Ejecuta las funciones necesarias al iniciar el componente
+	*/
 	ngOnInit(){
-		//alert(this._marcaService.getMarca());
 		this.obtenerMarcas();
 	}
 
+	/**
+	* Obtiene todas las marcas
+	*/
 	obtenerMarcas(){
 		this._marcaService.getMarca().subscribe(
 			result=>{	
@@ -76,10 +87,16 @@ export class MarcaComponent{
 			);
 	}
 
+	/**
+	* Abre el modal para actualizar la marca seleccionada
+	*/
 	modalActualizar(id){
 		this.marca = _.findWhere(this.marcas, {id: id});
 	}
 
+	/**
+	* Elimina una marca
+	*/
 	deleteMarca(id){
 		let listanueva:Marca[];
 		this._marcaService.deleteMarca(id).subscribe(

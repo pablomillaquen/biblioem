@@ -109,7 +109,7 @@ export class TorpedoComponent{
 
 		if(this.filesToUpload && this.filesToUpload.length>=1){
 			console.log(this.filesToUpload);
-			this._modeloService.makeFileRequest(GLOBAL.url+'admin/torpedo/upload-file',[],this.filesToUpload)
+			this._modeloService.makeFileRequest(GLOBAL.url+'user/torpedo/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
 				//console.log(result);

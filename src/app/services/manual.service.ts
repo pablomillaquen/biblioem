@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Manual} from '../manual/manual';
@@ -9,46 +10,50 @@ import {GLOBAL} from './global';
 export class ManualService {
 public url:string;
 
-	constructor(public _http:Http){
+	constructor(public _http:Http, public _authHttp: AuthHttp){
 		this.url = GLOBAL.url;
 	}
+
+	/*******************************************************************
+	RUTAS DE USUARIO
+	*******************************************************************/
+
+	//Obtiene los manuales disponibles para un modelo específico
+	userGetManualxModelo(id){
+		return this._http.get(this.url+'user/manual/getxmod/'+id).map(res=>res.json());	
+	}
+
+
+	/*******************************************************************
+	RUTAS DE ADMIN
+	*******************************************************************/
+	
+	//Obtiene todos los manuales
 	getManual(){
-		return this._http.get(this.url+'admin/manual/getAll/').map(res=>res.json());
+		return this._authHttp.get(this.url+'admin/manual/getAll/').map(res=>res.json());
 	}
 
+	//Obtiene 1 manual en específico de acuerdo a la ID
 	getManual1(id){
-		return this._http.get(this.url+'admin/manual/get/'+id).map(res=>res.json());	
+		return this._authHttp.get(this.url+'admin/manual/get/'+id).map(res=>res.json());	
 	}
 
+	//Obtiene los manuales disponibles para un modelo específico
 	getManualxModelo(id){
-		return this._http.get(this.url+'admin/manual/getxmod/'+id).map(res=>res.json());	
+		return this._authHttp.get(this.url+'admin/manual/getxmod/'+id).map(res=>res.json());	
 	}
 
+	//Permite agregar un manual
 	addManual(manual:Manual){
-		// public id:number,
-		// public nombre:string,
-		// public fisico:number,
-		// public ubicacion:string,
-		// public url:string,
-		// public mod_id:number
-		
-		// let json = JSON.stringify(manual);
-		// let params = 'json='+json;
-		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-
 		return this._http.post(this.url+'admin/manual/save',manual).map(res=>res.json());
-		//return this._http.post(this.url+'admin/manual/save',params, {headers:headers}).map(res=>res.json());
 	}
 	
+	//Permite eliminar un manual
 	deleteManual(id){
-		// let json = JSON.stringify(manual);
-		// let params = 'json='+json;
-		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-
-		return this._http.post(this.url+'admin/manual/delete/'+id,'').map(res=>res.json());
-		//return this._http.post(this.url+'admin/manual/save',params, {headers:headers}).map(res=>res.json());
+		return this._authHttp.post(this.url+'admin/manual/delete/'+id,'').map(res=>res.json());
 	}
 
+	//Permite subir un archivo a la carpeta /uploads/manuales/ existente dentro de la carpeta de la API
 	makeFileRequest(url:string, params:Array<string>, files:Array<File>){
 		return new Promise((resolve,reject)=>{
 			var formData:any = new FormData();

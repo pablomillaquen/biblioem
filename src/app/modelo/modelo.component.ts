@@ -16,7 +16,9 @@ import {Tipoequipo} from '../tipoequipo/tipoequipo';
 import {Marca} from '../marca/marca';
 import {Repuesto} from '../repuesto/repuesto';
 
- 
+/**
+* Componente que administra los modelos, dentro de la BD
+*/
 @Component({
 	selector: 'modelo',
 	templateUrl:'./modelo.component.html',
@@ -29,7 +31,6 @@ export class ModeloComponent{
 	public selectedRepuesto:Repuesto;
 	public selectedRepMod:RepuestoModelo;
 	public selectedType:Tipoequipo;
-	//public Listmarca:Array<Marca>;
 	public Listmarcas:Marca[];
 	public Listtipo:Tipoequipo[];
 	public repuestos:Repuesto[];
@@ -60,27 +61,11 @@ export class ModeloComponent{
 		this.repuesto = new Repuesto(0,'','','', GLOBAL.defaultImage);
 		this.repuestoxmod =new RepuestoModelo(0,0,'','',GLOBAL.defaultImage, '');
 		this.toastr.setRootViewContainerRef(vcr);
-		//this.repuestosxmod = [new RepuestoModelo(0,0,'','',GLOBAL.defaultImage,'')];
-		//this.repuesto = new Repuesto(0,0,'','',GLOBAL.defaultImage,'');
-		// this.Listtipo = [
-		// 	new Tipoequipo(1,'Máquina anestesia'),
-		// 	new Tipoequipo(2,'Ecógrafo'),
-		// 	new Tipoequipo(3,'Monitor multiparámetros'),
-		// 	new Tipoequipo(4,'Otro')
-		// 	];
-		// this.Listmarca = [
-		// 	new Marca(1,'Siemens'),
-		// 	new Marca(2,'GE'),
-		// 	new Marca(3,'Drager'),
-		// 	new Marca(4,'Otro')
-		// 	];
-		// this.Listmodelo = [
-		// 	new Modelo(1,'Modelo1', '1.jpg', 3, 3),
-		// 	new Modelo(2,'Modelo2', '2.jpg', 2, 1),
-		// 	new Modelo(3,'Modelo3', '3.jpg', 3, 2),
-		// 	new Modelo(4,'Otro', '9.jpg', 6, 3)
-		// 	];
+	
 	}
+	/**
+	* Envía el archivo de foto a la carpeta /uploads/fotos/ dentro de los archivos de la API, posteriormente llama a otra función para guardar los datos
+	*/
 	onSubmit(){
 
 		console.log(this.modelo);
@@ -92,13 +77,10 @@ export class ModeloComponent{
 
 		if(this.filesToUpload && this.filesToUpload.length>=1){
 			console.log(this.filesToUpload);
-			this._modeloService.makeFileRequest(GLOBAL.url+'admin/modelo/upload-file',[],this.filesToUpload)
+			this._modeloService.makeFileRequest(GLOBAL.url+'user/modelo/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
-				//console.log(result);
 				this.resultUpload = result['result'];
-				//this.resultUpload = result.result;
-				//console.log(this.resultUpload);
 				this.modelo.foto = this.resultUpload;
 				console.log(this.modelo);
 				this.saveModelo();
@@ -113,15 +95,20 @@ export class ModeloComponent{
 	}
 
 	
-
+	/**
+	* Ejecuta las funciones necesarias al iniciar el llamado al componente
+	*/
 	ngOnInit(){
-		//console.log(this.Listmodelo);
+		
 		this.obtenerModelos();
 		this.obtenerMarcas();
 		this.obtenerTipos();
 		this.obtenerRepuestos();
 	}
 
+	/**
+	* Guarda el modelo
+	*/
 	saveModelo(){
 		this._modeloService.addModelo(this.modelo).subscribe(
 			response=>{
@@ -142,26 +129,39 @@ export class ModeloComponent{
 				}
 			);
 	}
+
+	/**
+	* Obtiene el dato desde el dropdown de modelos
+	*/
   SeleccionarModelo(event:string): void{
     this.repuestoxmod.id = JSON.parse(event);
-    console.log(this.repuestoxmod);
   }
 
+  /**
+	* Obtiene el dato desde el dropdown de marcas
+	*/
   SeleccionarMarca(event:string): void{
     this.modelo.idMarca = JSON.parse(event);
-    //console.log(this.modelo);
   }
 
+  /**
+	* Obtiene el dato desde el dropdown de tipos de equipos
+	*/
   SeleccionarTipo(event:string): void{
     this.modelo.idTipo = JSON.parse(event);
-    //console.log(this.modelo);
   }
 
+  /**
+	* Obtiene el dato desde el dropdown de repuestos
+	*/
   SeleccionarRepuesto(event:string): void{
     this.repuestoxmod.idRepuesto = JSON.parse(event);
     console.log(this.repuestoxmod);
   }
 
+  	/**
+	* Obtiene todas las marcas existentes en la base de datos
+	*/
     obtenerMarcas(){
 		this._marcaService.getMarca().subscribe(
 			result=>{	
@@ -174,6 +174,9 @@ export class ModeloComponent{
 			);
 	}
 
+	/**
+	* Obtiene todos los tipos de equipos existentes en la base de datos
+	*/
 	obtenerTipos(){
 		this._tipoequipoService.getTipoEquipo().subscribe(
 			result=>{	
@@ -186,6 +189,9 @@ export class ModeloComponent{
 			);
 	}
 
+	/**
+	* Obtiene todos los modelos existentes en la base de datos
+	*/
     obtenerModelos(){
 		this._modeloService.getModelo().subscribe(
 			result=>{	
@@ -198,6 +204,9 @@ export class ModeloComponent{
 			);
 	}
 
+	/**
+	* Obtiene todos los repuestos existentes en la base de datos
+	*/
 	obtenerRepuestos(){
 		this._repuestoService.getRepuesto().subscribe(
 			result=>{	
@@ -210,9 +219,10 @@ export class ModeloComponent{
 			);
 	}
 
+	/**
+	* Obtiene los repuestos existentes para un modelo en particular
+	*/
 	obtenerRepuestosxmod(id){
-		// this._route.params.forEach((params:Params) =>{
-		// 	let id = params['id'];
 			this._repuestoService.getRepuestoxModelo(id).subscribe(
 				result=>{	
 					this.repuestosxmod= result.result;
@@ -222,15 +232,14 @@ export class ModeloComponent{
 					console.log(<any>error);
 					}
 				)
-			//})
+		
 		}
 
+	/**
+	* Envía los datos de un nuevo repuesto
+	*/
 	onSubmitRepuesto(){
-		//console.log(this.marca);
-		// if(this.marca.id === 0){
-		// 	this.marca = _.omit(this.marca, 'id');
-		// 	console.log(this.marca);
-		// }
+
 		jQuery("#RepuestoModal").modal("hide");
 		this._repuestoService.addRepuestoxmod(this.repuestoxmod).subscribe(
 			response=>{
@@ -252,12 +261,18 @@ export class ModeloComponent{
 			);
 	}
 
+	/**
+	* Abre el modal modeloModal para actualizar los datos
+	*/
 	modalActualizar(id){
 		this.modelo = _.findWhere(this.modelos, {id: id});
 		//this.repuestoxmod.id =id;
 		console.log(this.modelo);
 	}
 
+	/**
+	* Abre el modal repuestoModal para actualizar los datos
+	*/
 	modalRepuesto(id){
 		this.modelo = _.findWhere(this.modelos, {id: id});
 		this.repuestoxmod.id =id;
@@ -265,6 +280,9 @@ export class ModeloComponent{
 		this.obtenerRepuestosxmod(this.modelo.id);
 	}
 
+	/**
+	* Elimina el modelo
+	*/
 	deleteModelo(id){
 		let listanueva:Modelo[];
 		this._modeloService.deleteModelo(id).subscribe(
@@ -290,8 +308,10 @@ export class ModeloComponent{
 			);
 	}
 
+	/**
+	* Elimina el repuesto
+	*/
 	deleteRepuestoModelo(id, idRepuesto){
-		//let listanueva:Modelo[];
 		this._repuestoService.deleteRepuestoxMod(id, idRepuesto).subscribe(
 			response=>{
 				if(response.response == true){
@@ -314,8 +334,10 @@ export class ModeloComponent{
 
 	}
 	
+	/**
+	* Obtiene el dato del archivo subido, lo guarda en un array para usarlo posteriormente
+	*/
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
-		//console.log(this.filesToUpload);
 	}
 }

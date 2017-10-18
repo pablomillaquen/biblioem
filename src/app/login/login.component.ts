@@ -1,22 +1,30 @@
+//Librerías varias
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { JwtHelper } from 'angular2-jwt';
-import { Empleado } from '../empleado/empleado';
-import { EmpleadoService } from '../services/empleado.service';
-
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
 import * as _ from 'underscore';
 import * as moment from 'moment';
-import { GLOBAL } from '../services/global';
 declare var jQuery:any;
 
+//Servicios
+import { EmpleadoService } from '../services/empleado.service';
+import { GLOBAL } from '../services/global';
+
+//Modelos de datos
+import { Empleado } from '../empleado/empleado';
+
+/*
+*Permite que el usuario se loguee en la aplicación
+*/
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
   providers: [EmpleadoService]
 })
+
+
 export class LoginComponent implements OnInit {
 	public title:String;
 	public empleado:Empleado;
@@ -37,11 +45,16 @@ export class LoginComponent implements OnInit {
 			this.empleado = new Empleado(0,'','','',0,'','');
 
 	}
-
+	/**
+  	* Ejecuta las funciones necesarias al llamar al componente
+  	*/
 	ngOnInit() {
 		this.checkLogin();
 	}
 
+	/**
+  	* Realiza el login del usuario, obtiene los datos desde la API y los almacena en el localStorage para poder ser utilizados.
+  	*/
 	onSubmit(){
 		console.log(this.empleado);
 		this._empleadoService.loginUser(this.empleado).subscribe(
@@ -66,7 +79,10 @@ export class LoginComponent implements OnInit {
 
 			);
 	}
-
+	
+	/**
+  	* Comprueba que el usuario se encuentre logueado
+ 	*/
 	checkLogin(){
 		let currentDate = moment().format("X");
 		if(localStorage.getItem('user') != '' && localStorage.getItem('exp') != '' && currentDate <= localStorage.getItem('exp') ){

@@ -12,7 +12,10 @@ import * as _ from 'underscore';
 import { GLOBAL } from '../services/global';
 declare var jQuery:any;
 
- 
+
+/**
+* Componente que administra la información de los manuales
+*/
 @Component({
 	selector: 'manual',
 	templateUrl:'./manual.component.html',
@@ -50,54 +53,51 @@ export class ManualComponent{
 		){
 		this.toastr.setRootViewContainerRef(vcr);
 		this.manual = new Manual(0,"",0,"","",0);
-
-		// this.Listtipo = [
-		// 	new Tipoequipo(1,'Monitor multiparámetros'),
-		// 	new Tipoequipo(2,'Ecógrafo'),
-		// 	new Tipoequipo(3,'Máquina anestesia'),
-		// 	new Tipoequipo(4,'Otro')
-		// 	];
-		// this.Listmarca = [
-		// 	new Marca(1,'Siemens'),
-		// 	new Marca(2,'GE'),
-		// 	new Marca(3,'Drager'),
-		// 	new Marca(4,'Otro')
-		// 	];
-		// this.Listmodelo = [
-		// 	new Modelo(1,'Modelo1', 3, 3,'1.jpg'),
-		// 	new Modelo(2,'Modelo2', 2, 1, '2.jpg'),
-		// 	new Modelo(3,'Modelo3', 3, 2, '3.jpg'),
-		// 	new Modelo(4,'Otro', 6, 3, '9.jpg')
-		// 	];
 		this.existe = false;
 	}
-
+	/**
+	* Permite ejecutar funciones al iniciar el llamado al componente
+	*/
 	ngOnInit(){
-		//console.log(this.Listmodelo);
 		this.obtenerManuales();
 		this.obtenerModelos();
 	}
 
+	/**
+	* Permite obtener el número de Modelo escogido en el dropdown
+	*/
 	SeleccionarModelo(event:string): void{
 	    this.manual.idModelo = JSON.parse(event);
 	    console.log(this.selectedModel);
 	  }
 
+	/**
+	* Permite obtener el número de Marca escogido en el dropdown
+	*/
 	SeleccionarMarca(event:string): void{
 	    this.selectedMark = JSON.parse(event);
 	    console.log(this.selectedMark);
 	  }
 
+	/**
+	* Permite obtener el número de Tipo de Equipo escogido en el dropdown
+	*/
 	SeleccionarTipo(event:string): void{
 	    this.selectedType = JSON.parse(event);
 	    console.log(this.selectedType);
 	  }
 
+	/**
+	* Permite habilitar o deshabilitar el input de ingreso de ubicación de manual físico
+	*/
 	CambiarFisico(event:string): void{
 	    this.existe = JSON.parse(event);
 	    console.log(this.existe);
 	  }
 
+	/**
+	* Hace la subida del archivo y posteriormente, llama a otra función, para enviar los datos del manual a la API para guardarlos
+	*/
 	onSubmit(){
 
 		console.log(this.manual);
@@ -109,7 +109,7 @@ export class ManualComponent{
 
 		if(this.filesToUpload && this.filesToUpload.length>=1){
 			console.log(this.filesToUpload);
-			this._modeloService.makeFileRequest(GLOBAL.url+'admin/manual/upload-file',[],this.filesToUpload)
+			this._modeloService.makeFileRequest(GLOBAL.url+'user/manual/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
 				//console.log(result);
@@ -129,6 +129,9 @@ export class ManualComponent{
 		
 	}
 
+	/**
+	* Obtiene todos los manuales
+	*/
 	obtenerManuales(){
 			this._manualService.getManual().subscribe(
 				result=>{	
@@ -141,6 +144,9 @@ export class ManualComponent{
 				);
 		}
 
+	/**
+	* Obtiene todos los modelos
+	*/
 	obtenerModelos(){
 			this._modeloService.getModelo().subscribe(
 				result=>{	
@@ -153,6 +159,9 @@ export class ManualComponent{
 				);
 		}
 
+	/**
+	* Función que guarda en manual en la BD
+	*/
 	saveManual(){
 			this._manualService.addManual(this.manual).subscribe(
 				response=>{
@@ -174,11 +183,17 @@ export class ManualComponent{
 				);
 		}
 
+	/**
+	* Abre el modal para actualizar los datos
+	*/
 	modalActualizar(id){
 		this.manual = _.findWhere(this.manuales, {id: id});
 		console.log(this.manual);
 	}
 
+	/**
+	* Elimina un manual
+	*/
 	deleteManual(id){
 		let listanueva:Modelo[];
 		this._manualService.deleteManual(id).subscribe(
@@ -204,10 +219,12 @@ export class ManualComponent{
 			);
 	}
 
-	
+	/**
+	* Obtiene los datos del archivo subido y los guarda en un array para enviarlos posteriormente
+	*/
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
 		//console.log(this.filesToUpload);
 	}
 		
-	}
+}
