@@ -121,9 +121,6 @@
                                     <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SidebarComponent.html" >SidebarComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
                                 </li>
                                 <li class="link">
@@ -395,9 +392,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/SidebarComponent.html" >SidebarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
@@ -785,7 +779,7 @@ export class IndexadminComponent implements OnInit {
 			&lt;button class&#x3D;&quot;btn btn-primary&quot; [routerLink]&#x3D;&quot;[&#x27;../marca&#x27;]&quot;&gt;Marcas&lt;/button&gt;
 			&lt;button class&#x3D;&quot;btn btn-success&quot; [routerLink]&#x3D;&quot;[&#x27;../modelo&#x27;]&quot;&gt;Modelos&lt;/button&gt;
 			&lt;button class&#x3D;&quot;btn btn-warning&quot; [routerLink]&#x3D;&quot;[&#x27;../tipoequipo&#x27;]&quot;&gt;Tipo Equipo&lt;/button&gt;
-			&lt;!--button class&#x3D;&quot;btn btn-info&quot; [routerLink]&#x3D;&quot;[&#x27;../empleado&#x27;]&quot;&gt;Empleado&lt;/button--&gt;
+			&lt;button class&#x3D;&quot;btn btn-info&quot; [routerLink]&#x3D;&quot;[&#x27;../empleado&#x27;]&quot;&gt;Empleado&lt;/button&gt;
 		&lt;/div&gt;
 		
 	&lt;/div&gt;
@@ -815,8 +809,8 @@ export class IndexadminComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="col-12">	<div class="jumbotron text-center">		<h3>Por favor, escoja la sección que desee ver:</h3>		<br>		<div class="btn-group">			<button class="btn btn-primary" [routerLink]="[\'../manual\']">Manuales</button>			<button class="btn btn-success" [routerLink]="[\'../protocolo\']">Protocolos</button>			<button class="btn btn-warning" [routerLink]="[\'../torpedo\']">Apuntes</button>			<button class="btn btn-info" [routerLink]="[\'../repuesto\']">Repuestos</button>		</div>		<br/><hr/>		<h3>SECCIÓN MANTENCIÓN TABLAS:</h3>		<br>		<div class="btn-group">			<button class="btn btn-primary" [routerLink]="[\'../marca\']">Marcas</button>			<button class="btn btn-success" [routerLink]="[\'../modelo\']">Modelos</button>			<button class="btn btn-warning" [routerLink]="[\'../tipoequipo\']">Tipo Equipo</button>			<!--button class="btn btn-info" [routerLink]="[\'../empleado\']">Empleado</button-->		</div>			</div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
+        var COMPONENT_TEMPLATE = '<div><div class="col-12">	<div class="jumbotron text-center">		<h3>Por favor, escoja la sección que desee ver:</h3>		<br>		<div class="btn-group">			<button class="btn btn-primary" [routerLink]="[\'../manual\']">Manuales</button>			<button class="btn btn-success" [routerLink]="[\'../protocolo\']">Protocolos</button>			<button class="btn btn-warning" [routerLink]="[\'../torpedo\']">Apuntes</button>			<button class="btn btn-info" [routerLink]="[\'../repuesto\']">Repuestos</button>		</div>		<br/><hr/>		<h3>SECCIÓN MANTENCIÓN TABLAS:</h3>		<br>		<div class="btn-group">			<button class="btn btn-primary" [routerLink]="[\'../marca\']">Marcas</button>			<button class="btn btn-success" [routerLink]="[\'../modelo\']">Modelos</button>			<button class="btn btn-warning" [routerLink]="[\'../tipoequipo\']">Tipo Equipo</button>			<button class="btn btn-info" [routerLink]="[\'../empleado\']">Empleado</button>		</div>			</div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'IndexadminComponent'};
 </script>

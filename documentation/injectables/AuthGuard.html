@@ -121,9 +121,6 @@
                                     <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SidebarComponent.html" >SidebarComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
                                 </li>
                                 <li class="link">
@@ -397,9 +394,6 @@
                                            <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/SidebarComponent.html" >SidebarComponent</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
                                        </li>
                                        <li class="link">
@@ -599,6 +593,13 @@
             <code>src/app/services/auth-guard.service.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Servicio que vigila que el usuario pueda o no ingresar a alguna ruta.</p>
+
+            </p>
 
 
             <section>
@@ -634,7 +635,7 @@
                             </tr>
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/services/auth-guard.service.ts:7</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/auth-guard.service.ts:10</a></div>
                                         </td>
                                     </tr>
             
@@ -701,12 +702,14 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/services/auth-guard.service.ts:11</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/auth-guard.service.ts:16</a></div>
                                         </td>
                                     </tr>
             
                             <tr>
                                 <td class="col-md-4">
+                                        <div class="io-description"><p>Función que permite o no el acceso a la página solicitada. En caso que no tenga acceso, envía a la página definida para este caso.</p>
+            </div>
             
                                         <div class="io-description">
                                             <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
@@ -727,19 +730,24 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { CanActivate } from &#x27;@angular/router&#x27;;
 import { AuthService } from &#x27;./auth.service&#x27;;
 
+/**
+* Servicio que vigila que el usuario pueda o no ingresar a alguna ruta.
+*/
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor(private auth: AuthService, private router: Router) {}
-
-  canActivate() {
-    if(this.auth.loggedIn()) {
-      return true;
-    } else {
-      this.router.navigate([&#x27;unauthorized&#x27;]);
-      return false;
-    }
-  }
+	/**
+	* Función que permite o no el acceso a la página solicitada. En caso que no tenga acceso, envía a la página definida para este caso.
+	*/
+	  canActivate() {
+	    if(this.auth.loggedIn()) {
+	      return true;
+	    } else {
+	      this.router.navigate([&#x27;unauthorized&#x27;]);
+	      return false;
+	    }
+	  }
 }</code></pre>
     </div>
 </div>

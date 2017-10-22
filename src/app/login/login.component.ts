@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   	* Realiza el login del usuario, obtiene los datos desde la API y los almacena en el localStorage para poder ser utilizados.
   	*/
 	onSubmit(){
-		console.log(this.empleado);
+		
 		this._empleadoService.loginUser(this.empleado).subscribe(
 			response=>{
 				this.token= response.result;

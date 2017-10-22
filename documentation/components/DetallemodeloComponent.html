@@ -121,9 +121,6 @@
                                     <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SidebarComponent.html" >SidebarComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
                                 </li>
                                 <li class="link">
@@ -395,9 +392,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/SidebarComponent.html" >SidebarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
@@ -859,7 +853,7 @@ No se requiere ser Admin para ver esta pantalla.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:68</a></div>
                                 </td>
                             </tr>
     
@@ -893,7 +887,7 @@ No se requiere ser Admin para ver esta pantalla.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:159</a></div>
                                 </td>
                             </tr>
     
@@ -955,12 +949,14 @@ No se requiere ser Admin para ver esta pantalla.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:57</a></div>
                                 </td>
                             </tr>
     
                     <tr>
                         <td class="col-md-4">
+                                <div class="io-description"><p>Ejecuta las funciones necesarias al iniciar el componente</p>
+    </div>
     
                                 <div class="io-description">
                                     <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -987,7 +983,7 @@ No se requiere ser Admin para ver esta pantalla.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:88</a></div>
                                 </td>
                             </tr>
     
@@ -1021,7 +1017,7 @@ No se requiere ser Admin para ver esta pantalla.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:105</a></div>
                                 </td>
                             </tr>
     
@@ -1055,7 +1051,7 @@ No se requiere ser Admin para ver esta pantalla.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:141</a></div>
                                 </td>
                             </tr>
     
@@ -1089,7 +1085,7 @@ No se requiere ser Admin para ver esta pantalla.</p>
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/detallemodelo/detallemodelo.component.ts:123</a></div>
                                 </td>
                             </tr>
     
@@ -1373,6 +1369,9 @@ export class DetallemodeloComponent {
   			this.torpedo &#x3D; new Torpedo(0,&quot;&quot;,&quot;&quot;,&quot;&quot;,0);
   		}
 
+  	/**
+	* Ejecuta las funciones necesarias al iniciar el componente
+	*/
   	ngOnInit() {
 		this.getModelo();
 		this.obtenerManuales();
@@ -1391,7 +1390,6 @@ export class DetallemodeloComponent {
 				response &#x3D;&gt;{
 					if(response.response &#x3D;&#x3D; true){
 						this.modelo &#x3D; response.result;
-						//console.log(this.modelo);
 					}else{
 						this._router.navigate([&#x27;manualuser&#x27;]);
 					}
@@ -1411,7 +1409,6 @@ export class DetallemodeloComponent {
 			this._manualService.userGetManualxModelo(id).subscribe(
 				result&#x3D;&gt;{	
 					this.manuales&#x3D; result.result;
-					//console.log(result);
 					},
 				error&#x3D;&gt;{
 					console.log(&lt;any&gt;error);
@@ -1429,7 +1426,7 @@ export class DetallemodeloComponent {
 			this._protocoloService.userGetProtocoloxModelo(id).subscribe(
 				result&#x3D;&gt;{	
 					this.protocolos&#x3D; result.result;
-					//console.log(result);
+					
 					},
 				error&#x3D;&gt;{
 					console.log(&lt;any&gt;error);
@@ -1447,7 +1444,7 @@ export class DetallemodeloComponent {
 			this._torpedoService.userGetTorpedoxModelo(id).subscribe(
 				result&#x3D;&gt;{	
 					this.torpedos&#x3D; result.result;
-					//console.log(result);
+					
 					},
 				error&#x3D;&gt;{
 					console.log(&lt;any&gt;error);
@@ -1465,7 +1462,7 @@ export class DetallemodeloComponent {
 			this._repuestoService.userGetRepuestoxModelo(id).subscribe(
 				result&#x3D;&gt;{	
 					this.repuestos&#x3D; result.result;
-					//console.log(result);
+					
 					},
 				error&#x3D;&gt;{
 					console.log(&lt;any&gt;error);
@@ -1479,7 +1476,7 @@ export class DetallemodeloComponent {
 	*/
 	mostrarTorpedo(id){
 		this.torpedo &#x3D; _.findWhere(this.torpedos, {id: id});
-		//console.log(this.torpedo);
+		
 	}
 
 	}
@@ -1706,7 +1703,7 @@ export class DetallemodeloComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="row">	<div class="col-8">		<h3>Datos del equipo</h3>		<hr>			<div *ngIf="!modelo">				<p>Cargando...</p>			</div>			<div *ngIf="modelo">				<ul class="nav nav-tabs" role="tablist">			  	<li class="nav-item">			    	<a class="nav-link active" href="#datos" role="tab" data-toggle="tab">Datos</a>			  	</li>			  	<li class="nav-item">			    	<a class="nav-link" href="#manuales" role="tab" data-toggle="tab">Manuales</a>			  	</li>			  	<li class="nav-item">			    	<a class="nav-link" href="#protocolos" role="tab" data-toggle="tab">Protocolos</a>			  	</li>			  	<li class="nav-item">			    	<a class="nav-link" href="#apuntes" role="tab" data-toggle="tab">Apuntes</a>			  	</li>			  	<li class="nav-item">			    	<a class="nav-link" href="#repuestos" role="tab" data-toggle="tab">Repuestos</a>			  	</li>			</ul>			<!-- Tab panes -->			<div class="tab-content">	  			<div role="tabpanel" class="tab-pane active" id="datos">	  				<br>	  				<div class="table-responsive">		  				<table class="table table-bordered">							<tr>								<td><b>Descripción: </b></td>								<td>{{modelo.tipoequipo}}</td>							</tr>							<tr>								<td><b>Marca: </b></td>								<td>{{modelo.marca}}</td>							</tr>							<tr>								<td><b>Modelo: </b></td>								<td>{{modelo.nombre}}</td>							</tr>						</table>					</div>	  			</div>		  		<div role="tabpanel" class="tab-pane fade" id="manuales">					<br>					<h5>Listado de manuales:</h5>					<br>					<div *ngIf="manuales?.length < 1">						<p>No hay manuales disponibles aún</p>					</div>					<div class="table-responsive" *ngIf="manuales!= 0">						<table class="table table-bordered">							<thead>								<tr>									<th>Nombre</th>									<th>Ubicación manual físico</th>									<th>Enlace</th>								</tr>							</thead>							<tbody>								<tr *ngFor="let man of manuales">									<td>{{man.nombre}}</td>									<td *ngIf="man.ubicacion">{{man.ubicacion}}</td>									<td *ngIf="!man.ubicacion">No disponible</td>									<td><a href="http://localhost/apibiblio2/uploads/manuales/{{man.url}}"  target="_blank">Descargar</a></td>								</tr>							</tbody>						</table>					</div>		  		</div>		  		<div role="tabpanel" class="tab-pane fade" id="protocolos">		  			<br>		  			<h5>Listado de protocolos disponibles:</h5>		  			<br>		  			<div *ngIf="protocolos?.length < 1">						<p>No hay protocolos disponibles aún</p>					</div>					<div class="table-responsive" *ngIf="protocolos!= 0">						<table class="table table-bordered">							<thead>								<tr>									<th>Nombre</th>									<th>Enlace</th>								</tr>							</thead>							<tbody>								<tr *ngFor="let pro of protocolos">									<td>{{pro.nombre}}</td>									<td><a href="http://localhost/apibiblio2/uploads/protocolos/{{pro.url}}"  target="_blank">Descargar</a></td>								</tr>							</tbody>						</table>					</div>		  		</div>		  		<div role="tabpanel" class="tab-pane fade" id="apuntes">		  			<br>		  			<h5>Listado de apuntes disponibles:</h5>		  			<br>		  			<div *ngIf="torpedos?.length < 1">						<p>No hay apuntes disponibles aún</p>					</div>		  			<div class="table-responsive"  *ngIf="torpedos!= 0">		  				<table class="table table-bordered">							<thead>								<tr>									<th>Titulo</th>									<th>Opciones</th>								</tr>							</thead>							<tbody>								<tr *ngFor="let tor of torpedos">									<td>{{tor.titulo}}</td>									<td>										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TorpedoDataModal"  (click)="mostrarTorpedo(tor.id)">Ver</button>									</td>								</tr>									</tbody>						</table>					</div>		  		</div>		  		<div role="tabpanel" class="tab-pane fade" id="repuestos">		  			<br>		  			<h5>Listado de repuestos:</h5>		  			<br>		  			<div *ngIf="repuestos?.length < 1">						<p>No hay repuestos disponibles aún</p>					</div>		  			<div class="table-responsive" *ngIf="repuestos!= 0">		  				<table class="table table-bordered">							<thead>								<tr>									<th style="width: 10%">Foto</th>									<th style="width: 30%">Descripción</th>									<th style="width: 60%">Detalle</th>								</tr>							</thead>							<tbody>								<tr *ngFor="let rep of repuestos">									<td><div *ngIf="rep.foto"><img src="http://localhost/apibiblio2/uploads/foto-repuestos/{{rep.foto}}" class="img-fluid"/></div></td>									<td>{{rep.nombre}}</td>									<td>{{rep.descripcion}}</td>								</tr>									</tbody>						</table>					</div>		  		</div>			</div>			</div>				<a [routerLink]="[\'../../manualuser\']" class="btn btn-warning">Volver</a>	</div>	<div *ngIf="modelo" class="col-4">		<img class="rounded img-fluid" src="http://localhost/apibiblio2/uploads/fotos/{{modelo.foto}}" alt="" >	</div></div><!-- Modal --><div class="modal fade" id="TorpedoDataModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  	<div class="modal-dialog" role="document">    	<div class="modal-content">    		<div class="modal-header">        		<h5 class="modal-title" id="exampleModalLabel">{{torpedo.titulo}}</h5>        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">          			<span aria-hidden="true">&times;</span>        		</button>      		</div>		    <div class="modal-body">		    	<br>		    	<div class="col-sm-12">		    		<strong>Detalle:</strong>		    	</div>		    	<div class="col-sm-12">		    		<p>{{torpedo.descripcion}}</p>		    		<p *ngIf="torpedo.url"><a href="http://localhost/apibiblio2/uploads/apuntes/{{torpedo.url}}"  target="_blank">Ver archivo disponible</a></p>		    	</div>			    			</div>   		      		<div class="modal-footer">        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>      		</div>      		    	</div>  	</div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DetallemodeloComponent'};
 </script>

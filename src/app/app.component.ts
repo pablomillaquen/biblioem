@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 
+
+/**
+* Componente principal. Es donde se cargan las demás vistas.
+*/
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

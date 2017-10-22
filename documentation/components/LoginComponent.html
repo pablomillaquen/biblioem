@@ -121,9 +121,6 @@
                                     <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SidebarComponent.html" >SidebarComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
                                 </li>
                                 <li class="link">
@@ -395,9 +392,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/SidebarComponent.html" >SidebarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
@@ -1162,7 +1156,7 @@ export class LoginComponent implements OnInit {
   	* Realiza el login del usuario, obtiene los datos desde la API y los almacena en el localStorage para poder ser utilizados.
   	*/
 	onSubmit(){
-		console.log(this.empleado);
+		
 		this._empleadoService.loginUser(this.empleado).subscribe(
 			response&#x3D;&gt;{
 				this.token&#x3D; response.result;
@@ -1205,11 +1199,8 @@ export class LoginComponent implements OnInit {
 	&lt;h3&gt;{{title}}&lt;/h3&gt;
 	&lt;form #loginForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; class&#x3D;&quot;col-lg-7&quot;&gt;
 		&lt;p&gt;	
-			&lt;label for&#x3D;&quot;email&quot;&gt;Correo Electrónico&lt;/label&gt;
-			&lt;input class&#x3D;&quot;form-control&quot; type&#x3D;&quot;email&quot; #email&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;empleado.email&quot; name&#x3D;&quot;email&quot; required /&gt;
-			&lt;span *ngIf&#x3D;&quot;!email.valid &amp;&amp; email.touched&quot;&gt;
-				El email es obligatorio
-			&lt;/span&gt;
+			&lt;label for&#x3D;&quot;correo&quot;&gt;Correo Electrónico&lt;/label&gt;
+			&lt;input class&#x3D;&quot;form-control&quot; type&#x3D;&quot;email&quot; #correo&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;empleado.correo&quot; name&#x3D;&quot;correo&quot; /&gt;
 		&lt;/p&gt;
 		&lt;p&gt;	
 			&lt;label for&#x3D;&quot;email&quot;&gt;Contraseña&lt;/label&gt;
@@ -1247,8 +1238,8 @@ export class LoginComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="col-lg-6">	<h3>{{title}}</h3>	<form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-7">		<p>				<label for="email">Correo Electrónico</label>			<input class="form-control" type="email" #email="ngModel" [(ngModel)]="empleado.email" name="email" required />			<span *ngIf="!email.valid && email.touched">				El email es obligatorio			</span>		</p>		<p>				<label for="email">Contraseña</label>			<input class="form-control" #password="ngModel" [(ngModel)]="empleado.pass" type="password" name="password" required />			<span *ngIf="!password.valid && password.touched">				El password es obligatorio			</span>		</p>		<button [disabled]="!loginForm.valid" type="submit" class="btn btn-success">Entrar</button>	</form></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
+        var COMPONENT_TEMPLATE = '<div><div class="col-lg-6">	<h3>{{title}}</h3>	<form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-lg-7">		<p>				<label for="correo">Correo Electrónico</label>			<input class="form-control" type="email" #correo="ngModel" [(ngModel)]="empleado.correo" name="correo" />		</p>		<p>				<label for="email">Contraseña</label>			<input class="form-control" #password="ngModel" [(ngModel)]="empleado.pass" type="password" name="password" required />			<span *ngIf="!password.valid && password.touched">				El password es obligatorio			</span>		</p>		<button [disabled]="!loginForm.valid" type="submit" class="btn btn-success">Entrar</button>	</form></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

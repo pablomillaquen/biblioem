@@ -31,6 +31,7 @@ export class ModeloComponent{
 	public selectedRepuesto:Repuesto;
 	public selectedRepMod:RepuestoModelo;
 	public selectedType:Tipoequipo;
+	public selectedMark:Marca;
 	public Listmarcas:Marca[];
 	public Listtipo:Tipoequipo[];
 	public repuestos:Repuesto[];
@@ -68,21 +69,18 @@ export class ModeloComponent{
 	*/
 	onSubmit(){
 
-		console.log(this.modelo);
+		
 		if(this.modelo.id === 0){
 			this.modelo = _.omit(this.modelo, 'id');
-			console.log(this.modelo);
 		}
 		jQuery("#ModeloModal").modal("hide");
 
 		if(this.filesToUpload && this.filesToUpload.length>=1){
-			console.log(this.filesToUpload);
 			this._modeloService.makeFileRequest(GLOBAL.url+'user/modelo/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
 				this.resultUpload = result['result'];
 				this.modelo.foto = this.resultUpload;
-				console.log(this.modelo);
 				this.saveModelo();
 			},
 			(error)=>{
@@ -118,7 +116,6 @@ export class ModeloComponent{
 					//this.modelo = new Modelo(0,"");
 					this.obtenerModelos();
 				}else{
-					console.log(response);
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
@@ -156,7 +153,6 @@ export class ModeloComponent{
 	*/
   SeleccionarRepuesto(event:string): void{
     this.repuestoxmod.idRepuesto = JSON.parse(event);
-    console.log(this.repuestoxmod);
   }
 
   	/**
@@ -166,7 +162,6 @@ export class ModeloComponent{
 		this._marcaService.getMarca().subscribe(
 			result=>{	
 				this.Listmarcas= result.result;
-				//console.log(this.Listmarcas);
 				},
 			error=>{
 				console.log(<any>error);
@@ -181,7 +176,6 @@ export class ModeloComponent{
 		this._tipoequipoService.getTipoEquipo().subscribe(
 			result=>{	
 				this.Listtipo= result.result;
-				//console.log(this.Listmarcas);
 				},
 			error=>{
 				console.log(<any>error);
@@ -196,7 +190,6 @@ export class ModeloComponent{
 		this._modeloService.getModelo().subscribe(
 			result=>{	
 				this.modelos= result.result;
-				//console.log(result);
 				},
 			error=>{
 				console.log(<any>error);
@@ -211,7 +204,6 @@ export class ModeloComponent{
 		this._repuestoService.getRepuesto().subscribe(
 			result=>{	
 				this.repuestos= result.result;
-				//console.log(result);
 				},
 			error=>{
 				console.log(<any>error);
@@ -226,7 +218,6 @@ export class ModeloComponent{
 			this._repuestoService.getRepuestoxModelo(id).subscribe(
 				result=>{	
 					this.repuestosxmod= result.result;
-					console.log(result);
 					},
 				error=>{
 					console.log(<any>error);
@@ -249,7 +240,6 @@ export class ModeloComponent{
 					//this.repuesto = new Repuesto(0,0,'','',GLOBAL.defaultImage,'');
 					this.obtenerMarcas();
 				}else{
-					console.log(response);
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
@@ -266,8 +256,7 @@ export class ModeloComponent{
 	*/
 	modalActualizar(id){
 		this.modelo = _.findWhere(this.modelos, {id: id});
-		//this.repuestoxmod.id =id;
-		console.log(this.modelo);
+		
 	}
 
 	/**
@@ -276,7 +265,6 @@ export class ModeloComponent{
 	modalRepuesto(id){
 		this.modelo = _.findWhere(this.modelos, {id: id});
 		this.repuestoxmod.id =id;
-		console.log(this.repuestoxmod);
 		this.obtenerRepuestosxmod(this.modelo.id);
 	}
 
@@ -292,11 +280,9 @@ export class ModeloComponent{
 					this.modelos = _.without(this.modelos, _.findWhere(this.modelos, {
 					  id: id
 					}));
-					console.log(this.modelos);
 					this.toastr.success('Modelo eliminado exitosamente!', 'Exito!');
 					
 				}else{
-					console.log(response);
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
@@ -319,7 +305,6 @@ export class ModeloComponent{
 					this.toastr.success('Repuesto eliminado exitosamente!', 'Exito!');
 					
 				}else{
-					console.log(response);
 					jQuery("#RepuestoModal").modal("hide");
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}

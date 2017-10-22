@@ -1,5 +1,8 @@
 export class Modelo{
 
+	/**
+	* Clase que maneja los datos de la clase Modelo
+	*/
 	constructor(
 		public id:number,
 		public nombre:string,

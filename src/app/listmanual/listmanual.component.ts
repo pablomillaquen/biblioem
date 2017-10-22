@@ -49,7 +49,7 @@ export class ListmanualComponent {
     this._modeloService.userGetModelo().subscribe(
       result=>{  
         this.modelos= result.result;
-        console.log(result);
+        
         },
       error=>{
         console.log(<any>error);

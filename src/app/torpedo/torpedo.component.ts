@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {ModeloService} from '../services/modelo.service';
 import {TorpedoService} from '../services/torpedo.service';
-//import {Tipoequipo} from '../tipoequipo/tipoequipo';
-//import {Marca} from '../marca/marca';
 import {Modelo} from '../modelo/modelo';
 import {Torpedo} from './torpedo';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -12,7 +10,9 @@ import * as _ from 'underscore';
 import { GLOBAL } from '../services/global';
 declare var jQuery:any;
 
- 
+/**
+* Componente que administra la información de la tabla Torpedo
+*/
 @Component({
 	selector: 'torpedo',
 	templateUrl:'./torpedo.component.html',
@@ -22,15 +22,10 @@ declare var jQuery:any;
 export class TorpedoComponent{
 	public torpedo:Torpedo;
 	public selectedModel:Modelo;
-	// public selectedMark:Marca;
-	// public selectedType:Tipoequipo;
-	// public Listtipo:Array<Tipoequipo>;
-	// public Listmarca:Array<Marca>;
 	public Listmodelo:Array<Modelo>;
 	public modelos:Modelo[];
 	public torpedos: Torpedo[];
-	//public existe:Boolean;
-
+	
 	public filterQuery = "";
 	public rowsOnPage = 5;
 	public sortBy = "nombre";
@@ -44,80 +39,42 @@ export class TorpedoComponent{
 		private _router:Router,
 		private _modeloService: ModeloService,
 		private _torpedoService: TorpedoService,
-		//private _tipoequipoService: TipoequipoService,
 		public toastr: ToastsManager, 
 		vcr: ViewContainerRef
 		){
 		this.toastr.setRootViewContainerRef(vcr);
 		this.torpedo = new Torpedo(0,"","","",0);
-
-		// this.Listtipo = [
-		// 	new Tipoequipo(1,'Monitor multiparámetros'),
-		// 	new Tipoequipo(2,'Ecógrafo'),
-		// 	new Tipoequipo(3,'Máquina anestesia'),
-		// 	new Tipoequipo(4,'Otro')
-		// 	];
-		// this.Listmarca = [
-		// 	new Marca(1,'Siemens'),
-		// 	new Marca(2,'GE'),
-		// 	new Marca(3,'Drager'),
-		// 	new Marca(4,'Otro')
-		// 	];
-		// this.Listmodelo = [
-		// 	new Modelo(1,'Modelo1', 3, 3,'1.jpg'),
-		// 	new Modelo(2,'Modelo2', 2, 1, '2.jpg'),
-		// 	new Modelo(3,'Modelo3', 3, 2, '3.jpg'),
-		// 	new Modelo(4,'Otro', 6, 3, '9.jpg')
-		// 	];
-		//this.existe = false;
 	}
 
+
+	/**
+	* Ejecuta las funciones necesarias al iniciar el componente
+	*/
 	ngOnInit(){
-		this.obtenerTorpedos();
-		
+		this.obtenerTorpedos();		
 		this.obtenerModelos();
 	}
 
 	SeleccionarModelo(event:string): void{
 	    this.torpedo.idModelo = JSON.parse(event);
-	    console.log(this.selectedModel);
 	  }
 
-	// SeleccionarMarca(event:string): void{
-	//     this.selectedMark = JSON.parse(event);
-	//     console.log(this.selectedMark);
-	//   }
-
-	// SeleccionarTipo(event:string): void{
-	//     this.selectedType = JSON.parse(event);
-	//     console.log(this.selectedType);
-	//   }
-
-	// CambiarFisico(event:string): void{
-	//     this.existe = JSON.parse(event);
-	//     console.log(this.existe);
-	//   }
-
+	/**
+	* Guarda los datos de los apuntes (torpedos)
+	*/
 	onSubmit(){
 
-		console.log(this.torpedo);
 		if(this.torpedo.id === 0){
 			this.torpedo = _.omit(this.torpedo, 'id');
-			console.log(this.torpedo);
 		}
 		jQuery("#TorpedoModal").modal("hide");
 
 		if(this.filesToUpload && this.filesToUpload.length>=1){
-			console.log(this.filesToUpload);
 			this._modeloService.makeFileRequest(GLOBAL.url+'user/torpedo/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
-				//console.log(result);
 				this.resultUpload = result['result'];
-				//this.resultUpload = result.result;
-				//console.log(this.resultUpload);
 				this.torpedo.url = this.resultUpload;
-				console.log(this.torpedo);
 				this.saveTorpedo();
 			},
 			(error)=>{
@@ -129,11 +86,13 @@ export class TorpedoComponent{
 		
 	}
 
+	/**
+	* Obtiene todas los torpedos
+	*/
 	obtenerTorpedos(){
 			this._torpedoService.getTorpedo().subscribe(
 				result=>{	
 					this.torpedos= result.result;
-					console.log(result);
 					},
 				error=>{
 					console.log(<any>error);
@@ -141,11 +100,13 @@ export class TorpedoComponent{
 				);
 		}
 
+	/**
+	* Obtiene todos los modelos
+	*/
 	obtenerModelos(){
 			this._modeloService.getModelo().subscribe(
 				result=>{	
 					this.modelos= result.result;
-					//console.log(result);
 					},
 				error=>{
 					console.log(<any>error);
@@ -153,6 +114,9 @@ export class TorpedoComponent{
 				);
 		}
 
+	/**
+	* Guarda un nuevo registro de torpedo
+	*/
 	saveTorpedo(){
 			this._torpedoService.addTorpedo(this.torpedo).subscribe(
 				response=>{
@@ -162,7 +126,6 @@ export class TorpedoComponent{
 						this.torpedo = new Torpedo(0,"","","",0);
 						this.obtenerTorpedos();
 					}else{
-						console.log(response);
 						this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 					}
 
@@ -174,13 +137,18 @@ export class TorpedoComponent{
 				);
 		}
 
+	/**
+	* Obtiene los datos del torpedo seleccionado y los carga en el formulario para actualizarlos
+	*/
 	modalActualizar(id){
 		this.torpedo = _.findWhere(this.torpedos, {id: id});
-		console.log(this.torpedo);
+		
 	}
 
+	/**
+	* Elimina un torpedo
+	*/
 	deleteTorpedo(id){
-		let listanueva:Modelo[];
 		this._torpedoService.deleteTorpedo(id).subscribe(
 			response=>{
 				if(response.response == true){
@@ -188,11 +156,9 @@ export class TorpedoComponent{
 					this.torpedos = _.without(this.torpedos, _.findWhere(this.torpedos, {
 					  id: id
 					}));
-					console.log(this.torpedos);
 					this.toastr.success('Torpedo eliminado exitosamente!', 'Exito!');
 					
 				}else{
-					console.log(response);
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
@@ -204,10 +170,12 @@ export class TorpedoComponent{
 			);
 	}
 
-	
+	/**
+	* Obtiene la información del archivo que se desea subir y lo guarda en un array.
+	*/
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
-		//console.log(this.filesToUpload);
+		
 	}
 		
 	}

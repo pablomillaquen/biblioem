@@ -7,6 +7,9 @@ import {Repuesto} from '../repuesto/repuesto';
 import {RepuestoModelo} from '../repuesto/repuestomodelo';
 import {GLOBAL} from './global';
 
+/**
+* Servicio que se comunica con la API para obtener y enviar información de la clase Repuesto
+*/
 @Injectable()
 export class RepuestoService {
 	public url:string;
@@ -19,6 +22,10 @@ export class RepuestoService {
 	/**********************************************************************
 	RUTAS DE USUARIO
 	**********************************************************************/
+	
+	/**
+	* Obtiene los repuestos existentes para determinado modelo
+	*/
 	userGetRepuestoxModelo(id){
 		return this._http.get(this.url+'user/repuesto/getxmod/'+id).map(res=>res.json());	
 	}
@@ -27,49 +34,58 @@ export class RepuestoService {
 	RUTAS DE ADMIN
 	**********************************************************************/
 	
+	/**
+	* Obtiene todos los repuestos existentes
+	*/
 	getRepuesto(){
 		return this._authHttp.get(this.url+'admin/repuesto/getAll/').map(res=>res.json());
 	}
 
+	/**
+	* Obtiene 1 repuesto
+	*/
 	getRepuesto1(id){
 		return this._authHttp.get(this.url+'admin/repuesto/get/'+id).map(res=>res.json());	
 	}
 
+	/**
+	* Obtiene los repuestos asociados a 1 modelo
+	*/
 	getRepuestoxModelo(id){
 		return this._authHttp.get(this.url+'admin/repuesto/getxmod/'+id).map(res=>res.json());	
 	}
 
+	/**
+	* Agrega 1 repuesto
+	*/
 	addRepuesto(repuesto:Repuesto){
-		// let json = JSON.stringify(repuesto);
-		// let params = 'json='+json;
-		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-
 		return this._authHttp.post(this.url+'admin/repuesto/save',repuesto).map(res=>res.json());
-		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 	
+	/**
+	* Agrega 1 repuesto por modelo
+	*/	
 	addRepuestoxmod(repuestoxmod:RepuestoModelo){
 		return this._authHttp.post(this.url+'admin/repuesto/savexmod',repuestoxmod).map(res=>res.json());
 	}
 
+	/**
+	* Elimina 1 repuesto
+	*/
 	deleteRepuesto(id){
-		// let json = JSON.stringify(repuesto);
-		// let params = 'json='+json;
-		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-
 		return this._authHttp.post(this.url+'admin/repuesto/delete/'+id,'').map(res=>res.json());
-		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 
+	/**
+	* Elimina 1 repuesto para el modelo seleccionado
+	*/
 	deleteRepuestoxMod(id, idRepuesto){
-		// let json = JSON.stringify(repuesto);
-		// let params = 'json='+json;
-		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-
 		return this._authHttp.post(this.url+'admin/repuesto/deletexmod/'+id+'/'+idRepuesto,'').map(res=>res.json());
-		//return this._http.post(this.url+'admin/repuesto/save',params, {headers:headers}).map(res=>res.json());
 	}
 
+	/**
+	* Agrega un archivo (foto) para el repuesto que se desea agregar
+	*/
 	makeFileRequest(url:string, params:Array<string>, files:Array<File>){
 		return new Promise((resolve,reject)=>{
 			var formData:any = new FormData();

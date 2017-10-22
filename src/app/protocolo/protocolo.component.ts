@@ -157,7 +157,6 @@ export class ProtocoloComponent{
 						this.toastr.success('Protocolo guardado exitosamente!', 'Exito!');
 						this.obtenerProtocolos();
 					}else{
-						console.log(response);
 						this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 					}
 
@@ -174,7 +173,7 @@ export class ProtocoloComponent{
 	*/
 	modalActualizar(id){
 		this.protocolo = _.findWhere(this.protocolos, {id: id});
-		console.log(this.protocolo);
+		
 	}
 
 	/**

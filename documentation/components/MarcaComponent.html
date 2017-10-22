@@ -121,9 +121,6 @@
                                     <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/SidebarComponent.html" >SidebarComponent</a>
-                                </li>
-                                <li class="link">
                                     <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
                                 </li>
                                 <li class="link">
@@ -395,9 +392,6 @@
                                        </li>
                                        <li class="link">
                                            <a href="../components/RepuestoComponent.html" >RepuestoComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/SidebarComponent.html" >SidebarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/TipoequipoComponent.html" >TipoequipoComponent</a>
@@ -830,7 +824,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/marca/marca.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/marca/marca.component.ts:97</a></div>
                                 </td>
                             </tr>
     
@@ -892,7 +886,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/marca/marca.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/marca/marca.component.ts:90</a></div>
                                 </td>
                             </tr>
     
@@ -954,7 +948,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/marca/marca.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/marca/marca.component.ts:68</a></div>
                                 </td>
                             </tr>
     
@@ -988,7 +982,7 @@
     
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/marca/marca.component.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/marca/marca.component.ts:75</a></div>
                                 </td>
                             </tr>
     
@@ -1287,10 +1281,8 @@ export class MarcaComponent{
 	* Guarda los datos de la marca
 	*/
 	onSubmit(){
-		console.log(this.marca);
 		if(this.marca.id &#x3D;&#x3D;&#x3D; 0){
 			this.marca &#x3D; _.omit(this.marca, &#x27;id&#x27;);
-			console.log(this.marca);
 		}
 		jQuery(&quot;#MarcaModal&quot;).modal(&quot;hide&quot;);
 		this._marcaService.addMarca(this.marca).subscribe(
@@ -1301,7 +1293,6 @@ export class MarcaComponent{
 					this.marca &#x3D; new Marca(0,&quot;&quot;);
 					this.obtenerMarcas();
 				}else{
-					console.log(response);
 					this.toastr.error(&#x27;Hubo un error en la respuesta del servidor!&#x27;, &#x27;Error!&#x27;);
 				}
 
@@ -1353,11 +1344,11 @@ export class MarcaComponent{
 					this.marcas &#x3D; _.without(this.marcas, _.findWhere(this.marcas, {
 					  id: id
 					}));
-					console.log(this.marcas);
+					
 					this.toastr.success(&#x27;Marca eliminada exitosamente!&#x27;, &#x27;Exito!&#x27;);
 					
 				}else{
-					console.log(response);
+					
 					this.toastr.error(&#x27;Hubo un error en la respuesta del servidor!&#x27;, &#x27;Error!&#x27;);
 				}
 
@@ -1502,7 +1493,7 @@ export class MarcaComponent{
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><h3><strong>LISTADO DE MARCAS:</strong></h3><hr/><div class="row">  <div class="col-6">    <a [routerLink]="[\'../indexadmin\']">Volver</a>  </div>  <!-- Button trigger modal -->  <div class="col-6 text-right">    <!-- Button trigger modal -->    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MarcaModal">      Nueva Marca    </button>  </div></div><div *ngIf="marcas" class="table-responsive">  <br>  <table   class="table table-striped table-hover"   [mfData]="marcas |marcaFilter : filterQuery"   #mf="mfDataTable"   [mfRowsOnPage]="rowsOnPage"  [(mfSortBy)]="sortBy"  [(mfSortOrder)]="sortOrder"  >  <thead>  <tr>    <th>      Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />    </th>    <th></th><th></th>  </tr>  <tr>    <th style="width: 30%">      <mfDefaultSorter by="name">Id</mfDefaultSorter>    </th>    <th style="width: 30%">      <mfDefaultSorter by="email">Nombre</mfDefaultSorter>    </th>    <th style="width: 20%">      <mfDefaultSorter by="city">Opciones</mfDefaultSorter>    </th>  </tr>  </thead>  <tbody>  <tr *ngFor="let item of mf.data">    <td>{{item.id}}</td>    <td>{{item.nombre}}</td>    <td >      <div class="btn-group">        <button class="btn btn-info" data-toggle="modal" data-target="#MarcaModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>        <button class="btn btn-danger"  (click)="deleteMarca(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>      </div>    </td>  </tr>  </tbody>  <tfoot>  <tr>    <td colspan="4">      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>    </td>  </tr>  </tfoot></table></div><div *ngIf="!marcas">  <br>  <div class="jumbotron text-center">        <h3>No se cuenta con marcas alojadas actualmente en la base de datos</h3>    <h5>Agregue marcas haciendo click en el botón superior.</h5>  </div></div><!-- Modal --><div class="modal fade" id="MarcaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  	<div class="modal-dialog" role="document">    <div class="modal-content"> 	  	<form #formMarca="ngForm" (ngSubmit)="onSubmit()">      	<div class="modal-header">        	<h5 class="modal-title" id="exampleModalLabel">Formulario de Marcas</h5>        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">          		<span aria-hidden="true">&times;</span>        	</button>      	</div>      	<div class="modal-body">       		<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="marca.id" />			<div class="col-xs-12">				<label for="txtNombre">Nombre:</label>			</div>			<div class="col-xs-12">				<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="marca.nombre" required />				<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>			</div>      	</div>      	<div class="modal-footer">        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>        	<button type="submit" class="btn btn-primary" >Guardar</button>      	</div>	  	</form>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'SidebarComponent', 'selector': 'sidebar'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MarcaComponent'};
 </script>

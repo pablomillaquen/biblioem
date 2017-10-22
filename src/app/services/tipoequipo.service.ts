@@ -5,6 +5,9 @@ import {Observable} from 'rxjs/Observable';
 import {Tipoequipo} from '../tipoequipo/tipoequipo';
 import {GLOBAL} from './global';
 
+/**
+* Servicio que se comunica con la API para obtener y enviar información de la clase Tipoequipo
+*/
 @Injectable()
 
 export class TipoequipoService{
@@ -13,24 +16,30 @@ export class TipoequipoService{
 	constructor(public _authHttp: AuthHttp){
 		this.url = GLOBAL.url;
 	}
+
+	/*********************************************************************
+	RUTAS DE ADMIN
+	*********************************************************************/
+
+	/**
+	* Obtiene todos los tipos de equipos
+	*/
 	getTipoEquipo(){
 		return this._authHttp.get(this.url+'admin/type/getAll/').map(res=>res.json());
 	}
-	addTipoEquipo(tipoequipo:Tipoequipo){
-		// let json = JSON.stringify(marca);
-		// let params = 'json='+json;
-		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
 
+	/**
+	* Agrega 1 tipo de equipo
+	*/
+	addTipoEquipo(tipoequipo:Tipoequipo){
 		return this._authHttp.post(this.url+'admin/type/save',tipoequipo).map(res=>res.json());
-		//return this._http.post(this.url+'admin/type/save',params, {headers:headers}).map(res=>res.json());
+		
 	}
 	
+	/**
+	* Borra 1 tipo de equipo
+	*/
 	deleteTipoEquipo(id){
-		// let json = JSON.stringify(marca);
-		// let params = 'json='+json;
-		// let headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
-
 		return this._authHttp.post(this.url+'admin/type/delete/'+id,'').map(res=>res.json());
-		//return this._http.post(this.url+'admin/type/save',params, {headers:headers}).map(res=>res.json());
 	}
 }

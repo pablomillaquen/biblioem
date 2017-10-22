@@ -6,11 +6,11 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './services/auth.service';
+import { NgLoadingBarModule } from 'ng-loading-bar';
 
 import { AppComponent } from './app.component';
 import {DataTableModule} from 'angular2-datatable';
 import { NavbarComponent} from './navbar/navbar.component';
-import { SidebarComponent} from './sidebar/sidebar.component';
 
 import { EmpleadoComponent} from './empleado/empleado.component';
 import { MarcaComponent} from './marca/marca.component';
@@ -32,11 +32,12 @@ import { TipoequipoFilterPipe } from './pipes/tipoequipo-filter.pipe';
 import { LoginComponent } from './login/login.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SidebarComponent,
     EmpleadoComponent,
     MarcaComponent,
     TipoequipoComponent,
@@ -62,7 +63,8 @@ import { LoginComponent } from './login/login.component';
     DataTableModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
-    AuthModule 
+    AuthModule,
+    NgLoadingBarModule.forRoot()
   ],
   providers: [appRoutingProviders,AuthGuard,AuthService],
   bootstrap: [AppComponent]

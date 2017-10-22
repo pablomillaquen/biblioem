@@ -7,6 +7,9 @@ import { ViewContainerRef } from '@angular/core';
 import * as _ from 'underscore';
 declare var jQuery:any;
 
+/**
+* Componente que administra la información de la tabla TipoEquipo
+*/
 @Component({
 	selector: 'tipoequipo',
 	templateUrl: './tipoequipo.component.html',
@@ -33,11 +36,12 @@ export class TipoequipoComponent{
 		this.toastr.setRootViewContainerRef(vcr);
 	}
 	
+	/**
+	* Guarda los datos del tipo de equipo
+	*/
 	onSubmit(){
-		console.log(this.tipoequipo);
 		if(this.tipoequipo.id === 0){
 			this.tipoequipo = _.omit(this.tipoequipo, 'id');
-			console.log(this.tipoequipo);
 		}
 		jQuery("#tipoequipoModal").modal("hide");
 		this._tipoequipoService.addTipoEquipo(this.tipoequipo).subscribe(
@@ -48,7 +52,6 @@ export class TipoequipoComponent{
 					this.tipoequipo = new Tipoequipo(0,"");
 					this.obtenerTipoequipos();
 				}else{
-					console.log(response);
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
@@ -59,11 +62,16 @@ export class TipoequipoComponent{
 				}
 			);
 	}
+	/**
+	* Ejecuta las funciones necesarias al iniciar el componente
+	*/
 	ngOnInit(){
-		//alert(this._tipoequipoService.gettipoequipo());
 		this.obtenerTipoequipos();
 	}
 
+	/**
+	* Obtiene todos los tipos de equipos
+	*/
 	obtenerTipoequipos(){
 		this._tipoequipoService.getTipoEquipo().subscribe(
 			result=>{	
@@ -75,11 +83,16 @@ export class TipoequipoComponent{
 				}
 			);
 	}
-
+	/**
+	* Abre el modal para actualizar el tipo de equipo seleccionado
+	*/
 	modalActualizar(id){
 		this.tipoequipo = _.findWhere(this.tipoequipos, {id: id});
 	}
 
+	/**
+	* Elimina un tipo de equipo
+	*/
 	deleteTipoequipo(id){
 		let listanueva:Tipoequipo[];
 		this._tipoequipoService.deleteTipoEquipo(id).subscribe(

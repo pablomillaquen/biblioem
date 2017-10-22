@@ -40,10 +40,8 @@ export class MarcaComponent{
 	* Guarda los datos de la marca
 	*/
 	onSubmit(){
-		console.log(this.marca);
 		if(this.marca.id === 0){
 			this.marca = _.omit(this.marca, 'id');
-			console.log(this.marca);
 		}
 		jQuery("#MarcaModal").modal("hide");
 		this._marcaService.addMarca(this.marca).subscribe(
@@ -54,7 +52,6 @@ export class MarcaComponent{
 					this.marca = new Marca(0,"");
 					this.obtenerMarcas();
 				}else{
-					console.log(response);
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
@@ -106,11 +103,11 @@ export class MarcaComponent{
 					this.marcas = _.without(this.marcas, _.findWhere(this.marcas, {
 					  id: id
 					}));
-					console.log(this.marcas);
+					
 					this.toastr.success('Marca eliminada exitosamente!', 'Exito!');
 					
 				}else{
-					console.log(response);
+					
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 

@@ -6,6 +6,9 @@ import {Observable} from 'rxjs/Observable';
 import {Manual} from '../manual/manual';
 import {GLOBAL} from './global';
 
+/**
+* Servicio que se comunica con la API para obtener y enviar información de la clase Manual
+*/
 @Injectable()
 export class ManualService {
 public url:string;
@@ -17,8 +20,9 @@ public url:string;
 	/*******************************************************************
 	RUTAS DE USUARIO
 	*******************************************************************/
-
-	//Obtiene los manuales disponibles para un modelo específico
+	/*
+	*Obtiene los manuales disponibles para un modelo específico
+	*/
 	userGetManualxModelo(id){
 		return this._http.get(this.url+'user/manual/getxmod/'+id).map(res=>res.json());	
 	}
@@ -27,33 +31,42 @@ public url:string;
 	/*******************************************************************
 	RUTAS DE ADMIN
 	*******************************************************************/
-	
-	//Obtiene todos los manuales
+	/**
+	* Obtiene todos los manuales
+	*/
 	getManual(){
 		return this._authHttp.get(this.url+'admin/manual/getAll/').map(res=>res.json());
 	}
 
-	//Obtiene 1 manual en específico de acuerdo a la ID
+	/**
+	*Obtiene 1 manual en específico de acuerdo a la ID
+	*/
 	getManual1(id){
 		return this._authHttp.get(this.url+'admin/manual/get/'+id).map(res=>res.json());	
 	}
 
-	//Obtiene los manuales disponibles para un modelo específico
+	/**
+	*Obtiene los manuales disponibles para un modelo específico
+	*/
 	getManualxModelo(id){
 		return this._authHttp.get(this.url+'admin/manual/getxmod/'+id).map(res=>res.json());	
 	}
-
-	//Permite agregar un manual
+	/**
+	* Permite agregar un manual
+	*/
 	addManual(manual:Manual){
-		return this._http.post(this.url+'admin/manual/save',manual).map(res=>res.json());
+		return this._authHttp.post(this.url+'admin/manual/save',manual).map(res=>res.json());
 	}
-	
-	//Permite eliminar un manual
+	/**
+	* Permite eliminar un manual
+	*/
 	deleteManual(id){
 		return this._authHttp.post(this.url+'admin/manual/delete/'+id,'').map(res=>res.json());
 	}
 
-	//Permite subir un archivo a la carpeta /uploads/manuales/ existente dentro de la carpeta de la API
+	/**
+	* Permite subir un archivo a la carpeta /uploads/manuales/ existente dentro de la carpeta de la API
+	*/
 	makeFileRequest(url:string, params:Array<string>, files:Array<File>){
 		return new Promise((resolve,reject)=>{
 			var formData:any = new FormData();

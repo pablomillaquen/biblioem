@@ -68,7 +68,7 @@ export class ManualComponent{
 	*/
 	SeleccionarModelo(event:string): void{
 	    this.manual.idModelo = JSON.parse(event);
-	    console.log(this.selectedModel);
+	   
 	  }
 
 	/**
@@ -76,7 +76,7 @@ export class ManualComponent{
 	*/
 	SeleccionarMarca(event:string): void{
 	    this.selectedMark = JSON.parse(event);
-	    console.log(this.selectedMark);
+	    
 	  }
 
 	/**
@@ -84,7 +84,7 @@ export class ManualComponent{
 	*/
 	SeleccionarTipo(event:string): void{
 	    this.selectedType = JSON.parse(event);
-	    console.log(this.selectedType);
+	    
 	  }
 
 	/**
@@ -92,7 +92,7 @@ export class ManualComponent{
 	*/
 	CambiarFisico(event:string): void{
 	    this.existe = JSON.parse(event);
-	    console.log(this.existe);
+	    
 	  }
 
 	/**
@@ -100,24 +100,21 @@ export class ManualComponent{
 	*/
 	onSubmit(){
 
-		console.log(this.manual);
+		
 		if(this.manual.id === 0){
 			this.manual = _.omit(this.manual, 'id');
-			console.log(this.manual);
+			
 		}
 		jQuery("#ManualModal").modal("hide");
 
 		if(this.filesToUpload && this.filesToUpload.length>=1){
-			console.log(this.filesToUpload);
 			this._modeloService.makeFileRequest(GLOBAL.url+'user/manual/upload-file',[],this.filesToUpload)
 		.then(
 			(result)=>{
-				//console.log(result);
 				this.resultUpload = result['result'];
-				//this.resultUpload = result.result;
-				//console.log(this.resultUpload);
+				
 				this.manual.url = this.resultUpload;
-				console.log(this.manual);
+				
 				this.saveManual();
 			},
 			(error)=>{
@@ -136,7 +133,7 @@ export class ManualComponent{
 			this._manualService.getManual().subscribe(
 				result=>{	
 					this.manuales= result.result;
-					//console.log(result);
+					
 					},
 				error=>{
 					console.log(<any>error);
@@ -151,7 +148,7 @@ export class ManualComponent{
 			this._modeloService.getModelo().subscribe(
 				result=>{	
 					this.modelos= result.result;
-					//console.log(result);
+					
 					},
 				error=>{
 					console.log(<any>error);
@@ -171,7 +168,7 @@ export class ManualComponent{
 						//this.modelo = new Modelo(0,"");
 						this.obtenerManuales();
 					}else{
-						console.log(response);
+						
 						this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 					}
 
@@ -188,7 +185,7 @@ export class ManualComponent{
 	*/
 	modalActualizar(id){
 		this.manual = _.findWhere(this.manuales, {id: id});
-		console.log(this.manual);
+		
 	}
 
 	/**
@@ -203,11 +200,11 @@ export class ManualComponent{
 					this.manuales = _.without(this.manuales, _.findWhere(this.manuales, {
 					  id: id
 					}));
-					console.log(this.manuales);
+					
 					this.toastr.success('Manual eliminado exitosamente!', 'Exito!');
 					
 				}else{
-					console.log(response);
+					
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
@@ -224,7 +221,6 @@ export class ManualComponent{
 	*/
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
-		//console.log(this.filesToUpload);
 	}
 		
 }

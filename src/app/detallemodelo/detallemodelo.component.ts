@@ -51,6 +51,9 @@ export class DetallemodeloComponent {
   			this.torpedo = new Torpedo(0,"","","",0);
   		}
 
+  	/**
+	* Ejecuta las funciones necesarias al iniciar el componente
+	*/
   	ngOnInit() {
 		this.getModelo();
 		this.obtenerManuales();
@@ -69,7 +72,6 @@ export class DetallemodeloComponent {
 				response =>{
 					if(response.response == true){
 						this.modelo = response.result;
-						//console.log(this.modelo);
 					}else{
 						this._router.navigate(['manualuser']);
 					}
@@ -89,7 +91,6 @@ export class DetallemodeloComponent {
 			this._manualService.userGetManualxModelo(id).subscribe(
 				result=>{	
 					this.manuales= result.result;
-					//console.log(result);
 					},
 				error=>{
 					console.log(<any>error);
@@ -107,7 +108,7 @@ export class DetallemodeloComponent {
 			this._protocoloService.userGetProtocoloxModelo(id).subscribe(
 				result=>{	
 					this.protocolos= result.result;
-					//console.log(result);
+					
 					},
 				error=>{
 					console.log(<any>error);
@@ -125,7 +126,7 @@ export class DetallemodeloComponent {
 			this._torpedoService.userGetTorpedoxModelo(id).subscribe(
 				result=>{	
 					this.torpedos= result.result;
-					//console.log(result);
+					
 					},
 				error=>{
 					console.log(<any>error);
@@ -143,7 +144,7 @@ export class DetallemodeloComponent {
 			this._repuestoService.userGetRepuestoxModelo(id).subscribe(
 				result=>{	
 					this.repuestos= result.result;
-					//console.log(result);
+					
 					},
 				error=>{
 					console.log(<any>error);
@@ -157,7 +158,7 @@ export class DetallemodeloComponent {
 	*/
 	mostrarTorpedo(id){
 		this.torpedo = _.findWhere(this.torpedos, {id: id});
-		//console.log(this.torpedo);
+		
 	}
 
 	}

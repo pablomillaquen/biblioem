@@ -1,28 +1,30 @@
 # Bibliotecaem
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
+Esta aplicación fue hecha para practicar los conocimientos adquiridos, usando Angular 4. 
+Lo hice para poder almacenar los manuales, folletos y toda la información técnica de mi trabajo. Yo trabajo actualmente en una empresa de mantenimiento y reparación de Equipos Médicos, por lo que se requiere contar con información que permita hacer el trabajo más eficientemente. Lo dejo disponible en esta página para ser usado por quién necesite una herramienta así. 
 
-## Development server
+ACLARACIÓN: El proyecto no cuenta con los archivos, manuales ni datos técnicos de los equipos. El objetivo de este proyecto es crear un sistema que los almacene y que permita acceder a ellos de mejor forma.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Cuenta con una página principal, con la información básica, accesible a todos. 
+Además contiene una sección de administración, donde se puede subir la información:
+- Manuales: de usuario, de servicio, manuales técnicos avanzados.
+- Protocolos: Son los documentos que se utilizan para hacer las mantenciones de los equipos, se consideran checklist, mediciones, etc.
+- Apuntes: Tips, que entreguen una ayuda rápida. Por ejemplo, contraseñas de servicio, fotos de circuitos, apuntes varios. (En esta sección también se puede adjuntar archivos, como fotos, pdfs, docs, etc.)
+- Repuestos: Sección para almacenar un catálogo de repuestos, que se requieren para los equipos, incluyendo referencia, modelo, etc.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+También tiene 4 mantenedores de tablas: Marcas, Modelos, Tipo de Equipo y Empleado.
 
-## Build
+La información se obtiene desde la API creada usando SlimPHP, disponible en https://github.com/pablomillaquen/apibiblioem . En ese repositorio también está la base de datos del sistema. Se utiliza un token JWT para el acceso al área de administración, asegurando que no sea posible entrar a esa sección y modificar datos.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+El proyecto aún no está terminado. Estoy terminando la documentación, pero hay varias funciones que se pueden agregar, porque la idea era hacer un "esqueleto" para luego seguir mejorándolo. No guardaré nuevas versiones en este repositorio, por lo que no habrá actualizaciones de mejoras para este proyecto. Queda a su disposición para futuras upgrades.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# UTILIZACIÓN:
+	El proyecto está creado usando Angular-CLI. Se debe usar el comando "ng serve" para iniciarlo en modo de desarrollo.
+	En la carpeta "dist" se encuentra la aplicación en modo de producción.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Desarrollador: Pablo Millaquén G.
+Email: pablomillaquen@gmail.com
+Valparaíso, Chile.
