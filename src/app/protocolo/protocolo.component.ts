@@ -40,6 +40,7 @@ export class ProtocoloComponent{
 
 	public filesToUpload;
 	public resultUpload;
+	public urlFiles:string;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -59,6 +60,7 @@ export class ProtocoloComponent{
 	* Ejecuta las funciones necesarias al iniciar el llamado al componente
 	*/
 	ngOnInit(){
+		this.urlFiles=GLOBAL.urlFiles;
 		this.obtenerProtocolos();
 		this.obtenerModelos();
 	}

@@ -32,6 +32,8 @@ export class ListmanualComponent {
   
   public modelos:Modelo[];
 
+  public urlFiles:string;
+
 
   constructor(private _modeloService:ModeloService) { }
 
@@ -39,6 +41,7 @@ export class ListmanualComponent {
   * Ejecuta las funciones necesarias al llamar al componente
   */
   ngOnInit(){
+    this.urlFiles=GLOBAL.urlFiles;
     this.obtenerModelos();
   }
 

@@ -48,7 +48,7 @@
   <tr *ngFor="let item of mf.data">
     <td>{{item.nombre}}</td>
     <td>{{item.modelo}}</td>
-    <td><div *ngIf="item.url"><a href="http://localhost/apibiblio2/uploads/manuales/{{item.url}}"  target="_blank">Descargar</a></div></td>
+    <td><div *ngIf="item.url"><a href="http://{{urlFiles}}/apibiblio2/uploads/manuales/{{item.url}}"  target="_blank">Descargar</a></div></td>
     <td>
     	<div class="btn-group">
         <button class="btn btn-info" data-toggle="modal" data-target="#ManualModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

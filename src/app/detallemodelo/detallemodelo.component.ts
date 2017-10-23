@@ -17,6 +17,7 @@ import {Manual} from '../manual/manual';
 import {Protocolo} from '../protocolo/protocolo';
 import {Torpedo} from '../torpedo/torpedo';
 import {Repuesto} from '../repuesto/repuesto';
+import {GLOBAL} from '../services/global';
 
   /**
   * Componente para visualización de los datos de 1 modelo en particular. 
@@ -38,6 +39,8 @@ export class DetallemodeloComponent {
 	public modelo:Modelo;
 	public torpedo:Torpedo;
 	public repuesto:Repuesto;
+
+	public urlFiles:string;
 	
   	constructor(
   		private _route: ActivatedRoute,
@@ -55,6 +58,7 @@ export class DetallemodeloComponent {
 	* Ejecuta las funciones necesarias al iniciar el componente
 	*/
   	ngOnInit() {
+		this.urlFiles= GLOBAL.urlFiles;
 		this.getModelo();
 		this.obtenerManuales();
 		this.obtenerProtocolos();

@@ -42,6 +42,8 @@ export class ManualComponent{
 	public filesToUpload;
 	public resultUpload;
 
+	public urlFiles:string;
+
 	constructor(
 		private _route: ActivatedRoute,
 		private _router:Router,
@@ -59,6 +61,7 @@ export class ManualComponent{
 	* Permite ejecutar funciones al iniciar el llamado al componente
 	*/
 	ngOnInit(){
+		this.urlFiles= GLOBAL.urlFiles;
 		this.obtenerManuales();
 		this.obtenerModelos();
 	}

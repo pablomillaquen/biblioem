@@ -46,6 +46,7 @@ export class ModeloComponent{
 	public sortOrder = "asc";
 	public filesToUpload;
 	public resultUpload;
+	public urlFiles:string;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -97,7 +98,7 @@ export class ModeloComponent{
 	* Ejecuta las funciones necesarias al iniciar el llamado al componente
 	*/
 	ngOnInit(){
-		
+		this.urlFiles=GLOBAL.urlFiles;
 		this.obtenerModelos();
 		this.obtenerMarcas();
 		this.obtenerTipos();

@@ -33,6 +33,7 @@ export class TorpedoComponent{
 
 	public filesToUpload;
 	public resultUpload;
+	public urlFiles:string;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -51,6 +52,7 @@ export class TorpedoComponent{
 	* Ejecuta las funciones necesarias al iniciar el componente
 	*/
 	ngOnInit(){
+		this.urlFiles= GLOBAL.urlFiles;
 		this.obtenerTorpedos();		
 		this.obtenerModelos();
 	}

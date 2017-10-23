@@ -48,7 +48,7 @@ export class TipoequipoComponent{
 			response=>{
 				if(response.response == true){
 					
-					this.toastr.success('Tipoequipo guardada exitosamente!', 'Exito!');
+					this.toastr.success('Tipo de equipo guardado exitosamente!', 'Exito!');
 					this.tipoequipo = new Tipoequipo(0,"");
 					this.obtenerTipoequipos();
 				}else{
@@ -103,7 +103,7 @@ export class TipoequipoComponent{
 					  id: id
 					}));
 					console.log(this.tipoequipos);
-					this.toastr.success('Tipoequipo eliminada exitosamente!', 'Exito!');
+					this.toastr.success('Tipo de equipo eliminado exitosamente!', 'Exito!');
 					
 				}else{
 					console.log(response);

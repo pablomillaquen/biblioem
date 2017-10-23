@@ -66,7 +66,7 @@
 									<td>{{man.nombre}}</td>
 									<td *ngIf="man.ubicacion">{{man.ubicacion}}</td>
 									<td *ngIf="!man.ubicacion">No disponible</td>
-									<td><a href="http://localhost/apibiblio2/uploads/manuales/{{man.url}}"  target="_blank">Descargar</a></td>
+									<td><a href="http://{{urlFiles}}/apibiblio2/uploads/manuales/{{man.url}}"  target="_blank">Descargar</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -90,7 +90,7 @@
 							<tbody>
 								<tr *ngFor="let pro of protocolos">
 									<td>{{pro.nombre}}</td>
-									<td><a href="http://localhost/apibiblio2/uploads/protocolos/{{pro.url}}"  target="_blank">Descargar</a></td>
+									<td><a href="http://{{urlFiles}}/apibiblio2/uploads/protocolos/{{pro.url}}"  target="_blank">Descargar</a></td>
 								</tr>
 							</tbody>
 						</table>
@@ -141,7 +141,7 @@
 							</thead>
 							<tbody>
 								<tr *ngFor="let rep of repuestos">
-									<td><div *ngIf="rep.foto"><img src="http://localhost/apibiblio2/uploads/foto-repuestos/{{rep.foto}}" class="img-fluid"/></div></td>
+									<td><div *ngIf="rep.foto"><img src="http://{{urlFiles}}/apibiblio2/uploads/foto-repuestos/{{rep.foto}}" class="img-fluid"/></div></td>
 									<td>{{rep.nombre}}</td>
 									<td>{{rep.descripcion}}</td>
 								</tr>		
@@ -156,7 +156,7 @@
 	</div>
 
 	<div *ngIf="modelo" class="col-4">
-		<img class="rounded img-fluid" src="http://localhost/apibiblio2/uploads/fotos/{{modelo.foto}}" alt="" >
+		<img class="rounded img-fluid" src="http://{{urlFiles}}/apibiblio2/uploads/fotos/{{modelo.foto}}" alt="" >
 	</div>
 </div>
 
@@ -177,7 +177,7 @@
 		    	</div>
 		    	<div class="col-sm-12">
 		    		<p>{{torpedo.descripcion}}</p>
-		    		<p *ngIf="torpedo.url"><a href="http://localhost/apibiblio2/uploads/apuntes/{{torpedo.url}}"  target="_blank">Ver archivo disponible</a></p>
+		    		<p *ngIf="torpedo.url"><a href="http://{{urlFiles}}/apibiblio2/uploads/apuntes/{{torpedo.url}}"  target="_blank">Ver archivo disponible</a></p>
 		    	</div>
 			    
 			</div>

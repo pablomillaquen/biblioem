@@ -29,6 +29,7 @@ export class RepuestoComponent{
 	public sortOrder = "asc";
 	public filesToUpload;
 	public resultUpload;
+	public urlFiles:string;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -74,6 +75,7 @@ export class RepuestoComponent{
 	* Ejecuta las funciones necesarias en el momento que se llama al componente
 	*/
 	ngOnInit(){
+		this.urlFiles=GLOBAL.urlFiles;
 		this.obtenerRepuestos();
 	}
 
