@@ -35,7 +35,9 @@ export class ListmanualComponent {
   public urlFiles:string;
 
 
-  constructor(private _modeloService:ModeloService) { }
+  constructor(
+    private _modeloService:ModeloService
+    ) { }
 
   /**
   * Ejecuta las funciones necesarias al llamar al componente
@@ -59,6 +61,5 @@ export class ListmanualComponent {
         }
       );
   }
-
 
 }

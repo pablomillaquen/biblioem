@@ -27,7 +27,6 @@ public url:string;
 		return this._http.get(this.url+'user/manual/getxmod/'+id).map(res=>res.json());	
 	}
 
-
 	/*******************************************************************
 	RUTAS DE ADMIN
 	*******************************************************************/
