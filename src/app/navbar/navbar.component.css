@@ -1,0 +1,11 @@
+.navbar{
+	-webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+	box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+}
+
+a{
+	-webkit-text-shadow: 1px 1px  rgba(0,0,0,0.75);
+	-moz-text-shadow: 1px 1px rgba(0,0,0,0.75);
+	text-shadow: 1px 1px  rgba(0,0,0,0.75);
+}

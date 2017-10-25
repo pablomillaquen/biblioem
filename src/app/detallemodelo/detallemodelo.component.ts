@@ -26,7 +26,8 @@ import {GLOBAL} from '../services/global';
 @Component({
   selector: 'detallemodelo',
   templateUrl: './detallemodelo.component.html',
-  providers: [ModeloService, ManualService, ProtocoloService, TorpedoService,RepuestoService]
+  providers: [ModeloService, ManualService, ProtocoloService, TorpedoService,RepuestoService],
+  styleUrls: ['./detallemodelo.component.css']
 }) 
 
 

@@ -116,7 +116,7 @@
 								<tr *ngFor="let tor of torpedos">
 									<td>{{tor.titulo}}</td>
 									<td>
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TorpedoDataModal"  (click)="mostrarTorpedo(tor.id)">Ver</button>
+										<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#TorpedoDataModal"  (click)="mostrarTorpedo(tor.id)">Ver</button>
 									</td>
 								</tr>		
 							</tbody>
@@ -152,10 +152,10 @@
 			</div>
 			</div>
 		
-		<a [routerLink]="['../../manualuser']" class="btn btn-warning">Volver</a>
+		<a [routerLink]="['../../manualuser']" class="btn btn-warning btn-sm">Volver</a>
 	</div>
 
-	<div *ngIf="modelo" class="col-4">
+	<div *ngIf="modelo" class="col-4" id="fotodetalle">
 		<img class="rounded img-fluid" src="http://{{urlFiles}}/apibiblio2/uploads/fotos/{{modelo.foto}}" alt="" >
 	</div>
 </div>
@@ -185,7 +185,7 @@
 
 		
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        		<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
       		</div>
       		
     	</div>

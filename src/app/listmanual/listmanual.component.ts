@@ -20,7 +20,8 @@ import {Modelo} from '../modelo/modelo';
 @Component({
   selector: 'app-listmanual',
   templateUrl: './listmanual.component.html',
-  providers:[ModeloService]
+  providers:[ModeloService],
+  styleUrls: ['./listmanual.component.css']
 })
 
 
