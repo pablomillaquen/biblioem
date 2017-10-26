@@ -12,6 +12,18 @@
   	[(mfSortOrder)]="sortOrder"
   	>
     <thead>
+      <tr>
+      <th colspan="2">
+        <input class="form-control" [(ngModel)]="filterQuery" placeholder="Filtro por Modelo" />
+      </th>
+      <th></th>
+      <th colspan="3" class="text-right">  
+        <span class="badge badge-pill badge-default">Manuales</span>
+        <span class="badge badge-pill badge-success">Protocolos</span>
+        <span class="badge badge-pill badge-info">Apuntes</span>
+        <span class="badge badge-pill badge-danger">Repuestos</span>        
+      </th>
+    </tr>
     <tr>
       <th style="width: 10%">
         <mfDefaultSorter by="name">Foto</mfDefaultSorter>
@@ -32,19 +44,7 @@
         <mfDefaultSorter by="name">Opciones</mfDefaultSorter>
       </th>
     </tr>
-    <tr>
-    	<th colspan="2">
-    		Filtro por Modelo:
-    		<input class="form-control" [(ngModel)]="filterQuery" />
-    	</th>
-      <th></th>
-      <th colspan="3" class="text-right">  
-        <span class="badge badge-pill badge-default">Manuales</span>
-        <span class="badge badge-pill badge-success">Protocolos</span>
-        <span class="badge badge-pill badge-info">Apuntes</span>
-        <span class="badge badge-pill badge-danger">Repuestos</span>        
-      </th>
-    </tr>
+    
     </thead>
     <tbody>
     <tr *ngFor="let item of mf.data">

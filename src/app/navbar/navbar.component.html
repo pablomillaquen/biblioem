@@ -27,9 +27,19 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form> -->
     <ul class="navbar-nav my-2 my-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['login']" *ngIf="!logged()"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</a>
-        <a class="nav-link" [routerLink]="['manualuser']" *ngIf="logged()" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a>
+
+      <li class="nav-item dropdown"  *ngIf="logged()">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-unlock" aria-hidden="true"></i> ADMIN
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" >
+          <a class="dropdown-item" [routerLink]="['indexadmin']"><i class="fa fa-user" aria-hidden="true"></i> ADM</a>
+          <a class="dropdown-item" [routerLink]="['manualuser']" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a>
+        </div>
+      </li>
+
+      <li class="nav-item" *ngIf="!logged()">
+        <a class="nav-link" [routerLink]="['login']" ><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</a>
+        
       </li>
     </ul>
   </div>

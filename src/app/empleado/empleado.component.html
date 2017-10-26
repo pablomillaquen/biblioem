@@ -2,13 +2,12 @@
 <hr/>
 <div class="row">
   <div class="col-6">
-    <a [routerLink]="['../indexadmin']">Volver</a>
+    <a [routerLink]="['../indexadmin']"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
   </div>
   <!-- Button trigger modal -->
   <div class="col-6 text-right">
     <!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalEmpleado">
-	  Nuevo Empleado
+	<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ModalEmpleado"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Empleado
 	</button>
   </div>
 </div>
@@ -27,22 +26,22 @@
   <thead>
   <tr>
     <th>
-      Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />
+      <input class="form-control " [(ngModel)]="filterQuery" placeholder="Buscar por nombre" />
     </th>
-    <th></th><th></th>
+    <th colspan="3">
   </tr>
   <tr>
     <th style="width: 30%">
-      <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+      <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
     </th>
     <th style="width: 30%">
-      <mfDefaultSorter by="email">Apellido</mfDefaultSorter>
+      <mfDefaultSorter by="apellido">Apellido</mfDefaultSorter>
     </th>
     <th style="width: 30%">
-      <mfDefaultSorter by="email">Correo</mfDefaultSorter>
+      <mfDefaultSorter by="correo">Correo</mfDefaultSorter>
     </th>
     <th style="width: 20%">
-      <mfDefaultSorter by="city">Opciones</mfDefaultSorter>
+      <mfDefaultSorter by="">Opciones</mfDefaultSorter>
     </th>
   </tr>
   </thead>
@@ -53,8 +52,8 @@
     <td>{{item.correo}}</td>
     <td >
       <div class="btn-group">
-        <button class="btn btn-info" data-toggle="modal" data-target="#ModalEmpleado" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        <button class="btn btn-danger"  (click)="deleteMarca(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalEmpleado" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button>
+        <button class="btn btn-sm btn-danger"  (click)="deleteMarca(item.id)"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
       </div>
     </td>
   </tr>
@@ -95,39 +94,39 @@
 					<label for="txtNombre">Nombre:</label>
 				</div>
 				<div class="col-xs-12">
-					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="empleado.nombre" required />
+					<input type="text" class="form-control form-control-sm" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="empleado.nombre" required />
 					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 				</div>
 				<div class="col-xs-12">
 					<label for="txtApellido">Apellido:</label>
 				</div>
 				<div class="col-xs-12">
-					<input type="text" class="form-control" name="txtApellido" #txtApellido="ngModel" [(ngModel)]="empleado.apellido" required />
+					<input type="text" class="form-control form-control-sm" name="txtApellido" #txtApellido="ngModel" [(ngModel)]="empleado.apellido" required />
 					<span *ngIf="txtApellido.touched && !txtApellido.valid">Ingrese el apellido</span>
 				</div>
 				<div class="col-xs-12">
 					<label for="txtEmail">Email:</label>
 				</div>
 				<div class="col-xs-12">
-					<input type="email" class="form-control" name="txtEmail" #txtEmail="ngModel" [(ngModel)]="empleado.correo" email />
+					<input type="email" class="form-control form-control-sm" name="txtEmail" #txtEmail="ngModel" [(ngModel)]="empleado.correo" email />
 				</div>
 				<div class="col-xs-12">
 					<label for="txtUser">Nombre Usuario:</label>
 				</div>
 				<div class="col-xs-12">
-					<input type="text" class="form-control" name="txtUser" #txtUser="ngModel" [(ngModel)]="empleado.usuario" required />
+					<input type="text" class="form-control form-control-sm" name="txtUser" #txtUser="ngModel" [(ngModel)]="empleado.usuario" required />
 					<span *ngIf="txtUser.touched && !txtUser.valid">Ingrese el nombre</span>
 				</div>
 				<div class="col-xs-12">
 					<label for="txtPass">Contraseña:</label>
 				</div>
 				<div class="col-xs-12">
-					<input type="text" class="form-control" name="txtPass" #txtPass="ngModel" [(ngModel)]="empleado.pass" />
+					<input type="text" class="form-control form-control-sm" name="txtPass" #txtPass="ngModel" [(ngModel)]="empleado.pass" />
 				</div>
       		</div>
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        		<button type="submit" class="btn btn-primary">Guardar</button>
+        		<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>
+          <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
       		</div>
 			</form>
     	</div>

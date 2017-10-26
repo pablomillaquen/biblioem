@@ -1,0 +1,6 @@
+.jumbotron{
+        /*background-color: #272B30;*/
+        background-image: url("../../assets/img/black_denim.png");
+        background-repeat: repeat-y repeat-x;
+        border-width: 0px;
+      }

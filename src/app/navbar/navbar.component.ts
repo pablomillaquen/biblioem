@@ -19,6 +19,7 @@ export class NavbarComponent{
 	public item2 ="Protocolos";
 	public item3 ="Apuntes";
 	public logueado:boolean;
+	public usuario;
 
 	/**
 	* Ejecuta las funciones necesarias al inicio del componente

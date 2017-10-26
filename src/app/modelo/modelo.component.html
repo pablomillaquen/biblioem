@@ -2,13 +2,12 @@
 <hr/>
 <div class="row">
   <div class="col-6">
-    <a [routerLink]="['../indexadmin']">Volver</a>
+    <a [routerLink]="['../indexadmin']"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
   </div>
   <!-- Button trigger modal -->
   <div class="col-6 text-right">
     <!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModeloModal">
-	  Nuevo Modelo
+	<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModeloModal"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Modelo
 	</button>
   </div>
 </div>
@@ -26,22 +25,22 @@
   <thead>
   <tr>
     <th colspan="2">
-      Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />
+      <input class="form-control" [(ngModel)]="filterQuery" placeholder="Buscar por nombre" />
     </th>
-    <th></th><th></th><th></th>
+    <th colspan="3">
   </tr>
   <tr>
     <th style="width: 10%">
       <mfDefaultSorter by="name">Foto</mfDefaultSorter>
     </th>
     <th style="width: 20%">
-      <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+      <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
     </th>
     <th style="width: 30%">
-      <mfDefaultSorter by="name">Tipo</mfDefaultSorter>
+      <mfDefaultSorter by="tipoequipo">Tipo</mfDefaultSorter>
     </th>
     <th style="width: 20%">
-      <mfDefaultSorter by="name">Marca</mfDefaultSorter>
+      <mfDefaultSorter by="marca">Marca</mfDefaultSorter>
     </th>
     <th style="width: 20%">
       <mfDefaultSorter by="name">Opciones</mfDefaultSorter>
@@ -56,9 +55,9 @@
     <td>{{item.marca}}</td>
     <td >
       <div class="btn-group">
-        <button class="btn btn-primary " data-toggle="modal" data-placement="top" title="Asociar repuesto" data-target="#RepuestoModal" (click)="modalRepuesto(item.id)"><i class="fa fa-plug" aria-hidden="true"></i></button>
-        <button class="btn btn-info" data-toggle="modal" data-target="#ModeloModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        <button class="btn btn-danger"  (click)="deleteModelo(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <button class="btn btn-sm btn-primary " data-toggle="modal" data-placement="top" title="Asociar repuesto" data-target="#RepuestoModal" (click)="modalRepuesto(item.id)"><i class="fa fa-plug" aria-hidden="true"></i> Repuesto</button>
+        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModeloModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button>
+        <button class="btn btn-sm btn-danger"  (click)="deleteModelo(item.id)"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
       </div>
     </td>
   </tr>
@@ -101,7 +100,7 @@
 					<label for="txtNombre">Nombre:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="modelo.nombre" required />
+					<input type="text" class="form-control form-control-sm" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="modelo.nombre" required />
 					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 				</div>
 			
@@ -109,7 +108,7 @@
 					<label for="txtNombre">Tipo Equipo:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<select class="form-control" [ngModel]="selectedType | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarTipo($event)">
+					<select class="form-control form-control-sm" [ngModel]="selectedType | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarTipo($event)">
 	   					<option *ngFor="let tip of Listtipo" [selected]="tip.id == modelo.idTipo" [value]="tip.id | json" >{{tip.nombre}}</option>
 					</select>
 				</div>
@@ -118,7 +117,7 @@
 					<label for="txtNombre">Marca:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<select class="form-control" [ngModel]="selectedMark | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarMarca($event)">
+					<select class="form-control form-control-sm" [ngModel]="selectedMark | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarMarca($event)">
 	    				<option *ngFor="let mar of Listmarcas" [selected]="mar.id == modelo.idMarca" [value]="mar.id | json" >{{mar.nombre}}</option>
 					</select>
 				</div>
@@ -127,12 +126,12 @@
 					<label for="txtFoto">Foto:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<input type="file" class="form-control" name="txtFoto" (change)="fileChangeEvent($event)" />
+					<input type="file" class="form-control form-control-sm" name="txtFoto" (change)="fileChangeEvent($event)" />
 				</div>
 	      	</div>
 	      	<div class="modal-footer">
-	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-	        	<button type="submit" class="btn btn-primary">Guardar</button>
+	        	<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>
+          <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
 	      	</div>
 	      	</form>
 	    </div>
@@ -157,7 +156,7 @@
               <label for="txtNombre">Modelo:</label>
             </div>
             <div class="col-xs-12 ">
-              <select class="form-control" [ngModel]="selectedType | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelo($event)">
+              <select class="form-control form-control-sm" [ngModel]="selectedType | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelo($event)">
                   <option *ngFor="let mod of modelos" [selected]="mod.id == modelo.id" [value]="mod.id | json" >{{mod.nombre}}</option>
               </select>
             </div>
@@ -166,12 +165,12 @@
               <label for="txtNombre">Repuesto:</label>
             </div>
             <div class="col-xs-12 ">
-              <select class="form-control" [ngModel]="selectedRepuesto | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarRepuesto($event)">
+              <select class="form-control form-control-sm" [ngModel]="selectedRepuesto | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarRepuesto($event)">
                   <option *ngFor="let rep of repuestos" [value]="rep.id | json" >{{rep.referencia | uppercase}} - {{rep.nombre}}</option>
               </select>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
             <hr/>
             <div *ngIf="repuestosxmod?.length < '1'">
               <p>No hay repuestos disponibles aún</p>
@@ -209,7 +208,7 @@
                 <td>{{item.nombre}}</td>
                 <td>{{item.referencia}}</td>
                 <td >
-                    <a class="btn btn-danger"  (click)="deleteRepuestoModelo(item.id,item.idRepuesto)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <a class="btn btn-sm btn-danger"  (click)="deleteRepuestoModelo(item.id,item.idRepuesto)"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
               </tr>
               </tbody>
@@ -224,7 +223,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>
           </div>
           </form>
       </div>

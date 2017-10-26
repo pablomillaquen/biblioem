@@ -2,12 +2,11 @@
 <hr/>
 <div class="row">
 	<div class="col-6">
-		<a [routerLink]="['../indexadmin']">Volver</a>
+		<a [routerLink]="['../indexadmin']"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
 	</div>
 	<!-- Button trigger modal -->
 	<div class="col-6 text-right">
-		<button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#ProtocoloModal">
-		  Nuevo protocolo
+		<button  type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#ProtocoloModal"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo protocolo
 		</button>
 	</div>
 </div>
@@ -24,12 +23,18 @@
     	[(mfSortOrder)]="sortOrder"
     	>
       <thead>
+        <tr>
+        <th>
+          <input class="form-control" [(ngModel)]="filterQuery" placeholder="Filtro por Nombre" />
+        </th>
+        <th colspan="3"></th>
+      </tr>
       <tr>
         <th style="width: 50%">
-          <mfDefaultSorter by="name">Descripción</mfDefaultSorter>
+          <mfDefaultSorter by="nombre">Descripción</mfDefaultSorter>
         </th>
         <th style="width: 30%">
-          <mfDefaultSorter by="age">Modelo</mfDefaultSorter>
+          <mfDefaultSorter by="modelo">Modelo</mfDefaultSorter>
         </th>
         <th style="width: 20%">
           <mfDefaultSorter by="city">Enlace</mfDefaultSorter>
@@ -37,12 +42,6 @@
         <th style="width: 20%">
           <mfDefaultSorter by="city">Opciones</mfDefaultSorter>
         </th>
-      </tr>
-      <tr>
-      	<th colspan="4">
-      		Filtro por Nombre:
-      		<input class="form-control" [(ngModel)]="filterQuery" />
-      	</th>
       </tr>
       </thead>
       <tbody>
@@ -52,8 +51,8 @@
         <td><div *ngIf="item.url"><a href="http://{{urlFiles}}/apibiblio2/uploads/protocolos/{{item.url}}"  target="_blank">Descargar</a></div></td>
         <td>
         	<div class="btn-group">
-            <button class="btn btn-info" data-toggle="modal" data-target="#ProtocoloModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            <button class="btn btn-danger"  (click)="deleteProtocolo(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#ProtocoloModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button>
+            <button class="btn btn-sm btn-danger"  (click)="deleteProtocolo(item.id)"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
           </div>
         </td>
       </tr>
@@ -83,7 +82,7 @@
     	<div class="modal-content">
     		<form #formManual="ngForm" (ngSubmit)="onSubmit()">
       		<div class="modal-header">
-        		<h5 class="modal-title" id="exampleModalLabel">Formulario de Manuales</h5>
+        		<h5 class="modal-title" id="exampleModalLabel">Formulario de Protocolos</h5>
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           			<span aria-hidden="true">&times;</span>
         		</button>
@@ -95,14 +94,14 @@
 			        	<label for="txtNombre">Nombre:</label>
 			     	</div>
 			      	<div class="col-xs-12">
-			        	<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="protocolo.nombre" required />
+			        	<input type="text" class="form-control form-control-sm" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="protocolo.nombre" required />
 			        	<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 			      		</div>
 					<div class="col-xs-12">
 			        	<label for="ListTipoAcceso">Modelo:</label>
 			      	</div>
 			      	<div class="col-xs-12">
-				        <select class="form-control" [ngModel]="selectedModel | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelo($event)">
+				        <select class="form-control form-control-sm" [ngModel]="selectedModel | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelo($event)">
 				          	<option *ngFor="let mod of modelos" [selected]="mod.id == protocolo.idModelo" [value]="mod.id | json">{{mod.nombre}}</option>
 				        </select>
 				    </div>
@@ -111,7 +110,7 @@
 			        	<label for="txtUrl">Archivo:</label>
 			      	</div>
 			      	<div class="col-xs-12">
-			        	<input type="file" class="form-control" name="txtUrl" (change)="fileChangeEvent($event)" />
+			        	<input type="file" class="form-control form-control-sm" name="txtUrl" (change)="fileChangeEvent($event)" />
 			      	</div>
 			   
 			      	
@@ -120,8 +119,8 @@
 
 		
       		<div class="modal-footer">
-        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        		<button type="submit" class="btn btn-primary">Guardar</button>
+        		<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>
+          <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
       		</div>
       		</form>
     	</div>

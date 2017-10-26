@@ -2,9 +2,12 @@
 	-webkit-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
 	box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+	background-image: url("../../assets/img/black_denim.png");
+    background-repeat: repeat-y repeat-x;
 }
 
-a{
+a{	
+	color:#fff;
 	-webkit-text-shadow: 1px 1px  rgba(0,0,0,0.75);
 	-moz-text-shadow: 1px 1px rgba(0,0,0,0.75);
 	text-shadow: 1px 1px  rgba(0,0,0,0.75);

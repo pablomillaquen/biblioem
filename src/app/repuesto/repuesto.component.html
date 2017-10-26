@@ -2,13 +2,12 @@
 <hr/>
 <div class="row">
   <div class="col-6">
-    <a [routerLink]="['../indexadmin']">Volver</a>
+    <a [routerLink]="['../indexadmin']"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>
   </div>
   <!-- Button trigger modal -->
   <div class="col-6 text-right">
     <!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RepuestoModal">
-	  Nuevo Repuesto
+	<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#RepuestoModal"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Repuesto
 	</button>
   </div>
 </div>
@@ -26,22 +25,22 @@
   <thead>
   <tr>
     <th colspan="2">
-      Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />
+      <input class="form-control" [(ngModel)]="filterQuery" placeholder="Buscar por nombre" />
     </th>
-    <th></th><th></th><th></th>
+    <th></th><th>
   </tr>
   <tr>
     <th style="width: 10%">
       <mfDefaultSorter by="name">Foto</mfDefaultSorter>
     </th>
     <th style="width: 30%">
-      <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+      <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>
     </th>
     <th style="width: 30%">
-      <mfDefaultSorter by="name">Referencia</mfDefaultSorter>
+      <mfDefaultSorter by="referencia">Referencia</mfDefaultSorter>
     </th>
     <th style="width: 40%">
-      <mfDefaultSorter by="name">Descripción</mfDefaultSorter>
+      <mfDefaultSorter by="descripcion">Descripción</mfDefaultSorter>
     </th>
     <th style="width: 20%">
       <mfDefaultSorter by="name">Opciones</mfDefaultSorter>
@@ -56,8 +55,8 @@
     <td>{{item.descripcion}}</td>
     <td >
       <div class="btn-group">
-        <button class="btn btn-info" data-toggle="modal" data-target="#RepuestoModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-        <button class="btn btn-danger"  (click)="deleteRepuesto(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#RepuestoModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button>
+        <button class="btn btn-sm btn-danger"  (click)="deleteRepuesto(item.id)"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
       </div>
     </td>
   </tr>
@@ -100,7 +99,7 @@
 					<label for="txtNombre">Nombre:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="repuesto.nombre" required />
+					<input type="text" class="form-control form-control-sm" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="repuesto.nombre" required />
 					<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>
 				</div>
         
@@ -108,7 +107,7 @@
           <label for="txtReferencia">Referencia:</label>
         </div>
         <div class="col-xs-12 ">
-          <input type="text" class="form-control" name="txtReferencia" #txtReferencia="ngModel" [(ngModel)]="repuesto.referencia" />
+          <input type="text" class="form-control form-control-sm" name="txtReferencia" #txtReferencia="ngModel" [(ngModel)]="repuesto.referencia" />
           
         </div>
 
@@ -116,7 +115,7 @@
 					<label for="txtDescripcion">Descripción:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<textarea placeholder="Describe el repuesto: Modelo, tamaño, para qué sirve, etc." class="form-control" name="txtDescripcion" #txtDescripcion="ngModel" [(ngModel)]="repuesto.descripcion" cols="30" rows="10"></textarea>
+					<textarea placeholder="Describe el repuesto: Modelo, tamaño, para qué sirve, etc." class="form-control form-control-sm" name="txtDescripcion" #txtDescripcion="ngModel" [(ngModel)]="repuesto.descripcion" cols="30" rows="10"></textarea>
 					<span *ngIf="txtDescripcion.touched && !txtDescripcion.valid">Ingrese el nombre</span>
 				</div>
 
@@ -124,12 +123,12 @@
 					<label for="txtFoto">Foto:</label>
 				</div>
 				<div class="col-xs-12 ">
-					<input type="file" class="form-control" name="txtFoto" (change)="fileChangeEvent($event)" />
+					<input type="file" class="form-control form-control-sm" name="txtFoto" (change)="fileChangeEvent($event)" />
 				</div>
 	      	</div>
 	      	<div class="modal-footer">
-	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-	        	<button type="submit" class="btn btn-primary">Guardar</button>
+	        	<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>
+          <button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
 	      	</div>
 	      	</form>
 	    </div>

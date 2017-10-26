@@ -76,7 +76,7 @@ export class TipoequipoComponent{
 		this._tipoequipoService.getTipoEquipo().subscribe(
 			result=>{	
 				this.tipoequipos= result.result;	
-				console.log(result);
+				
 				},
 			error=>{
 				console.log(<any>error);
@@ -102,11 +102,11 @@ export class TipoequipoComponent{
 					this.tipoequipos = _.without(this.tipoequipos, _.findWhere(this.tipoequipos, {
 					  id: id
 					}));
-					console.log(this.tipoequipos);
+					
 					this.toastr.success('Tipo de equipo eliminado exitosamente!', 'Exito!');
 					
 				}else{
-					console.log(response);
+					
 					this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
 				}
 
