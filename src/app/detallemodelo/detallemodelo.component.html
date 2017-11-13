@@ -12,16 +12,16 @@
 			    	<a class="nav-link active" href="#datos" role="tab" data-toggle="tab">Datos</a>
 			  	</li>
 			  	<li class="nav-item">
-			    	<a class="nav-link" href="#manuales" role="tab" data-toggle="tab">Manuales</a>
+			    	<a class="nav-link" href="#manuales" role="tab" data-toggle="tab">Manuales <span class="badge badge-pill badge-default" title="Manuales" *ngIf="modelo.numManuales>0">{{modelo.numManuales}}</span></a> 
 			  	</li>
 			  	<li class="nav-item">
-			    	<a class="nav-link" href="#protocolos" role="tab" data-toggle="tab">Protocolos</a>
+			    	<a class="nav-link" href="#protocolos" role="tab" data-toggle="tab">Protocolos <span class="badge badge-pill badge-success" title="Protocolos" *ngIf="modelo.numProtocolos>0">{{modelo.numProtocolos}}</span></a>  
 			  	</li>
 			  	<li class="nav-item">
-			    	<a class="nav-link" href="#apuntes" role="tab" data-toggle="tab">Apuntes</a>
+			    	<a class="nav-link" href="#apuntes" role="tab" data-toggle="tab">Apuntes <span class="badge badge-pill badge-info" title="Apuntes" *ngIf="modelo.numTorpedos>0">{{modelo.numTorpedos}}</span></a> 
 			  	</li>
 			  	<li class="nav-item">
-			    	<a class="nav-link" href="#repuestos" role="tab" data-toggle="tab">Repuestos</a>
+			    	<a class="nav-link" href="#repuestos" role="tab" data-toggle="tab">Repuestos <span class="badge badge-pill badge-danger" title="Repuestos" *ngIf="modelo.numRepuestos>0">{{modelo.numRepuestos}}</span></a> 
 			  	</li>
 			</ul>
 
