@@ -15,7 +15,7 @@
 	<br>
 	<table 
 	class="table table-striped table-hover table-responsive" 
-	[mfData]="manuales |dataFilter : filterQuery" 
+	[mfData]="manuales |modeloFilter : filterQuery" 
 	#mf="mfDataTable" 
 	[mfRowsOnPage]="rowsOnPage"
 	[(mfSortBy)]="sortBy"
@@ -24,16 +24,16 @@
   <thead>
   	<tr>
   	<th>
-  		<input class="form-control" [(ngModel)]="filterQuery" placeholder="Filtro por Nombre" />
+  		<input class="form-control" [(ngModel)]="filterQuery" placeholder="Filtro por Modelo" />
   	</th>
   	<th colspan="3"></th>
   </tr>
   <tr>
     <th style="width: 50%">
-      <mfDefaultSorter by="name">Descripción</mfDefaultSorter>
+      <mfDefaultSorter by="nombre">Descripción</mfDefaultSorter>
     </th>
     <th style="width: 30%">
-      <mfDefaultSorter by="age">Modelo</mfDefaultSorter>
+      <mfDefaultSorter by="modelo">Modelo</mfDefaultSorter>
     </th>
     <th style="width: 20%">
       <mfDefaultSorter by="city">Enlace</mfDefaultSorter>
