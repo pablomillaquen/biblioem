@@ -8,6 +8,7 @@ import {Modelo} from '../modelo/modelo';
 import {Protocolo} from '../protocolo/protocolo';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
+import { IMultiSelectOption,IMultiSelectSettings,IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 import * as _ from 'underscore';
 import { GLOBAL } from '../services/global';
 declare var jQuery:any;
@@ -41,6 +42,34 @@ export class ProtocoloComponent{
 	public filesToUpload;
 	public resultUpload;
 	public urlFiles:string;
+	/**
+	* Parámetros para Selección Múltiple de Modelos en el Modal
+	*/
+	optionsModel: number[];
+    myOptions: IMultiSelectOption[];
+
+    mySettings: IMultiSelectSettings = {
+	    enableSearch: true,
+	    checkedStyle: 'fontawesome',
+	    buttonClasses: 'btn btn-default btn-block btn-sm',
+	    dynamicTitleMaxItems: 3,
+	    displayAllSelectedText: true,
+	    showCheckAll:true,
+	    showUncheckAll:true,
+	    maxHeight:'400px'
+	};
+
+	myTexts: IMultiSelectTexts = {
+	    checkAll: 'Seleccionar todo',
+	    uncheckAll: 'Limpiar',
+	    checked: 'item seleccionado',
+	    checkedPlural: 'items selecccionados',
+	    searchPlaceholder: 'Buscar',
+	    searchEmptyResult: 'No encontrado...',
+	    searchNoRenderText: 'Escriba en la caja de búsqueda para ver resultados...',
+	    defaultTitle: 'Seleccionar',
+	    allSelected: 'Todo seleccionado'
+	};
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -62,33 +91,11 @@ export class ProtocoloComponent{
 	ngOnInit(){
 		this.urlFiles=GLOBAL.urlFiles;
 		this.obtenerProtocolos();
-		this.obtenerModelos();
+		this.obtenerModelosDD();
 	}
 
-	/**
-	* Obtiene la id desde el dropdown Modelo
-	*/
-	SeleccionarModelo(event:string): void{
-	    this.protocolo.idModelo = JSON.parse(event);
-	    
-	  }
 
-	/**
-	* Obtiene la id desde el dropdown Marca
-	*/
-	SeleccionarMarca(event:string): void{
-	    this.selectedMark = JSON.parse(event);
-	    
-	  }
-
-	/**
-	* Obtiene la id desde el dropdown Tipo de Equipo
-	*/
-	SeleccionarTipo(event:string): void{
-	    this.selectedType = JSON.parse(event);
-	    
-	  }
-
+	
 	/**
 	* Envía el archivo a la carpeta /uploads/protocolos/ ubicado en la raíz de la API y luego llama a otra función para que guarde los datos en la BD
 	*/
@@ -110,12 +117,14 @@ export class ProtocoloComponent{
 				this.protocolo.url = this.resultUpload;
 				
 				this.saveProtocolo();
+				this.protocolo = new Protocolo(0,"","",0);
 			},
 			(error)=>{
 				console.log(<any>error);
 			});
 		}else{
 			this.saveProtocolo();
+			this.protocolo = new Protocolo(0,"","",0);
 		}
 		
 	}
@@ -135,12 +144,12 @@ export class ProtocoloComponent{
 		}
 
 	/**
-	* Obtiene la lista de modelos existentes
+	* Obtiene todos los modelos
 	*/
-	obtenerModelos(){
-			this._modeloService.getModelo().subscribe(
+	obtenerModelosDD(){
+			this._modeloService.getModeloDropdown().subscribe(
 				result=>{	
-					this.modelos= result.result;
+					this.myOptions = result.result;
 					},
 				error=>{
 					console.log(<any>error);
@@ -152,6 +161,8 @@ export class ProtocoloComponent{
 	* Guarda los protocolos
 	*/
 	saveProtocolo(){
+		for( let a=0;a<this.optionsModel.length;a++){
+			this.protocolo.idModelo=this.optionsModel[a];
 			this._protocoloService.addProtocolo(this.protocolo).subscribe(
 				response=>{
 					if(response.response == true){
@@ -168,6 +179,7 @@ export class ProtocoloComponent{
 					this.toastr.error('No se pudo realizar la tarea!', 'Error!');
 					}
 				);
+			}
 		}
 
 	/**
@@ -175,7 +187,8 @@ export class ProtocoloComponent{
 	*/
 	modalActualizar(id){
 		this.protocolo = _.findWhere(this.protocolos, {id: id});
-		
+		this.optionsModel=[];
+		this.optionsModel.push(this.protocolo.idModelo);
 	}
 
 	/**
@@ -211,5 +224,13 @@ export class ProtocoloComponent{
 		this.filesToUpload = <Array<File>>fileInput.target.files;
 		
 	}
+	
+	/**
+	* Limpia los datos para agregar un nuevo registro
+	*/
+	reiniciarProtocolo(){
+		this.optionsModel=[];
+		this.protocolo = new Protocolo(0,"","",0);
+	}	
 		
 	}

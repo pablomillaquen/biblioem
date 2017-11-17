@@ -36,8 +36,7 @@ export class ModeloService{
 		return this._http.get(this.url+'user/modelo/get/'+id).map(res=>res.json());	
 	}
 	
-
-
+	
 
 	/******************************************************************************
 	//RUTAS DE ADMIN
@@ -95,5 +94,12 @@ export class ModeloService{
 			xhr.open("POST", url, true);
 			xhr.send(formData);
 		})
+	}
+
+	/**
+	* Obtiene todos los modelos existentes, con datos reducidos, para llenar los dropdown
+	*/
+	getModeloDropdown(){
+		return this._authHttp.get(this.url+'admin/modelo/getdd/').map(res=>res.json());
 	}
 }

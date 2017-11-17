@@ -6,8 +6,11 @@
 	</div>
 	<!-- Button trigger modal -->
 	<div class="col-6 text-right">
-		<button  type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#TorpedoModal"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Apunte
-		</button>
+	
+			<button  type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#TorpedoModal" (click)="reiniciarTorpedo()"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Apunte
+			</button>
+			
+	
 	</div>
 </div>
 
@@ -95,9 +98,7 @@
 			        	<label for="ListTipoAcceso">Modelo:</label>
 			      	</div>
 			      	<div class="col-xs-12">
-				        <select class="form-control form-control-sm" [ngModel]="selectedModel | json" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelo($event)">
-				          	<option *ngFor="let mod of modelos" [selected]="mod.id == torpedo.idModelo" [value]="mod.id | json">{{mod.nombre}}</option>
-				        </select>
+			      		<ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [texts]="myTexts" [(ngModel)]="optionsModel" [ngModelOptions]="{standalone: true}" (ngModelChange)="SeleccionarModelos($event)"></ss-multiselect-dropdown>
 				    </div>
 
 				    <div class="col-xs-12">

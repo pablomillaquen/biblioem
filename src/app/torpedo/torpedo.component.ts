@@ -4,6 +4,7 @@ import {ModeloService} from '../services/modelo.service';
 import {TorpedoService} from '../services/torpedo.service';
 import {Modelo} from '../modelo/modelo';
 import {Torpedo} from './torpedo';
+import { IMultiSelectOption,IMultiSelectSettings,IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
 import * as _ from 'underscore';
@@ -35,6 +36,35 @@ export class TorpedoComponent{
 	public resultUpload;
 	public urlFiles:string;
 
+	/**
+	* Parámetros para Selección Múltiple de Modelos en el Modal
+	*/
+	optionsModel: number[];
+    myOptions: IMultiSelectOption[];
+
+    mySettings: IMultiSelectSettings = {
+	    enableSearch: true,
+	    checkedStyle: 'fontawesome',
+	    buttonClasses: 'btn btn-default btn-block btn-sm',
+	    dynamicTitleMaxItems: 3,
+	    displayAllSelectedText: true,
+	    showCheckAll:true,
+	    showUncheckAll:true,
+	    maxHeight:'400px'
+	};
+
+	myTexts: IMultiSelectTexts = {
+	    checkAll: 'Seleccionar todo',
+	    uncheckAll: 'Limpiar',
+	    checked: 'item seleccionado',
+	    checkedPlural: 'items selecccionados',
+	    searchPlaceholder: 'Buscar',
+	    searchEmptyResult: 'No encontrado...',
+	    searchNoRenderText: 'Escriba en la caja de búsqueda para ver resultados...',
+	    defaultTitle: 'Seleccionar',
+	    allSelected: 'Todo seleccionado'
+	};
+
 	constructor(
 		private _route: ActivatedRoute,
 		private _router:Router,
@@ -54,12 +84,16 @@ export class TorpedoComponent{
 	ngOnInit(){
 		this.urlFiles= GLOBAL.urlFiles;
 		this.obtenerTorpedos();		
-		this.obtenerModelos();
+		this.obtenerModelosDD();
 	}
 
-	SeleccionarModelo(event:string): void{
-	    this.torpedo.idModelo = JSON.parse(event);
-	  }
+
+	/**
+	* Obtiene las ids desde el dropdown Modelo
+	*/
+	SeleccionarModelos(){
+		//console.log(this.optionsModel);
+	}
 
 	/**
 	* Guarda los datos de los apuntes (torpedos)
@@ -78,12 +112,16 @@ export class TorpedoComponent{
 				this.resultUpload = result['result'];
 				this.torpedo.url = this.resultUpload;
 				this.saveTorpedo();
+				this.torpedo = new Torpedo(0,"","","",0);
+						
 			},
 			(error)=>{
 				console.log(<any>error);
 			});
 		}else{
 			this.saveTorpedo();
+			this.torpedo = new Torpedo(0,"","","",0);
+						
 		}
 		
 	}
@@ -105,10 +143,10 @@ export class TorpedoComponent{
 	/**
 	* Obtiene todos los modelos
 	*/
-	obtenerModelos(){
-			this._modeloService.getModelo().subscribe(
+	obtenerModelosDD(){
+			this._modeloService.getModeloDropdown().subscribe(
 				result=>{	
-					this.modelos= result.result;
+					this.myOptions = result.result;
 					},
 				error=>{
 					console.log(<any>error);
@@ -120,12 +158,14 @@ export class TorpedoComponent{
 	* Guarda un nuevo registro de torpedo
 	*/
 	saveTorpedo(){
+		for( let a=0;a<this.optionsModel.length;a++){
+			this.torpedo.idModelo=this.optionsModel[a];
+			//console.log(this.torpedo);
 			this._torpedoService.addTorpedo(this.torpedo).subscribe(
 				response=>{
 					if(response.response == true){
 						
 						this.toastr.success('Apunte guardado exitosamente!', 'Exito!');
-						this.torpedo = new Torpedo(0,"","","",0);
 						this.obtenerTorpedos();
 					}else{
 						this.toastr.error('Hubo un error en la respuesta del servidor!', 'Error!');
@@ -137,6 +177,8 @@ export class TorpedoComponent{
 					this.toastr.error('No se pudo realizar la tarea!', 'Error!');
 					}
 				);
+			}
+			
 		}
 
 	/**
@@ -144,7 +186,8 @@ export class TorpedoComponent{
 	*/
 	modalActualizar(id){
 		this.torpedo = _.findWhere(this.torpedos, {id: id});
-		
+		this.optionsModel=[];
+		this.optionsModel.push(this.torpedo.idModelo);
 	}
 
 	/**
@@ -179,5 +222,12 @@ export class TorpedoComponent{
 		this.filesToUpload = <Array<File>>fileInput.target.files;
 		
 	}
-		
-	}
+
+	/**
+	* Limpia los datos para agregar un nuevo registro
+	*/
+	reiniciarTorpedo(){
+		this.optionsModel=[];
+		this.torpedo = new Torpedo(0,"","","",0);
+	}	
+}

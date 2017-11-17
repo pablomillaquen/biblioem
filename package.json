@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^4.4.6",
     "@angular/router": "^4.4.6",
     "@types/underscore": "^1.8.3",
+    "angular-2-dropdown-multiselect": "^1.6.1",
     "angular-4-data-table": "^0.2.3",
     "angular2-datatable": "^0.6.0",
     "angular2-jwt": "^0.2.3",

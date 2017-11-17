@@ -7,6 +7,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './services/auth.service';
 import { NgLoadingBarModule } from 'ng-loading-bar';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { AppComponent } from './app.component';
 import {DataTableModule} from 'angular2-datatable';
@@ -64,7 +65,8 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     AuthModule,
-    NgLoadingBarModule.forRoot()
+    NgLoadingBarModule.forRoot(),
+    MultiselectDropdownModule
   ],
   providers: [appRoutingProviders,AuthGuard,AuthService],
   bootstrap: [AppComponent]

@@ -8,6 +8,7 @@ import {Modelo} from '../modelo/modelo';
 import {Manual} from './manual';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ViewContainerRef } from '@angular/core';
+import { IMultiSelectOption,IMultiSelectSettings,IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 import * as _ from 'underscore';
 import { GLOBAL } from '../services/global';
 declare var jQuery:any;
@@ -25,10 +26,6 @@ declare var jQuery:any;
 export class ManualComponent{
 	public manual:Manual;
 	public selectedModel:Modelo;
-	public selectedMark:Marca;
-	public selectedType:Tipoequipo;
-	public Listtipo:Array<Tipoequipo>;
-	public Listmarca:Array<Marca>;
 	public Listmodelo:Array<Modelo>;
 	public modelos:Modelo[];
 	public manuales: Manual[];
@@ -43,13 +40,40 @@ export class ManualComponent{
 	public resultUpload;
 
 	public urlFiles:string;
+	/**
+	* Parámetros para Selección Múltiple de Modelos en el Modal
+	*/
+	optionsModel: number[];
+    myOptions: IMultiSelectOption[];
+
+    mySettings: IMultiSelectSettings = {
+	    enableSearch: true,
+	    checkedStyle: 'fontawesome',
+	    buttonClasses: 'btn btn-default btn-block btn-sm',
+	    dynamicTitleMaxItems: 3,
+	    displayAllSelectedText: true,
+	    showCheckAll:true,
+	    showUncheckAll:true,
+	    maxHeight:'400px'
+	};
+
+	myTexts: IMultiSelectTexts = {
+	    checkAll: 'Seleccionar todo',
+	    uncheckAll: 'Limpiar',
+	    checked: 'item seleccionado',
+	    checkedPlural: 'items selecccionados',
+	    searchPlaceholder: 'Buscar',
+	    searchEmptyResult: 'No encontrado...',
+	    searchNoRenderText: 'Escriba en la caja de búsqueda para ver resultados...',
+	    defaultTitle: 'Seleccionar',
+	    allSelected: 'Todo seleccionado'
+	};
 
 	constructor(
 		private _route: ActivatedRoute,
 		private _router:Router,
 		private _modeloService: ModeloService,
 		private _manualService: ManualService,
-		//private _tipoequipoService: TipoequipoService,
 		public toastr: ToastsManager, 
 		vcr: ViewContainerRef
 		){
@@ -63,32 +87,16 @@ export class ManualComponent{
 	ngOnInit(){
 		this.urlFiles= GLOBAL.urlFiles;
 		this.obtenerManuales();
-		this.obtenerModelos();
+		this.obtenerModelosDD();
 	}
 
 	/**
 	* Permite obtener el número de Modelo escogido en el dropdown
 	*/
-	SeleccionarModelo(event:string): void{
-	    this.manual.idModelo = JSON.parse(event);
-	   
-	  }
+	SeleccionarModelos(){
+		//console.log(this.optionsModel);
+	}
 
-	/**
-	* Permite obtener el número de Marca escogido en el dropdown
-	*/
-	SeleccionarMarca(event:string): void{
-	    this.selectedMark = JSON.parse(event);
-	    
-	  }
-
-	/**
-	* Permite obtener el número de Tipo de Equipo escogido en el dropdown
-	*/
-	SeleccionarTipo(event:string): void{
-	    this.selectedType = JSON.parse(event);
-	    
-	  }
 
 	/**
 	* Permite habilitar o deshabilitar el input de ingreso de ubicación de manual físico
@@ -119,12 +127,14 @@ export class ManualComponent{
 				this.manual.url = this.resultUpload;
 				
 				this.saveManual();
+				this.manual = new Manual(0,"",0,"","",0);
 			},
 			(error)=>{
 				console.log(<any>error);
 			});
 		}else{
 			this.saveManual();
+			this.manual = new Manual(0,"",0,"","",0);
 		}
 		
 	}
@@ -147,11 +157,10 @@ export class ManualComponent{
 	/**
 	* Obtiene todos los modelos
 	*/
-	obtenerModelos(){
-			this._modeloService.getModelo().subscribe(
+	obtenerModelosDD(){
+			this._modeloService.getModeloDropdown().subscribe(
 				result=>{	
-					this.modelos= result.result;
-					
+					this.myOptions = result.result;
 					},
 				error=>{
 					console.log(<any>error);
@@ -163,12 +172,13 @@ export class ManualComponent{
 	* Función que guarda en manual en la BD
 	*/
 	saveManual(){
+		for( let a=0;a<this.optionsModel.length;a++){
+			this.manual.idModelo=this.optionsModel[a];
 			this._manualService.addManual(this.manual).subscribe(
 				response=>{
 					if(response.response == true){
 						
 						this.toastr.success('Manual guardado exitosamente!', 'Exito!');
-						//this.modelo = new Modelo(0,"");
 						this.obtenerManuales();
 					}else{
 						
@@ -181,6 +191,7 @@ export class ManualComponent{
 					this.toastr.error('No se pudo realizar la tarea!', 'Error!');
 					}
 				);
+			}
 		}
 
 	/**
@@ -188,6 +199,8 @@ export class ManualComponent{
 	*/
 	modalActualizar(id){
 		this.manual = _.findWhere(this.manuales, {id: id});
+		this.optionsModel=[];
+		this.optionsModel.push(this.manual.idModelo);
 		
 	}
 
@@ -225,5 +238,13 @@ export class ManualComponent{
 	fileChangeEvent(fileInput:any){
 		this.filesToUpload = <Array<File>>fileInput.target.files;
 	}
+
+	/**
+	* Limpia los datos para agregar un nuevo registro
+	*/
+	reiniciarManual(){
+		this.optionsModel=[];
+		this.manual = new Manual(0,"",0,"","",0);
+	}	
 		
 }
