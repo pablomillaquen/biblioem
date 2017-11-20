@@ -54,14 +54,14 @@ export class ManualComponent{
 	    displayAllSelectedText: true,
 	    showCheckAll:true,
 	    showUncheckAll:true,
-	    maxHeight:'400px'
+	    maxHeight:'220px'
 	};
 
 	myTexts: IMultiSelectTexts = {
 	    checkAll: 'Seleccionar todo',
 	    uncheckAll: 'Limpiar',
 	    checked: 'item seleccionado',
-	    checkedPlural: 'items selecccionados',
+	    checkedPlural: 'items seleccionados',
 	    searchPlaceholder: 'Buscar',
 	    searchEmptyResult: 'No encontrado...',
 	    searchNoRenderText: 'Escriba en la caja de búsqueda para ver resultados...',
@@ -90,14 +90,7 @@ export class ManualComponent{
 		this.obtenerModelosDD();
 	}
 
-	/**
-	* Permite obtener el número de Modelo escogido en el dropdown
-	*/
-	SeleccionarModelos(){
-		//console.log(this.optionsModel);
-	}
-
-
+	
 	/**
 	* Permite habilitar o deshabilitar el input de ingreso de ubicación de manual físico
 	*/

@@ -57,7 +57,7 @@ export class TorpedoComponent{
 	    checkAll: 'Seleccionar todo',
 	    uncheckAll: 'Limpiar',
 	    checked: 'item seleccionado',
-	    checkedPlural: 'items selecccionados',
+	    checkedPlural: 'items seleccionados',
 	    searchPlaceholder: 'Buscar',
 	    searchEmptyResult: 'No encontrado...',
 	    searchNoRenderText: 'Escriba en la caja de búsqueda para ver resultados...',
@@ -88,12 +88,7 @@ export class TorpedoComponent{
 	}
 
 
-	/**
-	* Obtiene las ids desde el dropdown Modelo
-	*/
-	SeleccionarModelos(){
-		//console.log(this.optionsModel);
-	}
+	
 
 	/**
 	* Guarda los datos de los apuntes (torpedos)

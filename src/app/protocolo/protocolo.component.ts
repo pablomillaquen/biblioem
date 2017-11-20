@@ -56,14 +56,14 @@ export class ProtocoloComponent{
 	    displayAllSelectedText: true,
 	    showCheckAll:true,
 	    showUncheckAll:true,
-	    maxHeight:'400px'
+	    maxHeight:'120px'
 	};
 
 	myTexts: IMultiSelectTexts = {
 	    checkAll: 'Seleccionar todo',
 	    uncheckAll: 'Limpiar',
 	    checked: 'item seleccionado',
-	    checkedPlural: 'items selecccionados',
+	    checkedPlural: 'items seleccionados',
 	    searchPlaceholder: 'Buscar',
 	    searchEmptyResult: 'No encontrado...',
 	    searchNoRenderText: 'Escriba en la caja de búsqueda para ver resultados...',
@@ -181,6 +181,8 @@ export class ProtocoloComponent{
 				);
 			}
 		}
+
+
 
 	/**
 	* Abre el modal para actualizar los protocolos
