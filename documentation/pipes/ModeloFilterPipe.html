@@ -627,7 +627,7 @@ export class ModeloFilterPipe implements PipeTransform {
 
   transform(array: any[], query: string): any {
 		if(query){
-	    	return _.filter(array, row &#x3D;&gt; (row.nombre).toLowerCase().indexOf(query) &gt; -1);
+	    	return _.filter(array, row &#x3D;&gt; (row.modelo).toLowerCase().indexOf(query) &gt; -1);
 	    }
 
 	    return array;

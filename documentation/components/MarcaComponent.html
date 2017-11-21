@@ -1375,13 +1375,12 @@ export class MarcaComponent{
 &lt;hr/&gt;
 &lt;div class&#x3D;&quot;row&quot;&gt;
   &lt;div class&#x3D;&quot;col-6&quot;&gt;
-    &lt;a [routerLink]&#x3D;&quot;[&#x27;../indexadmin&#x27;]&quot;&gt;Volver&lt;/a&gt;
+    &lt;a [routerLink]&#x3D;&quot;[&#x27;../indexadmin&#x27;]&quot;&gt; &lt;i class&#x3D;&quot;fa fa-arrow-left&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt; Volver&lt;/a&gt;
   &lt;/div&gt;
   &lt;!-- Button trigger modal --&gt;
   &lt;div class&#x3D;&quot;col-6 text-right&quot;&gt;
     &lt;!-- Button trigger modal --&gt;
-    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-primary&quot; data-toggle&#x3D;&quot;modal&quot; data-target&#x3D;&quot;#MarcaModal&quot;&gt;
-      Nueva Marca
+    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-primary&quot; data-toggle&#x3D;&quot;modal&quot; data-target&#x3D;&quot;#MarcaModal&quot;&gt;&lt;i class&#x3D;&quot;fa fa-plus&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt; Nueva Marca
     &lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -1399,16 +1398,16 @@ export class MarcaComponent{
   &lt;thead&gt;
   &lt;tr&gt;
     &lt;th&gt;
-      Buscar por nombre: &lt;input class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;filterQuery&quot; /&gt;
+       &lt;input class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;filterQuery&quot; placeholder&#x3D;&quot;Buscar por nombre&quot; /&gt;
     &lt;/th&gt;
-    &lt;th&gt;&lt;/th&gt;&lt;th&gt;&lt;/th&gt;
+    &lt;th colspan&#x3D;&quot;4&quot;&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
     &lt;th style&#x3D;&quot;width: 30%&quot;&gt;
-      &lt;mfDefaultSorter by&#x3D;&quot;name&quot;&gt;Id&lt;/mfDefaultSorter&gt;
+      &lt;mfDefaultSorter by&#x3D;&quot;id&quot;&gt;Id&lt;/mfDefaultSorter&gt;
     &lt;/th&gt;
     &lt;th style&#x3D;&quot;width: 30%&quot;&gt;
-      &lt;mfDefaultSorter by&#x3D;&quot;email&quot;&gt;Nombre&lt;/mfDefaultSorter&gt;
+      &lt;mfDefaultSorter by&#x3D;&quot;nombre&quot;&gt;Nombre&lt;/mfDefaultSorter&gt;
     &lt;/th&gt;
     &lt;th style&#x3D;&quot;width: 20%&quot;&gt;
       &lt;mfDefaultSorter by&#x3D;&quot;city&quot;&gt;Opciones&lt;/mfDefaultSorter&gt;
@@ -1421,8 +1420,8 @@ export class MarcaComponent{
     &lt;td&gt;{{item.nombre}}&lt;/td&gt;
     &lt;td &gt;
       &lt;div class&#x3D;&quot;btn-group&quot;&gt;
-        &lt;button class&#x3D;&quot;btn btn-info&quot; data-toggle&#x3D;&quot;modal&quot; data-target&#x3D;&quot;#MarcaModal&quot; (click)&#x3D;&quot;modalActualizar(item.id)&quot;&gt;&lt;i class&#x3D;&quot;fa fa-pencil-square-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-        &lt;button class&#x3D;&quot;btn btn-danger&quot;  (click)&#x3D;&quot;deleteMarca(item.id)&quot;&gt;&lt;i class&#x3D;&quot;fa fa-times&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+        &lt;button class&#x3D;&quot;btn btn-sm btn-info&quot; data-toggle&#x3D;&quot;modal&quot; data-target&#x3D;&quot;#MarcaModal&quot; (click)&#x3D;&quot;modalActualizar(item.id)&quot;&gt;&lt;i class&#x3D;&quot;fa fa-pencil-square-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt; Editar&lt;/button&gt;
+        &lt;button class&#x3D;&quot;btn btn-sm btn-danger&quot;  (click)&#x3D;&quot;deleteMarca(item.id)&quot;&gt;&lt;i class&#x3D;&quot;fa fa-trash&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt; Eliminar&lt;/button&gt;
       &lt;/div&gt;
     &lt;/td&gt;
   &lt;/tr&gt;
@@ -1462,13 +1461,13 @@ export class MarcaComponent{
 				&lt;label for&#x3D;&quot;txtNombre&quot;&gt;Nombre:&lt;/label&gt;
 			&lt;/div&gt;
 			&lt;div class&#x3D;&quot;col-xs-12&quot;&gt;
-				&lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; name&#x3D;&quot;txtNombre&quot; #txtNombre&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;marca.nombre&quot; required /&gt;
+				&lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control form-control-sm&quot; name&#x3D;&quot;txtNombre&quot; #txtNombre&#x3D;&quot;ngModel&quot; [(ngModel)]&#x3D;&quot;marca.nombre&quot; required /&gt;
 				&lt;span *ngIf&#x3D;&quot;txtNombre.touched &amp;&amp; !txtNombre.valid&quot;&gt;Ingrese el nombre&lt;/span&gt;
 			&lt;/div&gt;
       	&lt;/div&gt;
       	&lt;div class&#x3D;&quot;modal-footer&quot;&gt;
-        	&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-secondary&quot; data-dismiss&#x3D;&quot;modal&quot;&gt;Cerrar&lt;/button&gt;
-        	&lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary&quot; &gt;Guardar&lt;/button&gt;
+        	&lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-danger&quot; data-dismiss&#x3D;&quot;modal&quot;&gt;&lt;i class&#x3D;&quot;fa fa-times&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt; Cerrar&lt;/button&gt;
+        	&lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-sm btn-primary&quot; &gt;&lt;i class&#x3D;&quot;fa fa-floppy-o&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt; Guardar&lt;/button&gt;
       	&lt;/div&gt;
 	  	&lt;/form&gt;
     &lt;/div&gt;
@@ -1498,7 +1497,7 @@ export class MarcaComponent{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h3><strong>LISTADO DE MARCAS:</strong></h3><hr/><div class="row">  <div class="col-6">    <a [routerLink]="[\'../indexadmin\']">Volver</a>  </div>  <!-- Button trigger modal -->  <div class="col-6 text-right">    <!-- Button trigger modal -->    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MarcaModal">      Nueva Marca    </button>  </div></div><div *ngIf="marcas" class="table-responsive">  <br>  <table   class="table table-striped table-hover"   [mfData]="marcas |marcaFilter : filterQuery"   #mf="mfDataTable"   [mfRowsOnPage]="rowsOnPage"  [(mfSortBy)]="sortBy"  [(mfSortOrder)]="sortOrder"  >  <thead>  <tr>    <th>      Buscar por nombre: <input class="form-control" [(ngModel)]="filterQuery" />    </th>    <th></th><th></th>  </tr>  <tr>    <th style="width: 30%">      <mfDefaultSorter by="name">Id</mfDefaultSorter>    </th>    <th style="width: 30%">      <mfDefaultSorter by="email">Nombre</mfDefaultSorter>    </th>    <th style="width: 20%">      <mfDefaultSorter by="city">Opciones</mfDefaultSorter>    </th>  </tr>  </thead>  <tbody>  <tr *ngFor="let item of mf.data">    <td>{{item.id}}</td>    <td>{{item.nombre}}</td>    <td >      <div class="btn-group">        <button class="btn btn-info" data-toggle="modal" data-target="#MarcaModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>        <button class="btn btn-danger"  (click)="deleteMarca(item.id)"><i class="fa fa-times" aria-hidden="true"></i></button>      </div>    </td>  </tr>  </tbody>  <tfoot>  <tr>    <td colspan="4">      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>    </td>  </tr>  </tfoot></table></div><div *ngIf="!marcas">  <br>  <div class="jumbotron text-center">        <h3>No se cuenta con marcas alojadas actualmente en la base de datos</h3>    <h5>Agregue marcas haciendo click en el botón superior.</h5>  </div></div><!-- Modal --><div class="modal fade" id="MarcaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  	<div class="modal-dialog" role="document">    <div class="modal-content"> 	  	<form #formMarca="ngForm" (ngSubmit)="onSubmit()">      	<div class="modal-header">        	<h5 class="modal-title" id="exampleModalLabel">Formulario de Marcas</h5>        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">          		<span aria-hidden="true">&times;</span>        	</button>      	</div>      	<div class="modal-body">       		<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="marca.id" />			<div class="col-xs-12">				<label for="txtNombre">Nombre:</label>			</div>			<div class="col-xs-12">				<input type="text" class="form-control" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="marca.nombre" required />				<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>			</div>      	</div>      	<div class="modal-footer">        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>        	<button type="submit" class="btn btn-primary" >Guardar</button>      	</div>	  	</form>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><h3><strong>LISTADO DE MARCAS:</strong></h3><hr/><div class="row">  <div class="col-6">    <a [routerLink]="[\'../indexadmin\']"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</a>  </div>  <!-- Button trigger modal -->  <div class="col-6 text-right">    <!-- Button trigger modal -->    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#MarcaModal"><i class="fa fa-plus" aria-hidden="true"></i> Nueva Marca    </button>  </div></div><div *ngIf="marcas" class="table-responsive">  <br>  <table   class="table table-striped table-hover"   [mfData]="marcas |marcaFilter : filterQuery"   #mf="mfDataTable"   [mfRowsOnPage]="rowsOnPage"  [(mfSortBy)]="sortBy"  [(mfSortOrder)]="sortOrder"  >  <thead>  <tr>    <th>       <input class="form-control" [(ngModel)]="filterQuery" placeholder="Buscar por nombre" />    </th>    <th colspan="4">  </tr>  <tr>    <th style="width: 30%">      <mfDefaultSorter by="id">Id</mfDefaultSorter>    </th>    <th style="width: 30%">      <mfDefaultSorter by="nombre">Nombre</mfDefaultSorter>    </th>    <th style="width: 20%">      <mfDefaultSorter by="city">Opciones</mfDefaultSorter>    </th>  </tr>  </thead>  <tbody>  <tr *ngFor="let item of mf.data">    <td>{{item.id}}</td>    <td>{{item.nombre}}</td>    <td >      <div class="btn-group">        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#MarcaModal" (click)="modalActualizar(item.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button>        <button class="btn btn-sm btn-danger"  (click)="deleteMarca(item.id)"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>      </div>    </td>  </tr>  </tbody>  <tfoot>  <tr>    <td colspan="4">      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>    </td>  </tr>  </tfoot></table></div><div *ngIf="!marcas">  <br>  <div class="jumbotron text-center">        <h3>No se cuenta con marcas alojadas actualmente en la base de datos</h3>    <h5>Agregue marcas haciendo click en el botón superior.</h5>  </div></div><!-- Modal --><div class="modal fade" id="MarcaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  	<div class="modal-dialog" role="document">    <div class="modal-content"> 	  	<form #formMarca="ngForm" (ngSubmit)="onSubmit()">      	<div class="modal-header">        	<h5 class="modal-title" id="exampleModalLabel">Formulario de Marcas</h5>        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">          		<span aria-hidden="true">&times;</span>        	</button>      	</div>      	<div class="modal-body">       		<input type="hidden" name="txtId" #txtId="ngModel" [(ngModel)]="marca.id" />			<div class="col-xs-12">				<label for="txtNombre">Nombre:</label>			</div>			<div class="col-xs-12">				<input type="text" class="form-control form-control-sm" name="txtNombre" #txtNombre="ngModel" [(ngModel)]="marca.nombre" required />				<span *ngIf="txtNombre.touched && !txtNombre.valid">Ingrese el nombre</span>			</div>      	</div>      	<div class="modal-footer">        	<button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Cerrar</button>        	<button type="submit" class="btn btn-sm btn-primary" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>      	</div>	  	</form>    </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DetallemodeloComponent', 'selector': 'detallemodelo'},{'name': 'EmpleadoComponent', 'selector': 'empleado'},{'name': 'IndexadminComponent', 'selector': 'app-indexadmin'},{'name': 'ListmanualComponent', 'selector': 'app-listmanual'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ManualComponent', 'selector': 'manual'},{'name': 'MarcaComponent', 'selector': 'marca'},{'name': 'ModeloComponent', 'selector': 'modelo'},{'name': 'NavbarComponent', 'selector': 'navbar'},{'name': 'ProtocoloComponent', 'selector': 'protocolo'},{'name': 'RepuestoComponent', 'selector': 'repuesto'},{'name': 'TipoequipoComponent', 'selector': 'tipoequipo'},{'name': 'TorpedoComponent', 'selector': 'torpedo'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'MarcaComponent'};

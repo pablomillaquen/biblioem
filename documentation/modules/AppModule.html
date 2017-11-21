@@ -1043,6 +1043,7 @@ import { AuthGuard } from &#x27;./services/auth-guard.service&#x27;;
 import { AuthModule } from &#x27;./auth/auth.module&#x27;;
 import { AuthService } from &#x27;./services/auth.service&#x27;;
 import { NgLoadingBarModule } from &#x27;ng-loading-bar&#x27;;
+import { MultiselectDropdownModule } from &#x27;angular-2-dropdown-multiselect&#x27;;
 
 import { AppComponent } from &#x27;./app.component&#x27;;
 import {DataTableModule} from &#x27;angular2-datatable&#x27;;
@@ -1100,7 +1101,8 @@ import { LoginComponent } from &#x27;./login/login.component&#x27;;
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     AuthModule,
-    NgLoadingBarModule.forRoot()
+    NgLoadingBarModule.forRoot(),
+    MultiselectDropdownModule
   ],
   providers: [appRoutingProviders,AuthGuard,AuthService],
   bootstrap: [AppComponent]

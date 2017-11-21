@@ -653,6 +653,9 @@
                                          <a href="#getModelo1">getModelo1</a>
                                     </li>
                                     <li>
+                                         <a href="#getModeloDropdown">getModeloDropdown</a>
+                                    </li>
+                                    <li>
                                          <a href="#makeFileRequest">makeFileRequest</a>
                                     </li>
                                     <li>
@@ -746,7 +749,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/services/modelo.service.ts:62</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/services/modelo.service.ts:61</a></div>
                                         </td>
                                     </tr>
             
@@ -809,7 +812,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/services/modelo.service.ts:69</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/services/modelo.service.ts:68</a></div>
                                         </td>
                                     </tr>
             
@@ -871,7 +874,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/services/modelo.service.ts:48</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/services/modelo.service.ts:47</a></div>
                                         </td>
                                     </tr>
             
@@ -905,7 +908,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/services/modelo.service.ts:55</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/services/modelo.service.ts:54</a></div>
                                         </td>
                                     </tr>
             
@@ -954,6 +957,40 @@
                         <tbody>
                             <tr>
                                 <td class="col-md-4">
+                                    <a name="getModeloDropdown"></a>
+                                    <span class="name"><b> getModeloDropdown</b><a href="#getModeloDropdown"><span class="fa fa-link"></span></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">
+            <code>getModeloDropdown()</code>
+                                </td>
+                            </tr>
+            
+            
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/services/modelo.service.ts:102</a></div>
+                                        </td>
+                                    </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description"><p>Obtiene todos los modelos existentes, con datos reducidos, para llenar los dropdown</p>
+            </div>
+            
+                                        <div class="io-description">
+                                            <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
                                     <a name="makeFileRequest"></a>
                                     <span class="name"><b> makeFileRequest</b><a href="#makeFileRequest"><span class="fa fa-link"></span></a></span>
                                 </td>
@@ -967,7 +1004,7 @@
             
                                     <tr>
                                         <td class="col-md-4">
-                                            <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/services/modelo.service.ts:76</a></div>
+                                            <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/services/modelo.service.ts:75</a></div>
                                         </td>
                                     </tr>
             
@@ -1264,8 +1301,7 @@ export class ModeloService{
 		return this._http.get(this.url+&#x27;user/modelo/get/&#x27;+id).map(res&#x3D;&gt;res.json());	
 	}
 	
-
-
+	
 
 	/******************************************************************************
 	//RUTAS DE ADMIN
@@ -1323,6 +1359,13 @@ export class ModeloService{
 			xhr.open(&quot;POST&quot;, url, true);
 			xhr.send(formData);
 		})
+	}
+
+	/**
+	* Obtiene todos los modelos existentes, con datos reducidos, para llenar los dropdown
+	*/
+	getModeloDropdown(){
+		return this._authHttp.get(this.url+&#x27;admin/modelo/getdd/&#x27;).map(res&#x3D;&gt;res.json());
 	}
 }
 </code></pre>
