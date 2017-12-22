@@ -65,8 +65,8 @@
 							<tbody>
 								<tr *ngFor="let man of manuales">
 									<td>{{man.nombre}}</td>
-									<td *ngIf="man.ubicacion">{{man.ubicacion}}</td>
-									<td *ngIf="!man.ubicacion">No disponible</td>
+									<td *ngIf="man.ubicacion"><span class="badge badge-pill badge-success" title="ubicacion">{{man.ubicacion}}</span></td>
+									<td *ngIf="!man.ubicacion"><span class="badge badge-pill badge-danger" title="Nodisponible">No disponible</span></td>
 									<td><a href="http://{{urlFiles}}/apibiblio2/uploads/manuales/{{man.url}}"  target="_blank">Descargar</a></td>
 								</tr>
 							</tbody>

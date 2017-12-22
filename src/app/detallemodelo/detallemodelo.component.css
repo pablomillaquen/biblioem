@@ -33,3 +33,9 @@ li>a{
 	-moz-text-shadow: 1px 1px  rgba(0,0,0,0.75);
 	text-shadow: 1px 1px rgba(0,0,0,0.75);
 }
+td>.badge{
+	-webkit-text-shadow: 0px 0px  rgba(0,0,0,0.75);
+	-moz-text-shadow: 0px 0px  rgba(0,0,0,0.75);
+	text-shadow: 0px 0px rgba(0,0,0,0.75);
+	font-size: .9em;
+}
